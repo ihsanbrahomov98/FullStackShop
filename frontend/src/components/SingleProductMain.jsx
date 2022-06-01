@@ -12,8 +12,8 @@ const SingleProductMain = () => {
 
   return (
       <>
-    <Stack  direction="row"justifyContent="center" alignItems="flex-start"spacing={6} sx={{margin: 5, height: 1500}}>
-    <Stack sx={{flex:1, height:700}}>
+    <Stack  direction="row"justifyContent="center" alignItems="flex-start"spacing={6} sx={{mb:-5, height: 450}}>
+    <Stack sx={{flex:1, height:450}}>
         <SingleCard/>
       
     </Stack>

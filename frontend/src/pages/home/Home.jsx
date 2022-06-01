@@ -4,7 +4,7 @@ import Slider from '../../components/Slider'
 import Cards from '../../components/Cards'
 import ListItems from '../../components/ListItems'
 import Counter from '../../app/features/Counter'
-
+import ManBotLine from '../../components/ManBotLine'
 
 const Home = () => {
   return (  <>
@@ -13,6 +13,7 @@ const Home = () => {
     <Cards/>
     <ListItems/>
     <Counter/>
+    <ManBotLine/>
     
     </>
   )

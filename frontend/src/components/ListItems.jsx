@@ -16,35 +16,35 @@ const ListItems = () => {
     <List>
         <ListItem disablePadding>
             <ListItemButton>
-              <ListItemText primary="Inbox" />
+              <ListItemText align="center" primary="Inbox" />
             </ListItemButton>
         </ListItem>
      </List>
      <List>
         <ListItem disablePadding>
             <ListItemButton>
-              <ListItemText primary="Inbox" />
+              <ListItemText align="center" primary="Inbox" />
             </ListItemButton>
         </ListItem>
      </List>
      <List>
         <ListItem disablePadding>
             <ListItemButton>
-              <ListItemText primary="Inbox" />
+              <ListItemText align="center" primary="Inbox" />
             </ListItemButton>
         </ListItem>
      </List>
      <List>
         <ListItem disablePadding>
             <ListItemButton>
-              <ListItemText primary="Inbox" />
+              <ListItemText align="center" primary="Inbox" />
             </ListItemButton>
         </ListItem>
      </List>
      <List>
         <ListItem disablePadding>
             <ListItemButton>
-              <ListItemText primary="Inbox" />
+              <ListItemText align="center" primary="Inbox" />
             </ListItemButton>
         </ListItem>
      </List>
@@ -53,35 +53,35 @@ const ListItems = () => {
     <List>
         <ListItem disablePadding>
             <ListItemButton>
-              <ListItemText primary="Inbox" />
+              <ListItemText align="center" primary="Inbox" />
             </ListItemButton>
         </ListItem>
      </List>
      <List>
         <ListItem disablePadding>
             <ListItemButton>
-              <ListItemText primary="Inbox" />
+              <ListItemText align="center" primary="Inbox" />
             </ListItemButton>
         </ListItem>
      </List>
      <List>
         <ListItem disablePadding>
             <ListItemButton>
-              <ListItemText primary="Inbox" />
+              <ListItemText align="center" primary="Inbox" />
             </ListItemButton>
         </ListItem>
      </List>
      <List>
         <ListItem disablePadding>
             <ListItemButton>
-              <ListItemText primary="Inbox" />
+              <ListItemText  align="center" primary="Inbox" />
             </ListItemButton>
         </ListItem>
      </List>
      <List>
         <ListItem disablePadding>
             <ListItemButton>
-              <ListItemText primary="Inbox" />
+              <ListItemText align="center" primary="Inbox" />
             </ListItemButton>
         </ListItem>
      </List>
@@ -90,35 +90,35 @@ const ListItems = () => {
     <List>
         <ListItem disablePadding>
             <ListItemButton>
-              <ListItemText primary="Inbox" />
+              <ListItemText align="center" primary="Inbox" />
             </ListItemButton>
         </ListItem>
      </List>
      <List>
         <ListItem disablePadding>
             <ListItemButton>
-              <ListItemText primary="Inbox" />
+              <ListItemText align="center" primary="Inbox" />
             </ListItemButton>
         </ListItem>
      </List>
      <List>
         <ListItem disablePadding>
             <ListItemButton>
-              <ListItemText primary="Inbox" />
+              <ListItemText align="center" primary="Inbox" />
             </ListItemButton>
         </ListItem>
      </List>
      <List>
         <ListItem disablePadding>
             <ListItemButton>
-              <ListItemText primary="Inbox" />
+              <ListItemText align="center" primary="Inbox" />
             </ListItemButton>
         </ListItem>
      </List>
      <List>
         <ListItem disablePadding>
             <ListItemButton>
-              <ListItemText primary="Inbox" />
+              <ListItemText align="center" primary="Inbox" />
             </ListItemButton>
         </ListItem>
      </List>

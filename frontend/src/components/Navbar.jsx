@@ -37,23 +37,23 @@ const Navbar = () => {
             </IconButton>
    
         </Stack>
-        <Stack direction="row" justifyContent="flex-start" alignItems="flex-start"spacing={2} sx={{pt:1.4}}>
+        <Stack direction="row" justifyContent="flex-start" alignItems="flex-start"spacing={2} sx={{pt:1.4,pl:4.7}}>
             <Box > 
-              <CallIcon />
+              <CallIcon  />
             </Box>
             <Box sx={{pt:0.4}}>0893231212</Box>
            
         </Stack>
-        <Stack direction="row" justifyContent="flex-start" alignItems="flex-start"spacing={2}>
+        <Stack direction="row" justifyContent="flex-start" alignItems="flex-start"spacing={2} >
             <Box sx={{pt:1.6}}>Register</Box>
-            <Box>
+            <Box >
             <IconButton aria-label="cart">
               <StyledBadge badgeContent={count} color="secondary">
                 <AccountBoxRoundedIcon />
                </StyledBadge>
             </IconButton>
             </Box>
-            <Box>
+            <Box sx={{pr:1.2}}>
             <IconButton aria-label="cart">
               <StyledBadge badgeContent={count} color="secondary">
                 <ShoppingCartIcon />
@@ -68,7 +68,7 @@ const Navbar = () => {
     
     <Stack direction="row"  justifyContent="space-around" alignItems="flex-start" spacing={2} sx={{height: 25, bgcolor: 'primary.main'}} >
             <Box>
-            <Link to="/products/man">Мъжко обувки</Link>
+            <Link to="/products/man">Обувките на Божидар</Link>
             </Box>
             <Box><Link to="/products/man">Мъжки обувки</Link></Box>
             <Box><Link to="/products/man">Дамски обувки</Link></Box>

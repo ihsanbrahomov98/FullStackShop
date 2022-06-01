@@ -12,58 +12,35 @@ export default function Cards() {
       <CardActionArea>
         <CardMedia
           component="img"
-          height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
+          height="240"
+          image="https://eobuvki.bg/img/img_e_shop/thumbs/p_1007054_3.jpg"
           alt="green iguana"
         />
-        <CardContent>
-        
-       
-        </CardContent>
+    
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-      </CardActions>
+    
     </Card>
     <Card sx={{ flex: 1 }}>
       <CardActionArea>
         <CardMedia
           component="img"
-          height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
-          alt="green iguana"
+          height="240"
+          image="https://eobuvki.bg/img/img_e_shop/thumbs/p_1007050_3.jpg"
+         alt="green iguana"
         />
-        <CardContent>
-        
-       
-        </CardContent>
+      
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-      </CardActions>
     </Card>
     <Card sx={{ flex: 1 }}>
       <CardActionArea>
         <CardMedia
           component="img"
-          height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
+          height="240"
+          image="https://eobuvki.bg/img/img_e_shop/thumbs/p_1007045_3.jpg"
           alt="green iguana"
         />
-        <CardContent>
-        
-       
-        </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-      </CardActions>
+   
     </Card>
     </Stack>
   );
