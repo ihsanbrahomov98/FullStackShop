@@ -6,6 +6,8 @@ import authRouting from "./routes/authRoute.js";
 import cookieParser from "cookie-parser";
 import profileRouting from "./routes/profile.js"
 import productRoute from './routes/productRoute.js'
+import stripeRouting from "./routes/StriepRoute.js"
+import  cors from "cors"
 
 
 
@@ -26,7 +28,7 @@ mongoose.connection.on("disconnected", () =>{
 mongoose.connection.on("connected", () =>{
     console.log("MONGOO working <3");
 })
-
+app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 
@@ -34,6 +36,7 @@ app.use("/back/hotels", hotelsRouting );
 app.use("/back/authroute", authRouting);
 app.use("/back/profile", profileRouting);
 app.use("/back/product", productRoute );
+app.use("/back/stripe", stripeRouting );
 // app.use((err,req,res,next)=>{
 // const erroStatus = err.status || 500
 // const erorMessage = err.message || "mistake"

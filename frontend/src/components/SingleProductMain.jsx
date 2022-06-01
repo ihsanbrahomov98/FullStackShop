@@ -1,14 +1,42 @@
-import { Stack,Box,Typography } from '@mui/material'
-import React from 'react'
+import { Stack,Box,Typography } from '@mui/material';
+import React from 'react';
 import SingleCard from './SingleCard';
 import Button from '@mui/material/Button';
-import { useSelector, useDispatch } from 'react-redux'
-import { decrement, increment } from  '../app/features/counterSlice'
+import { useSelector, useDispatch } from 'react-redux';
+import { decrement, increment } from  '../app/features/counterSlice';
 import SingleProductSlider from './SingleProductSlider';
+import StripeCheckout from 'react-stripe-checkout';
+import { useEffect,useState } from 'react';
+import axios from 'axios';
+import { useHistory } from 'react-router';
+
+const STRIPE_KEY = 'pk_test_51L5XfCGhswhFxp1SnSWMxrXia8K8TDik4CV8zMmQT1Es3VdYofPdgdYEFzkgqOnPVpYSQf0sEOejlIvKOb9BwSxK00jTVKbULQ'
 
 const SingleProductMain = () => {
+     const [stripeToken,SetStripeToken] = useState(null);
+     const history  = useHistory();
+
+
     const count = useSelector((state) => state.counter.value)
     const dispatch = useDispatch()
+   const onToken  = (token) =>{ 
+       SetStripeToken(token)
+    }
+    useEffect(() =>{
+        const request = async () =>  {
+          try {
+              const res = await axios.post("http://localhost:5550/back/stripe/payment",{
+                    tokenId: stripeToken.id,
+                    amount: 25000,
+              });
+              console.log(res.data)
+              history.push("/")
+          } catch (error) {
+              alert(error)
+          }  
+        };
+        stripeToken && request();
+}, [stripeToken,history]);
 
   return (
       <>
@@ -26,13 +54,20 @@ const SingleProductMain = () => {
        
             <Box sx={{flex:1}}>
             <Button size="small" variant="outlined" onClick={() => dispatch(increment())}>+</Button>
-            <Button size="small" variant="outlined">{count}</Button>
+          
+                    <Button size="small" variant="outlined">{count}</Button>
+         
+            
             <Button size="small" variant="outlined" onClick={() => dispatch(decrement())}>-</Button>
            
             </Box>
             
             <Box sx={{flex:0.2}}>
+            < StripeCheckout name="ihsanShop" image="https://eobuvki.bg/img/img_e_shop/thumbs/p_1007045_3.jpg"
+           billingAddress shippingAddress description amount={25000} token={onToken} stripeKey={STRIPE_KEY}
+           >
             <Button size="large" variant="outlined">Buy</Button>
+            </StripeCheckout>
             </Box>
             <Box sx={{flex:1}}></Box>
             <Box sx={{flex:4}}></Box>

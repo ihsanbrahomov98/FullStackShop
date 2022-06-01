@@ -1,7 +1,7 @@
 import Customer from "../models/Customer.js";
 import express from "express";
 import CryptoJS from "crypto-js";
-import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken';
 
 
 
@@ -35,7 +35,7 @@ router.post("/login", async (req,res) =>{
         const originalPassword = hashedPassoword.toString(CryptoJS.enc.Utf8);
         originalPassword !== req.body.password && res.status(404).json("greshna parola ili ime");
 
-        const accessToken =jwt.sign({
+        const accessToken = jwt.sign({
             id: user._id,
             isAdmin: user.isAdmin
         },process.env.JWTSECRET, {expiresIn:"1d"});
@@ -44,6 +44,7 @@ router.post("/login", async (req,res) =>{
 
         
         res.status(200).json({...other,accessToken});
+       
 
 
 
