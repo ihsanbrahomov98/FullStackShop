@@ -33,7 +33,7 @@ const images = [
   },
 ];
 
-function Slider() {
+function SingleProductSlider() {
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = images.length;
@@ -51,7 +51,7 @@ function Slider() {
   };
 
   return (
-    <Box sx={{ width: 1, height: 400, flexGrow: 1 }}>
+    <Box sx={{ width: 150, height: 500, flexGrow: 1 }}>
     
       <AutoPlaySwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
@@ -65,7 +65,7 @@ function Slider() {
               <Box
                 component="img"
                 sx={{
-                  height: 700,
+                  height: 250,
                   display: 'block',
                   overflow: 'hidden',
                   width: '100%',
@@ -110,4 +110,4 @@ function Slider() {
   );
 }
 
-export default Slider;
+export default SingleProductSlider;

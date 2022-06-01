@@ -4,6 +4,7 @@ import SingleCard from './SingleCard';
 import Button from '@mui/material/Button';
 import { useSelector, useDispatch } from 'react-redux'
 import { decrement, increment } from  '../app/features/counterSlice'
+import SingleProductSlider from './SingleProductSlider';
 
 const SingleProductMain = () => {
     const count = useSelector((state) => state.counter.value)
@@ -11,14 +12,15 @@ const SingleProductMain = () => {
 
   return (
       <>
-    <Stack  direction="row"justifyContent="center" alignItems="flex-start"spacing={4} sx={{margin: 12, height: 800}}>
+    <Stack  direction="row"justifyContent="center" alignItems="flex-start"spacing={6} sx={{margin: 5, height: 1500}}>
     <Stack sx={{flex:1, height:700}}>
         <SingleCard/>
+      
     </Stack>
         <Stack direction="column"justifyContent="center"alignItems="center" spacing={2} sx={{flex:1, height:700}}>
-            <Stack  direction="row"justifyContent="center"alignItems="center"spacing={1} sx={{flex:1}}>
-                <Typography varian="h4">80 лв.</Typography>
-                <Typography varian="h6">каталожен №501-3100.</Typography>
+            <Stack  direction="column"justifyContent="center"alignItems="center"spacing={1} sx={{flex:1}}>
+                <Typography varian="h4">Mъжки елегантни обувки</Typography>
+                <Typography varian="h6">Представяме Ви, мъжки официални обувки.Моделът е решен с връзки за по-лесно обуване.Стелката е мека и комфортна. Ходилото е леко и комфортно, а връзките улесняват обуването. Характеристика: Цвят: Черен. Височина на подметката в предната част;0,5см. Височина на подметката в задната част;2,5 см. височина на модела от петата до горе 6,5 см. Номерация;39-44</Typography>
                 
             </Stack>
        
@@ -29,17 +31,20 @@ const SingleProductMain = () => {
            
             </Box>
             
-            <Box sx={{flex:1}}></Box>
+            <Box sx={{flex:0.2}}>
             <Button size="large" variant="outlined">Buy</Button>
+            </Box>
             <Box sx={{flex:1}}></Box>
             <Box sx={{flex:4}}></Box>
             
 
 
         </Stack>
-        <Stack sx={{flex:1, height:700}}></Stack>
+        <Stack direction="row"justifyContent="center"alignItems="center"  sx={{flex:2, height: 500,width: 500}}>
+        <SingleProductSlider/>
+        </Stack>
 
-
+        
     </Stack>
     </>
   )

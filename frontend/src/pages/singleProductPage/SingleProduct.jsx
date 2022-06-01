@@ -1,6 +1,9 @@
 import Navbar from "../../components/Navbar"
 import BlackLine from '../../components/BlackLine'
 import SingleProductMain from "../../components/SingleProductMain"
+import SubscribeToUs from "../../components/SubscribeToUs"
+import ManBotListItems from "../../components/ManBotListItems"
+import ManBotLine from "../../components/ManBotLine"
 
 const SingleProduct = () => {
   return (
@@ -8,6 +11,9 @@ const SingleProduct = () => {
 <Navbar/>
 <BlackLine/>
 <SingleProductMain/>
+  <SubscribeToUs/>
+    <ManBotListItems/>
+    <ManBotLine/>
 
    </>
   )
