@@ -21,7 +21,7 @@ const productSchema = new mongoose.Schema({
      
     },
     size: {
-        type: String,
+        type: Array,
    
      
     },
@@ -33,7 +33,7 @@ const productSchema = new mongoose.Schema({
      
     },
     color: {
-        type: String,
+        type: Array,
 
      
     },

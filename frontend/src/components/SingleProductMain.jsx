@@ -8,15 +8,26 @@ import SingleProductSlider from './SingleProductSlider';
 import StripeCheckout from 'react-stripe-checkout';
 import { useEffect,useState } from 'react';
 import axios from 'axios';
-import { useHistory } from 'react-router';
+import { useNavigate } from "react-router-dom";
 
 const STRIPE_KEY = 'pk_test_51L5XfCGhswhFxp1SnSWMxrXia8K8TDik4CV8zMmQT1Es3VdYofPdgdYEFzkgqOnPVpYSQf0sEOejlIvKOb9BwSxK00jTVKbULQ'
 
-const SingleProductMain = () => {
+const SingleProductMain = ({match}) => {
+ 
+        const [products, setProducts] = useState([])
+      
+      useEffect(()=>{
+        const fetchproducts = async() =>{
+          const {data} = await axios.get("/back/mock/api/products")
+          setProducts(data);
+          console.log(products);
+        }
+        fetchproducts();
+      },[])
+
+    // const product = products.find((p)=> p._id === match.params.id);
      const [stripeToken,SetStripeToken] = useState(null);
-     const history  = useHistory();
-
-
+     const navigate  = useNavigate();
     const count = useSelector((state) => state.counter.value)
     const dispatch = useDispatch()
    const onToken  = (token) =>{ 
@@ -25,18 +36,18 @@ const SingleProductMain = () => {
     useEffect(() =>{
         const request = async () =>  {
           try {
-              const res = await axios.post("http://localhost:5550/back/stripe/payment",{
+              const res = await axios.post("localhost:5550/back/stripe/payment",{
                     tokenId: stripeToken.id,
                     amount: 25000,
               });
               console.log(res.data)
-              history.push("/")
+              navigate("/", { replace: true });
           } catch (error) {
               alert(error)
           }  
         };
         stripeToken && request();
-}, [stripeToken,history]);
+}, [stripeToken,navigate]);
 
   return (
       <>

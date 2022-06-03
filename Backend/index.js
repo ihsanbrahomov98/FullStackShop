@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 import profileRouting from "./routes/profile.js"
 import productRoute from './routes/productRoute.js'
 import stripeRouting from "./routes/StriepRoute.js"
+import mockDataRuoting from "./routes/mockDateRoute.js"
 import  cors from "cors"
 
 
@@ -37,6 +38,8 @@ app.use("/back/authroute", authRouting);
 app.use("/back/profile", profileRouting);
 app.use("/back/product", productRoute );
 app.use("/back/stripe", stripeRouting );
+app.use("/back/mock", mockDataRuoting );
+
 // app.use((err,req,res,next)=>{
 // const erroStatus = err.status || 500
 // const erorMessage = err.message || "mistake"

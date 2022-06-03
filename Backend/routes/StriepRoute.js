@@ -4,6 +4,8 @@ import CryptoJS from "crypto-js";
 import jwt from 'jsonwebtoken';
 import Stripe from "stripe";
 
+const router = express.Router();
+
 const stripe = Stripe(process.env.STRIPEKEY);
 
 router.post("/payment",(res,req)=>{
@@ -21,8 +23,5 @@ router.post("/payment",(res,req)=>{
 })
 
 
-
-
-const router = express.Router();
 
 export default router
