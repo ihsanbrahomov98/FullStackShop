@@ -1,18 +1,35 @@
-import express from 'express'
-import products from "../mockData/products.js"
+import express from 'express';
+import Product from '../models/Product.js';
 const router = express.Router();
 
-
-router.get("/api/products" ,( req, res) =>{
-    res.json(products)
-    console.log(products);
+// find all
+router.get('/api/findall', async (req, res) => {
+  try {
+    const product = await Product.find();
+    res.status(200).json(product);
+  } catch (error) {
+    res.status(500).send(error);
+  }
 });
 
-router.get("/api/products/:id" ,( req, res) =>{
-    const product = products.find((p)=> p._id === match.params.id);
-    res.json(product)
+// create one
+router.post('/api/create', async (req, res) => {
+  const product = new Product(req.body);
+  try {
+    const savedProduct = await product.save();
+    res.status(200).send(savedProduct);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+//find by id
+router.get('/api/findone/:id', async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    res.status(200).send(product);
+  } catch (error) {
+    res.status(500).send(error);
+  }
 });
 
-
-
-export default router
+export default router;

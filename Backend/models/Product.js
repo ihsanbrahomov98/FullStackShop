@@ -1,50 +1,24 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-
-const productSchema = new mongoose.Schema({
-    tittle: {
-        type: String,
-        requeired: true,
+const productSchema = new mongoose.Schema(
+  {
+    userId: {
+      type: String,
+      requeired: true,
     },
-    desc: {
-        type: String,
-        requeired: true,
+    name: {
+      type: String,
+      requeired: true,
     },
     img: {
-        type: String,
-      
-        
+      type: String,
     },
-    categories: {
-        type: Array,
-     
-     
+    description: {
+      type: String,
     },
-    size: {
-        type: Array,
-   
-     
-    },
-    
-    price: {
-        type: Number,
+  },
 
-   
-     
-    },
-    color: {
-        type: Array,
+  { timestamps: true }
+);
 
-     
-    },
-    
-    
-
-
-
-
-
-
-},{timestamps: true})
-
-export default mongoose.model("Product", productSchema);
+export default mongoose.model('Product', productSchema);
