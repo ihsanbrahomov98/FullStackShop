@@ -23,6 +23,8 @@
     "react-stripe-checkout": "^2.6.3",
     "react-swipeable-views": "^0.14.0",
     "redux": "^4.2.0",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.1",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },

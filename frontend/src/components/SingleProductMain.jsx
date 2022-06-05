@@ -1,4 +1,11 @@
-import { Stack, Box, Typography } from '@mui/material';
+import {
+  Stack,
+  Box,
+  Typography,
+  Card,
+  CardMedia,
+  CardContent,
+} from '@mui/material';
 import React from 'react';
 import SingleCard from './SingleCard';
 import Button from '@mui/material/Button';
@@ -69,7 +76,19 @@ const SingleProductMain = ({}) => {
           sx={{ mb: -5, height: 450 }}
         >
           <Stack sx={{ flex: 1, height: 450 }}>
-            <SingleCard />
+            <Card>
+              <CardMedia
+                component="img"
+                height="240"
+                image={products.img}
+                alt={products.name}
+              />
+              <CardContent sx={{ bgcolor: 'secondary.main' }}>
+                <Typography align="center" color="common.white">
+                  {products.description}
+                </Typography>
+              </CardContent>
+            </Card>
           </Stack>
           <Stack
             direction="column"

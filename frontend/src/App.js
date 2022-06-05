@@ -6,6 +6,7 @@ import LoginForm from './components/LoginForm';
 import ProductsMan from './pages/products/ProductsMan';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SingleProduct from './pages/singleProductPage/SingleProduct';
+import AdminDashBoard from './pages/adminDashBoard/AdminDashBoard';
 
 const theme = createTheme({
   palette: {
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/login" element={<LoginForm />} />
           <Route path="/products/man" element={<ProductsMan />} />
           <Route exact path="/products/man/:id" element={<SingleProduct />} />
+          <Route path="/adminboard" element={<AdminDashBoard />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

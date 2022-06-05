@@ -1,7 +1,5 @@
-// export const createError = (status, message) =>{
-//     const err = new Error();
-//     err.status = status;
-//     err.message = message;
-//     return err;
-
-// }
+export const notFound = (req, res, next) => {
+  const error = new Error('page not found');
+  res.status(404);
+  next(error);
+};
