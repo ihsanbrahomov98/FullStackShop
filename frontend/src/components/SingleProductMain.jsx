@@ -7,7 +7,6 @@ import {
   CardContent,
 } from '@mui/material';
 import React from 'react';
-import SingleCard from './SingleCard';
 import Button from '@mui/material/Button';
 import { useSelector, useDispatch } from 'react-redux';
 import { decrement, increment } from '../app/features/counterSlice';
@@ -17,6 +16,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import { addProduct, addTooCart } from '../app/features/cartSlice';
 
 const STRIPE_KEY =
   'pk_test_51L5XfCGhswhFxp1SnSWMxrXia8K8TDik4CV8zMmQT1Es3VdYofPdgdYEFzkgqOnPVpYSQf0sEOejlIvKOb9BwSxK00jTVKbULQ';
@@ -25,23 +25,23 @@ const SingleProductMain = ({}) => {
   const params = useParams();
   const [products, setProducts] = useState([]);
   const [loading, Setloading] = useState(true);
+  const [quantity, SetQuantity] = useState(1);
+  const [items, SetItems] = useState([]);
 
   useEffect(() => {
     const fetchproducts = async () => {
       const { data } = await axios.get(`/back/mock/api/findone/${params.id}`);
       setProducts(data);
-      console.log('single');
-      console.log(products);
     };
     fetchproducts();
-    alert(products);
+
     Setloading(false);
   }, []);
 
   // const product = products.find((p)=> p._id === match.params.id);
   const [stripeToken, SetStripeToken] = useState(null);
   const navigate = useNavigate();
-  const count = useSelector((state) => state.counter.value);
+  const itemQuantity = useSelector((state) => state.cart.quantity);
   const dispatch = useDispatch();
   const onToken = (token) => {
     SetStripeToken(token);
@@ -62,6 +62,17 @@ const SingleProductMain = ({}) => {
     stripeToken && request();
   }, [stripeToken, navigate]);
   const showLoading = <Typography>Loading....</Typography>;
+
+  const handleQuantity = (type) => {
+    if (type === 'dec') {
+      quantity > 1 && SetQuantity(quantity - 1);
+    } else {
+      SetQuantity(quantity + 1);
+    }
+  };
+  const handleClick = () => {
+    dispatch(addProduct({ ...products, quantity }));
+  };
 
   return (
     <>
@@ -105,26 +116,26 @@ const SingleProductMain = ({}) => {
               sx={{ flex: 1 }}
             >
               <Typography varian="h4">{products.name}</Typography>
-              <Typography varian="h6">{products.description}</Typography>
+              <Typography varian="h6">{products.price} лв</Typography>
             </Stack>
 
             <Box sx={{ flex: 1 }}>
               <Button
                 size="small"
                 variant="outlined"
-                onClick={() => dispatch(increment())}
+                onClick={() => handleQuantity('inc')}
               >
                 +
               </Button>
 
               <Button size="small" variant="outlined">
-                {count}
+                {quantity}
               </Button>
 
               <Button
                 size="small"
                 variant="outlined"
-                onClick={() => dispatch(decrement())}
+                onClick={() => handleQuantity('dec')}
               >
                 -
               </Button>
@@ -141,10 +152,11 @@ const SingleProductMain = ({}) => {
                 token={onToken}
                 stripeKey={STRIPE_KEY}
               >
-                <Button size="large" variant="outlined">
-                  Buy
-                </Button>
+                <Button size="large" variant="outlined"></Button>
               </StripeCheckout>
+              <Button onClick={handleClick} size="large" variant="outlined">
+                Buy
+              </Button>
             </Box>
             <Box sx={{ flex: 1 }}></Box>
             <Box sx={{ flex: 4 }}></Box>

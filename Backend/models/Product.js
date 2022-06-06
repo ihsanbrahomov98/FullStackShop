@@ -15,6 +15,19 @@ const productSchema = new mongoose.Schema(
     },
     description: {
       type: String,
+      requeired: true,
+    },
+    color: {
+      type: String,
+    },
+    size: {
+      type: String,
+    },
+    price: {
+      type: Number,
+    },
+    quantityLeft: {
+      type: Number,
     },
   },
 

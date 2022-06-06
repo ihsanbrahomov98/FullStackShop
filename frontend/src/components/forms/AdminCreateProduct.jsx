@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Button from '@mui/material/Button';
@@ -18,6 +18,18 @@ const validationSchema = yup.object({
   description: yup
     .string('Enter your description')
     .required('description is required'),
+  size: yup
+    .string('Enter your description')
+    .required('description is required'),
+  color: yup
+    .string('Enter your description')
+    .required('description is required'),
+  price: yup
+    .number('Enter your description')
+    .required('description is required'),
+  quantityLeft: yup
+    .number('Enter your description')
+    .required('description is required'),
 });
 
 const AdminCreateProduct = () => {
@@ -27,6 +39,10 @@ const AdminCreateProduct = () => {
       name: '',
       img: '',
       description: '',
+      color: '',
+      size: '',
+      price: 0,
+      quantityLeft: 0,
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -36,6 +52,10 @@ const AdminCreateProduct = () => {
         name: values.name,
         img: values.img,
         description: values.description,
+        color: values.color,
+        size: values.size,
+        price: values.price,
+        quantityLeft: values.quantityLeft,
       });
     },
   });
@@ -47,7 +67,7 @@ const AdminCreateProduct = () => {
         justifyContent="center"
         alignItems="center"
         spacing={2}
-        sx={{ width: 1, height: 500, flexGrow: 1 }}
+        sx={{ width: 1, height: 800, flexGrow: 1 }}
       >
         <Typography>Creating a product!</Typography>
         <Box>
@@ -99,6 +119,55 @@ const AdminCreateProduct = () => {
               helperText={
                 formik.touched.description && formik.errors.description
               }
+            />
+          </Box>
+          <Box>
+            <TextField
+              id="color"
+              name="color"
+              label="color"
+              value={formik.values.color}
+              onChange={formik.handleChange}
+              error={formik.touched.color && Boolean(formik.errors.color)}
+              helperText={formik.touched.color && formik.errors.color}
+            />
+          </Box>
+          <Box>
+            <TextField
+              id="size"
+              name="size"
+              label="size"
+              value={formik.values.size}
+              onChange={formik.handleChange}
+              error={formik.touched.size && Boolean(formik.errors.size)}
+              helperText={formik.touched.size && formik.errors.size}
+            />
+          </Box>
+          <Box>
+            <TextField
+              id="quantityLeft"
+              name="quantityLeft"
+              label="quantityLeft"
+              value={formik.values.quantityLeft}
+              onChange={formik.handleChange}
+              error={
+                formik.touched.quantityLeft &&
+                Boolean(formik.errors.quantityLeft)
+              }
+              helperText={
+                formik.touched.quantityLeft && formik.errors.quantityLeft
+              }
+            />
+          </Box>
+          <Box>
+            <TextField
+              id="price"
+              name="price"
+              label="price"
+              value={formik.values.price}
+              onChange={formik.handleChange}
+              error={formik.touched.price && Boolean(formik.errors.price)}
+              helperText={formik.touched.price && formik.errors.price}
             />
           </Box>
         </Box>

@@ -7,6 +7,7 @@ import ProductsMan from './pages/products/ProductsMan';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SingleProduct from './pages/singleProductPage/SingleProduct';
 import AdminDashBoard from './pages/adminDashBoard/AdminDashBoard';
+import CartBody from './components/forms/cartCompnents/CartBody';
 
 const theme = createTheme({
   palette: {
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/products/man" element={<ProductsMan />} />
           <Route exact path="/products/man/:id" element={<SingleProduct />} />
           <Route path="/adminboard" element={<AdminDashBoard />} />
+          <Route path="/cartpage" element={<CartBody />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

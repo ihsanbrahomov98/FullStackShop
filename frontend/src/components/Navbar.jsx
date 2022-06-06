@@ -20,6 +20,8 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 const Navbar = () => {
   const cartTotal = useSelector((state) => state.cart.quantity);
+  console.log(cartTotal);
+
   const dispatch = useDispatch();
   return (
     <>
@@ -65,14 +67,18 @@ const Navbar = () => {
           <Box>
             <IconButton aria-label="cart">
               <StyledBadge badgeContent={cartTotal} color="secondary">
-                <AccountBoxRoundedIcon />
+                <Link to="/adminboard">
+                  <AccountBoxRoundedIcon />
+                </Link>
               </StyledBadge>
             </IconButton>
           </Box>
           <Box sx={{ pr: 1.2 }}>
             <IconButton aria-label="cart">
               <StyledBadge badgeContent={cartTotal} color="secondary">
-                <ShoppingCartIcon />
+                <Link to="/cartpage">
+                  <ShoppingCartIcon />
+                </Link>
               </StyledBadge>
             </IconButton>
           </Box>
