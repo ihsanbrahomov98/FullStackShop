@@ -31,12 +31,25 @@ const AdminDashDeleteOne = () => {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
-      axios.put('/back/mock/api/deleteone/', {
-        userId: values.userId,
-        name: values.name,
-        img: values.img,
-        description: values.description,
-      });
+
+      axios.delete(
+        '/back/mock/api/deleteone/',
+        {
+          data: {
+            userId: values.userId,
+            name: values.name,
+            img: values.img,
+            description: values.description,
+          },
+        },
+        {
+          headers: {
+            Accept: 'application/json; charset=utf-8',
+            'Content-Type': 'application/json',
+          },
+          withCredentials: true,
+        }
+      );
     },
   });
 

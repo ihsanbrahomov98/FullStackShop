@@ -55,13 +55,13 @@ router.put('/api/update', async (req, res) => {
   }
 });
 //deleteone
-router.put('/api/deleteone', async (req, res) => {
+router.delete('/api/deleteone', async (req, res) => {
   console.log(req.body.userId);
   try {
     const deleteOne = await Product.findOneAndRemove({
-      userId: '4321',
+      userId: req.body.userId,
     });
-    console.log(req.body.values);
+
     res.status(200).send(deleteOne);
   } catch (error) {
     res.status(500).send(error);
