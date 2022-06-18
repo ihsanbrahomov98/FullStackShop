@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   products: [],
-  quantity: 40,
+  quantity: 0,
   total: 0,
 };
 
