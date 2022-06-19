@@ -7,33 +7,48 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const images = [
   {
     label: 'San Francisco – Oakland Bay Bridge, United States',
-    imgPath:
-      'https://eobuvki.bg/img/img_e_shop/thumbs/p_1007054_3.jpg',
+    imgPath: 'https://eobuvki.bg/img/img_e_shop/thumbs/p_1007054_3.jpg',
   },
   {
     label: 'Bird',
-    imgPath:
-      'https://eobuvki.bg/img/img_e_shop/thumbs/p_1007050_3.jpg',
+    imgPath: 'https://eobuvki.bg/img/img_e_shop/thumbs/p_1007050_3.jpg',
   },
   {
     label: 'Bali, Indonesia',
-    imgPath:
-      'https://eobuvki.bg/img/img_e_shop/thumbs/p_1007045_3.jpg',
+    imgPath: 'https://eobuvki.bg/img/img_e_shop/thumbs/p_1007045_3.jpg',
   },
   {
     label: 'Goč, Serbia',
-    imgPath:
-      'https://eobuvki.bg/img/img_e_shop/thumbs/p_11540_3.jpg',
+    imgPath: 'https://eobuvki.bg/img/img_e_shop/thumbs/p_11540_3.jpg',
   },
 ];
 
 function SingleProductSlider() {
+  const [products, setProducts] = useState([]);
+  const [loading, Setloading] = useState(true);
+
+  useEffect(() => {
+    const fetchproducts = async () => {
+      const { data } = await axios.get(`/back/mock/api/findone/${params.id}`);
+      setProducts(data);
+
+      console.log(params, products);
+    };
+    fetchproducts();
+
+    Setloading(false);
+  }, []);
+
+  const params = useParams();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = images.length;
@@ -52,7 +67,6 @@ function SingleProductSlider() {
 
   return (
     <Box sx={{ width: 150, height: 500, flexGrow: 1 }}>
-    
       <AutoPlaySwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={activeStep}

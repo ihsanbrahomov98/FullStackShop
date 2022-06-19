@@ -12,7 +12,7 @@ const ChildProductsPage = () => {
   return (
     <>
       <Navbar />
-      <BlackLine />
+      <BlackLine type="Детски Обувки" />
       <ChildProducts />
       <SubscribeToUs />
       <ManBotListItems />

@@ -12,7 +12,7 @@ const SportProductsPage = () => {
   return (
     <>
       <Navbar />
-      <BlackLine />
+      <BlackLine type="Спортни Обувки" />
       <SportProducts />
       <SubscribeToUs />
       <ManBotListItems />

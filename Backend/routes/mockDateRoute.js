@@ -40,6 +40,19 @@ router.get('/api/findone/:id', async (req, res) => {
     res.status(500).send(error);
   }
 });
+//find many by cat
+router.get('/api/findone/:id', async (req, res) => {
+  try {
+    const product = await Product.find();
+    const filteredItems = product.filter(
+      (item) => item.category === req.params.id
+    );
+    console.log(filteredItems);
+    res.status(200).send(filteredItems);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
 //updateone
 router.put('/api/update', async (req, res) => {
   try {

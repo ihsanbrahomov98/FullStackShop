@@ -11,7 +11,7 @@ const WomanProductsPage = () => {
   return (
     <>
       <Navbar />
-      <BlackLine />
+      <BlackLine type="Дамски Обувки" />
       <WomanProducts />
       <SubscribeToUs />
       <ManBotListItems />

@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import CallIcon from '@mui/icons-material/Call';
+import SeacrhInput from './SearchInput';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -33,7 +34,7 @@ const Navbar = () => {
           alignItems="flex-start"
           spacing={2}
           back
-          sx={{ height: 45 }}
+          sx={{ height: 55 }}
         >
           <Stack
             direction="row"
@@ -54,6 +55,9 @@ const Navbar = () => {
             spacing={2}
             sx={{ pt: 1.4, pl: 4.7 }}
           >
+            <Box>
+              <SeacrhInput></SeacrhInput>
+            </Box>
             <Box>
               <CallIcon />
             </Box>

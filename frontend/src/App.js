@@ -13,6 +13,7 @@ import ManProductPage from './pages/products/ManProductPage';
 import AccessoriesPage from './pages/products/AccessoriesPage';
 import ChildProductsPage from './pages/products/ChildProductPage';
 import SportProductsPage from './pages/products/SportProductsPage';
+import AdminCreateProduct from './components/forms/AdminCreateProduct';
 
 const theme = createTheme({
   palette: {
@@ -44,6 +45,7 @@ const App = () => {
           <Route path="/products/accessories/:id" element={<SingleProduct />} />
           <Route path="/adminboard" element={<AdminDashBoard />} />
           <Route path="/cartpage" element={<CartBody />} />
+          <Route path="/admin/create" element={<AdminCreateProduct />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

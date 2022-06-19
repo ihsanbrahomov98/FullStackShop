@@ -10,7 +10,7 @@ const AllProductsPage = () => {
   return (
     <>
       <Navbar />
-      <BlackLine />
+      <BlackLine type="Всички Продукти" />
       <AllProducts />
       <SubscribeToUs />
       <ManBotListItems />

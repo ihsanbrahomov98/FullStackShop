@@ -12,7 +12,7 @@ const AccessoriesPage = () => {
   return (
     <>
       <Navbar />
-      <BlackLine />
+      <BlackLine type="Аксесоари" />
       <AccessoriesProducts />
       <SubscribeToUs />
       <ManBotListItems />

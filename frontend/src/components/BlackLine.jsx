@@ -3,7 +3,7 @@ import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 
-const BlackLine = () => {
+const BlackLine = (props) => {
   return (
     <>
       <Stack
@@ -16,12 +16,12 @@ const BlackLine = () => {
       >
         <Box>
           <Typography variant="h6" color="common.white">
-            Мъжки обувки
+            {props.type}
           </Typography>
         </Box>
         <Box>
           <Typography variant="h6" color="common.white">
-            Мъжки обувки
+            {props.type}
           </Typography>
         </Box>
       </Stack>

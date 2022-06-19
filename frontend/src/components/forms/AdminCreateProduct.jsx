@@ -7,6 +7,8 @@ import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import axios from 'axios';
 import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import AdminNav from './AdminNav';
 
 const validationSchema = yup.object({
   userId: yup.string('Enter your userId').required('userId is required'),
@@ -66,40 +68,48 @@ const AdminCreateProduct = () => {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <Stack
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-        spacing={2}
-        sx={{ width: 1, height: 800, flexGrow: 1 }}
-      >
-        <Typography>Creating a product!</Typography>
+    <>
+      <Stack sx={{ height: 55, bgcolor: 'info.main' }}>
+        <AdminNav />
+      </Stack>{' '}
+      <form onSubmit={formik.handleSubmit}>
+        <Grid
+          container
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+          spacing={3}
+          width="100%"
+          sx={{ pt: 7 }}
+        >
+          <Grid item xs={12}>
+            <Typography>Creating a product!</Typography>
+          </Grid>
 
-        <Box>
-          <TextField
-            id="userId"
-            name="userId"
-            label="userId"
-            value={formik.values.userId}
-            onChange={formik.handleChange}
-            error={formik.touched.userId && Boolean(formik.errors.userId)}
-            helperText={formik.touched.userId && formik.errors.userId}
-          />
-        </Box>
-        <Box>
-          <TextField
-            id="category"
-            name="category"
-            label="category"
-            value={formik.values.category}
-            onChange={formik.handleChange}
-            error={formik.touched.category && Boolean(formik.errors.category)}
-            helperText={formik.touched.category && formik.errors.category}
-          />
-        </Box>
-        <Box>
-          <Box>
+          <Grid item xs={6}>
+            <TextField
+              id="userId"
+              name="userId"
+              label="userId"
+              value={formik.values.userId}
+              onChange={formik.handleChange}
+              error={formik.touched.userId && Boolean(formik.errors.userId)}
+              helperText={formik.touched.userId && formik.errors.userId}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              id="category"
+              name="category"
+              label="category"
+              value={formik.values.category}
+              onChange={formik.handleChange}
+              error={formik.touched.category && Boolean(formik.errors.category)}
+              helperText={formik.touched.category && formik.errors.category}
+            />
+          </Grid>
+
+          <Grid item xs={6}>
             {' '}
             <TextField
               id="name"
@@ -110,9 +120,8 @@ const AdminCreateProduct = () => {
               error={formik.touched.name && Boolean(formik.errors.name)}
               helperText={formik.touched.name && formik.errors.name}
             />
-          </Box>
-
-          <Box>
+          </Grid>
+          <Grid item xs={6}>
             <TextField
               id="img"
               name="img"
@@ -122,8 +131,8 @@ const AdminCreateProduct = () => {
               error={formik.touched.img && Boolean(formik.errors.img)}
               helperText={formik.touched.img && formik.errors.img}
             />
-          </Box>
-          <Box>
+          </Grid>
+          <Grid item xs={6}>
             <TextField
               id="description"
               name="description"
@@ -137,8 +146,8 @@ const AdminCreateProduct = () => {
                 formik.touched.description && formik.errors.description
               }
             />
-          </Box>
-          <Box>
+          </Grid>
+          <Grid item xs={6}>
             <TextField
               id="color"
               name="color"
@@ -148,8 +157,8 @@ const AdminCreateProduct = () => {
               error={formik.touched.color && Boolean(formik.errors.color)}
               helperText={formik.touched.color && formik.errors.color}
             />
-          </Box>
-          <Box>
+          </Grid>
+          <Grid item xs={6}>
             <TextField
               id="size"
               name="size"
@@ -159,8 +168,8 @@ const AdminCreateProduct = () => {
               error={formik.touched.size && Boolean(formik.errors.size)}
               helperText={formik.touched.size && formik.errors.size}
             />
-          </Box>
-          <Box>
+          </Grid>
+          <Grid item xs={6}>
             <TextField
               id="quantityLeft"
               name="quantityLeft"
@@ -175,8 +184,8 @@ const AdminCreateProduct = () => {
                 formik.touched.quantityLeft && formik.errors.quantityLeft
               }
             />
-          </Box>
-          <Box>
+          </Grid>
+          <Grid item xs={6}>
             <TextField
               id="price"
               name="price"
@@ -186,15 +195,16 @@ const AdminCreateProduct = () => {
               error={formik.touched.price && Boolean(formik.errors.price)}
               helperText={formik.touched.price && formik.errors.price}
             />
-          </Box>
-        </Box>
-        <Box>
-          <Button color="primary" variant="contained" fullWidth type="submit">
-            Submit
-          </Button>
-        </Box>
-      </Stack>
-    </form>
+          </Grid>
+
+          <Grid item xs={6}>
+            <Button color="primary" variant="contained" type="submit">
+              Submit
+            </Button>
+          </Grid>
+        </Grid>
+      </form>
+    </>
   );
 };
 export default AdminCreateProduct;
