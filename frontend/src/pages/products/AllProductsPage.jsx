@@ -1,0 +1,22 @@
+import React from 'react';
+import Navbar from '../../components/Navbar';
+import BlackLine from '../../components/BlackLine';
+import AllProducts from '../../components/categories/AllProducts';
+import SubscribeToUs from '../../components/SubscribeToUs';
+import ManBotListItems from '../../components/ManBotListItems';
+import ManBotLine from '../../components/ManBotLine';
+
+const AllProductsPage = () => {
+  return (
+    <>
+      <Navbar />
+      <BlackLine />
+      <AllProducts />
+      <SubscribeToUs />
+      <ManBotListItems />
+      <ManBotLine />
+    </>
+  );
+};
+
+export default AllProductsPage;

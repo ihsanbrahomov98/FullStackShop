@@ -62,7 +62,7 @@ const AdminDashDeleteOne = () => {
         spacing={2}
         sx={{ width: 1, height: 500, flexGrow: 1 }}
       >
-        <Typography>Update a product!</Typography>
+        <Typography>Delete one Product by UsedId!</Typography>
         <Box>
           <TextField
             id="userId"

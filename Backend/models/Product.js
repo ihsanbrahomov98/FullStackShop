@@ -29,6 +29,10 @@ const productSchema = new mongoose.Schema(
     quantityLeft: {
       type: Number,
     },
+    category: {
+      type: String,
+      requeired: true,
+    },
   },
 
   { timestamps: true }

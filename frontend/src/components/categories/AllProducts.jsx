@@ -7,7 +7,6 @@ import Stack from '@mui/material/Stack';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import mockData from './mockData';
 import Grid from '@mui/material/Grid';
 
 const SingleCard = () => {
@@ -30,12 +29,12 @@ const SingleCard = () => {
         justifyContent="center"
         alignItems="flex-start"
         spacing={1}
-        sx={{ flexGrow: 1 }}
+        sx={{ flexGrow: 1, pl: 2, pr: 2 }}
       >
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           {products.map((product) => (
             <Grid item xs={3}>
-              <Link to={`/products/man/${product._id}`}>
+              <Link to={`/products/all/${product._id}`}>
                 <Card>
                   <CardMedia
                     component="img"

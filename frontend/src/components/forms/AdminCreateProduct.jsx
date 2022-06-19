@@ -30,6 +30,9 @@ const validationSchema = yup.object({
   quantityLeft: yup
     .number('Enter your description')
     .required('description is required'),
+  category: yup
+    .string('Enter your description')
+    .required('description is required'),
 });
 
 const AdminCreateProduct = () => {
@@ -41,6 +44,7 @@ const AdminCreateProduct = () => {
       description: '',
       color: '',
       size: '',
+      category: '',
       price: 0,
       quantityLeft: 0,
     },
@@ -56,6 +60,7 @@ const AdminCreateProduct = () => {
         size: values.size,
         price: values.price,
         quantityLeft: values.quantityLeft,
+        category: values.category,
       });
     },
   });
@@ -70,6 +75,7 @@ const AdminCreateProduct = () => {
         sx={{ width: 1, height: 800, flexGrow: 1 }}
       >
         <Typography>Creating a product!</Typography>
+
         <Box>
           <TextField
             id="userId"
@@ -79,6 +85,17 @@ const AdminCreateProduct = () => {
             onChange={formik.handleChange}
             error={formik.touched.userId && Boolean(formik.errors.userId)}
             helperText={formik.touched.userId && formik.errors.userId}
+          />
+        </Box>
+        <Box>
+          <TextField
+            id="category"
+            name="category"
+            label="category"
+            value={formik.values.category}
+            onChange={formik.handleChange}
+            error={formik.touched.category && Boolean(formik.errors.category)}
+            helperText={formik.touched.category && formik.errors.category}
           />
         </Box>
         <Box>

@@ -25,90 +25,92 @@ const Navbar = () => {
   const dispatch = useDispatch();
   return (
     <>
-      <Stack
-        direction="row"
-        justifyContent="space-between"
-        alignItems="flex-start"
-        spacing={2}
-        back
-        sx={{ height: 55, bgcolor: 'primary.main' }}
-      >
+      <Stack>
         <Stack
+          position={'relaitve'}
           direction="row"
-          justifyContent="flex-start"
+          justifyContent="space-between"
           alignItems="flex-start"
           spacing={2}
+          back
+          sx={{ height: 45 }}
         >
-          <IconButton aria-label="cart">
-            <Link to="/">
-              <HomeIcon />
-            </Link>
-          </IconButton>
-        </Stack>
-        <Stack
-          direction="row"
-          justifyContent="flex-start"
-          alignItems="flex-start"
-          spacing={2}
-          sx={{ pt: 1.4, pl: 4.7 }}
-        >
-          <Box>
-            <CallIcon />
-          </Box>
-          <Box sx={{ pt: 0.4 }}>0893231212</Box>
-        </Stack>
-        <Stack
-          direction="row"
-          justifyContent="flex-start"
-          alignItems="flex-start"
-          spacing={2}
-        >
-          <Box sx={{ pt: 1.6 }}>Register</Box>
-          <Box>
+          <Stack
+            direction="row"
+            justifyContent="flex-start"
+            alignItems="flex-start"
+            spacing={2}
+          >
             <IconButton aria-label="cart">
-              <StyledBadge badgeContent={cartTotal} color="secondary">
-                <Link to="/adminboard">
-                  <AccountBoxRoundedIcon />
-                </Link>
-              </StyledBadge>
+              <Link to="/">
+                <HomeIcon />
+              </Link>
             </IconButton>
-          </Box>
-          <Box sx={{ pr: 1.2 }}>
-            <IconButton aria-label="cart">
-              <StyledBadge badgeContent={cartTotal} color="secondary">
-                <Link to="/cartpage">
-                  <ShoppingCartIcon />
-                </Link>
-              </StyledBadge>
-            </IconButton>
-          </Box>
+          </Stack>
+          <Stack
+            direction="row"
+            justifyContent="flex-start"
+            alignItems="flex-start"
+            spacing={2}
+            sx={{ pt: 1.4, pl: 4.7 }}
+          >
+            <Box>
+              <CallIcon />
+            </Box>
+            <Box sx={{ pt: 0.4 }}>0893231212</Box>
+          </Stack>
+          <Stack
+            direction="row"
+            justifyContent="flex-start"
+            alignItems="flex-start"
+            spacing={2}
+          >
+            <Box sx={{ pt: 1.6 }}>Register</Box>
+            <Box>
+              <IconButton aria-label="cart">
+                <StyledBadge badgeContent={cartTotal} color="secondary">
+                  <Link to="/adminboard">
+                    <AccountBoxRoundedIcon />
+                  </Link>
+                </StyledBadge>
+              </IconButton>
+            </Box>
+            <Box sx={{ pr: 1.2 }}>
+              <IconButton aria-label="cart">
+                <StyledBadge badgeContent={cartTotal} color="secondary">
+                  <Link to="/cartpage">
+                    <ShoppingCartIcon />
+                  </Link>
+                </StyledBadge>
+              </IconButton>
+            </Box>
+          </Stack>
         </Stack>
       </Stack>
-
       <Stack
         direction="row"
         justifyContent="space-around"
         alignItems="flex-start"
         spacing={2}
-        sx={{ height: 25, bgcolor: 'primary.main' }}
+        sx={{ height: 25, bgcolor: 'text.disabled' }}
       >
         <Box>
-          <Link to="/products/man">Всички обувки</Link>
+          <Link to="/products/all">Всички обувки</Link>
         </Box>
         <Box>
           <Link to="/products/man">Мъжки обувки</Link>
         </Box>
         <Box>
-          <Link to="/products/man">Дамски обувки</Link>
+          <Link to="/products/woman">Дамски обувки</Link>
         </Box>
         <Box>
-          <Link to="/products/man">Детски обувки</Link>
+          <Link to="/products/child">Детски обувки</Link>
         </Box>
         <Box>
-          <Link to="/products/man">Аксесоари</Link>
+          <Link to="/products/accessories">Аксесоари</Link>
         </Box>
         <Box>
-          <Link to="/products/man">Спротни Обувки</Link>
+          <Link to="/products/sport">Спротни Обувки</Link>
         </Box>
       </Stack>
     </>

@@ -7,7 +7,11 @@ import CardMedia from '@mui/material/CardMedia';
 import Card from '@mui/material/Card';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { addProduct } from '../../../app/features/cartSlice';
+import {
+  addProduct,
+  decrement,
+  increment,
+} from '../../../app/features/cartSlice';
 
 const CartBody = () => {
   const [products, setProducts] = useState([]);
@@ -16,6 +20,7 @@ const CartBody = () => {
   const dispatch = useDispatch();
   const cartProducts = useSelector((state) => state.cart.products);
   const cartQuantity = useSelector((state) => state.cart.quantity);
+  const cartTotal = useSelector((state) => state.cart.total);
   console.log(cartProducts);
 
   const handleQuantity = (type) => {
@@ -24,7 +29,6 @@ const CartBody = () => {
     } else {
       SetQuantity(quantity + 1);
     }
-    dispatch(addProduct({ ...products, quantity }));
   };
 
   // for fixing
@@ -201,7 +205,7 @@ const CartBody = () => {
                           <Button
                             size="small"
                             variant="outlined"
-                            onClick={() => handleQuantity('inc')}
+                            onClick={() => dispatch(increment())}
                           >
                             +
                           </Button>
@@ -210,14 +214,20 @@ const CartBody = () => {
                           <Button
                             size="small"
                             variant="outlined"
-                            onClick={() => handleQuantity('dec')}
+                            onClick={() => dispatch(decrement())}
                           >
                             -
                           </Button>
                         </Stack>
                         <Stack>
                           <Stack direction="row" justifyContent="flex-start">
+                            Quantity: {cartProduct.quantity}
+                          </Stack>
+                          <Stack direction="row" justifyContent="flex-start">
                             Price: {cartProduct.price}
+                          </Stack>
+                          <Stack direction="row" justifyContent="flex-start">
+                            Price: {cartProduct.price * cartProduct.quantity}
                           </Stack>
                         </Stack>
                       </Stack>

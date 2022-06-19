@@ -18,9 +18,16 @@ export const cartSlice = createSlice({
     addTooCart: (state) => {
       state.quantity += 1;
     },
+    increment: (state, action) => {
+      state.products.payload.quantity += 1;
+    },
+    decrement: (state, action) => {
+      state.payload.quantity -= 1;
+    },
   },
 });
 
-export const { addProduct, addTooCart } = cartSlice.actions;
+export const { addProduct, addTooCart, decrement, increment } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;
