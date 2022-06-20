@@ -4,7 +4,7 @@ import BlackLine from '../../components/BlackLine';
 
 import SubscribeToUs from '../../components/SubscribeToUs';
 import ManBotListItems from '../../components/ManBotListItems';
-import ManBotLine from '../../components/ManBotLine';
+import ManBotLine from '../../components/CopywritingLine';
 
 import AccessoriesProducts from './../../components/categories/ChildProducts';
 

@@ -14,6 +14,9 @@ import AccessoriesPage from './pages/products/AccessoriesPage';
 import ChildProductsPage from './pages/products/ChildProductPage';
 import SportProductsPage from './pages/products/SportProductsPage';
 import AdminCreateProduct from './components/forms/AdminCreateProduct';
+import AdminDashDelete from './components/forms/AdminDashDelete';
+import AdminDashDeleteOne from './components/forms/AdminDashDeleteOne';
+import AdminDashUpdate from './components/forms/AdminDashUpdate';
 
 const theme = createTheme({
   palette: {
@@ -46,6 +49,9 @@ const App = () => {
           <Route path="/adminboard" element={<AdminDashBoard />} />
           <Route path="/cartpage" element={<CartBody />} />
           <Route path="/admin/create" element={<AdminCreateProduct />} />
+          <Route path="/admin/delete" element={<AdminDashDeleteOne />} />
+          <Route path="/admin/deleteall" element={<AdminDashDelete />} />
+          <Route path="/admin/update" element={<AdminDashUpdate />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
