@@ -10,6 +10,7 @@ import { autoPlay } from 'react-swipeable-views-utils';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -33,6 +34,10 @@ const images = [
 ];
 
 function SingleProductSlider() {
+  let location = useLocation();
+
+  const locationParametar = location.pathname.split('/')[2];
+  console.log(locationParametar);
   const [products, setProducts] = useState([]);
   const [loading, Setloading] = useState(true);
 

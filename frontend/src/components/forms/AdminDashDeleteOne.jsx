@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import AdminNav from './AdminNav';
 import AdminDashDelete from './AdminDashDelete';
 import CopywritingLine from '../CopywritingLine';
+import ViewAllProducts from './ViewAllProducts';
 
 const validationSchema = yup.object({
   userId: yup.string('Enter your userId').required('userId is required'),
@@ -62,72 +63,46 @@ const AdminDashDeleteOne = () => {
 
       <form onSubmit={formik.handleSubmit}>
         <Stack
-          direction="column"
-          justifyContent="center"
+          direction="row"
+          justifyContent="space-evenly"
           alignItems="center"
           spacing={3}
-          sx={{ width: 1, height: 600, flexGrow: 1, pt: 5 }}
+          sx={{ width: 1, height: 660, flexGrow: 1, pt: 5 }}
         >
-          <Typography variant="h4">Delete one Product by UserId!</Typography>
-          <Box>
-            <TextField
-              id="userId"
-              name="userId"
-              label="userId"
-              value={formik.values.userId}
-              onChange={formik.handleChange}
-              error={formik.touched.userId && Boolean(formik.errors.userId)}
-              helperText={formik.touched.userId && formik.errors.userId}
-            />
-          </Box>
-
-          <Box>
-            <Box sx={{ pt: 0 }}>
-              {' '}
+          <Stack
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
+            spacing={4}
+          >
+            <Typography variant="h4">Delete one Product by UserId!</Typography>
+            <Box>
               <TextField
-                id="name"
-                name="name"
-                label="name"
-                value={formik.values.name}
+                id="userId"
+                name="userId"
+                label="userId"
+                value={formik.values.userId}
                 onChange={formik.handleChange}
-                error={formik.touched.name && Boolean(formik.errors.name)}
-                helperText={formik.touched.name && formik.errors.name}
+                error={formik.touched.userId && Boolean(formik.errors.userId)}
+                helperText={formik.touched.userId && formik.errors.userId}
               />
             </Box>
 
-            <Box sx={{ pt: 1 }}>
-              <TextField
-                id="img"
-                name="img"
-                label="img"
-                value={formik.values.img}
-                onChange={formik.handleChange}
-                error={formik.touched.img && Boolean(formik.errors.img)}
-                helperText={formik.touched.img && formik.errors.img}
-              />
+            <Box>
+              <Button
+                color="primary"
+                variant="contained"
+                fullWidth
+                type="submit"
+                size="large"
+              >
+                DELETE
+              </Button>
             </Box>
-            <Box sx={{ pt: 1 }}>
-              <TextField
-                id="description"
-                name="description"
-                label="description"
-                value={formik.values.description}
-                onChange={formik.handleChange}
-                error={
-                  formik.touched.description &&
-                  Boolean(formik.errors.description)
-                }
-                helperText={
-                  formik.touched.description && formik.errors.description
-                }
-              />
-            </Box>
-          </Box>
-          <Box>
-            <Button color="primary" variant="contained" fullWidth type="submit">
-              DELETE
-            </Button>
-          </Box>
+          </Stack>
+          <Stack>
+            <ViewAllProducts />
+          </Stack>
         </Stack>
       </form>
       <CopywritingLine />

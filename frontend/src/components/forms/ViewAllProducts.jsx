@@ -54,7 +54,18 @@ const ViewAllProducts = () => {
   const [childProducts, setChildProducts] = useState([]);
   const [sportProducts, setSportProducts] = useState([]);
   const [accessoriesProducts, setAccessoriesProducts] = useState([]);
+  // useEffect HELL START
+  // MAN
+  useEffect(() => {
+    const fetchproducts = async () => {
+      const { data } = await axios.get('/back/mock/api/findall');
 
+      const filteredItemsMan = data.filter((item) => item.category === 'man');
+      setManproducts(filteredItemsMan);
+    };
+    fetchproducts();
+  }, []);
+  // WOMAN
   useEffect(() => {
     const fetchproducts = async () => {
       const { data } = await axios.get('/back/mock/api/findall');
@@ -62,10 +73,47 @@ const ViewAllProducts = () => {
       const filteredItemsWoman = data.filter(
         (item) => item.category === 'woman'
       );
-      setManproducts(filteredItemsWoman);
+      setWomanProducts(filteredItemsWoman);
     };
     fetchproducts();
   }, []);
+  // CHILD
+  useEffect(() => {
+    const fetchproducts = async () => {
+      const { data } = await axios.get('/back/mock/api/findall');
+
+      const filteredItemsChild = data.filter(
+        (item) => item.category === 'child'
+      );
+      setChildProducts(filteredItemsChild);
+    };
+    fetchproducts();
+  }, []);
+  // SPORT
+  useEffect(() => {
+    const fetchproducts = async () => {
+      const { data } = await axios.get('/back/mock/api/findall');
+
+      const filteredItemsSport = data.filter(
+        (item) => item.category === 'sport'
+      );
+      setSportProducts(filteredItemsSport);
+    };
+    fetchproducts();
+  }, []);
+  // Accessories
+  useEffect(() => {
+    const fetchproducts = async () => {
+      const { data } = await axios.get('/back/mock/api/findall');
+
+      const filteredItemsAccessories = data.filter(
+        (item) => item.category === 'accessories'
+      );
+      setAccessoriesProducts(filteredItemsAccessories);
+    };
+    fetchproducts();
+  }, []);
+  // useEffect HELL END
 
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -96,6 +144,8 @@ const ViewAllProducts = () => {
             <Tab label="Man" {...a11yProps(0)} />
             <Tab label="Woman" {...a11yProps(1)} />
             <Tab label="Child" {...a11yProps(2)} />
+            <Tab label="Sport" {...a11yProps(3)} />
+            <Tab label="Acces.." {...a11yProps(4)} />
           </Tabs>
         </AppBar>
         <SwipeableViews
@@ -103,6 +153,8 @@ const ViewAllProducts = () => {
           index={value}
           onChangeIndex={handleChangeIndex}
         >
+          {/* MAN PRODUCTS TAB BEGINING
+            ///////////////////////////////////////////////////////////////////////////////////////////////////// */}
           <TabPanel value={value} index={0} dir={theme.direction}>
             <Grid
               container
@@ -115,13 +167,19 @@ const ViewAllProducts = () => {
                     <Card>
                       <CardMedia
                         component="img"
-                        height="40"
+                        height="100"
                         image={product.img}
                         alt={product.name}
                       />
-                      <CardContent sx={{ bgcolor: 'secondary.main' }}>
-                        <Typography align="center" color="common.white">
-                          {product.description}
+                      <CardContent
+                        sx={{ bgcolor: 'secondary.main', height: 14 }}
+                      >
+                        <Typography
+                          variant="subtitle2"
+                          align="center"
+                          color="common.white"
+                        >
+                          {product.userId}
                         </Typography>
                       </CardContent>
                     </Card>
@@ -130,8 +188,156 @@ const ViewAllProducts = () => {
               ))}
             </Grid>
           </TabPanel>
-          <TabPanel value={value} index={1} dir={theme.direction}></TabPanel>
-          <TabPanel value={value} index={2} dir={theme.direction}></TabPanel>
+          {/* MAN PRODUCTS TAB END
+            ///////////////////////////////////////////////////////////////////////////////////////////////////// */}
+          {/*WOMAN PRODUCTS TAB BEGIN
+            ///////////////////////////////////////////////////////////////////////////////////////////////////// */}
+          <TabPanel value={value} index={1} dir={theme.direction}>
+            <Grid
+              container
+              rowSpacing={1}
+              columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+            >
+              {womanProducts.map((product) => (
+                <Grid item xs={3}>
+                  <Link to={`/products/all/${product._id}`}>
+                    <Card>
+                      <CardMedia
+                        component="img"
+                        height="100"
+                        image={product.img}
+                        alt={product.name}
+                      />
+                      <CardContent
+                        sx={{ bgcolor: 'secondary.main', height: 14 }}
+                      >
+                        <Typography
+                          variant="subtitle2"
+                          align="center"
+                          color="common.white"
+                        >
+                          {product.userId}
+                        </Typography>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </Grid>
+              ))}
+            </Grid>
+          </TabPanel>
+          {/*WOMAN PRODUCTS TAB END
+            ///////////////////////////////////////////////////////////////////////////////////////////////////// */}
+          {/*CHILD PRODUCTS  BEGIN
+            ///////////////////////////////////////////////////////////////////////////////////////////////////// */}
+          <TabPanel value={value} index={2} dir={theme.direction}>
+            <Grid
+              container
+              rowSpacing={1}
+              columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+            >
+              {childProducts.map((product) => (
+                <Grid item xs={3}>
+                  <Link to={`/products/all/${product._id}`}>
+                    <Card>
+                      <CardMedia
+                        component="img"
+                        height="100"
+                        image={product.img}
+                        alt={product.name}
+                      />
+                      <CardContent
+                        sx={{ bgcolor: 'secondary.main', height: 14 }}
+                      >
+                        <Typography
+                          variant="subtitle2"
+                          align="center"
+                          color="common.white"
+                        >
+                          {product.userId}
+                        </Typography>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </Grid>
+              ))}
+            </Grid>
+          </TabPanel>
+          {/*CHILD PRODUCTS TAB END
+            ///////////////////////////////////////////////////////////////////////////////////////////////////// */}
+          {/*SPORT PRODUCTS  BEGIN
+            ///////////////////////////////////////////////////////////////////////////////////////////////////// */}
+          <TabPanel value={value} index={2} dir={theme.direction}>
+            <Grid
+              container
+              rowSpacing={1}
+              columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+            >
+              {sportProducts.map((product) => (
+                <Grid item xs={3}>
+                  <Link to={`/products/all/${product._id}`}>
+                    <Card>
+                      <CardMedia
+                        component="img"
+                        height="100"
+                        image={product.img}
+                        alt={product.name}
+                      />
+                      <CardContent
+                        sx={{ bgcolor: 'secondary.main', height: 14 }}
+                      >
+                        <Typography
+                          variant="subtitle2"
+                          align="center"
+                          color="common.white"
+                        >
+                          {product.userId}
+                        </Typography>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </Grid>
+              ))}
+            </Grid>
+          </TabPanel>
+          {/*SPORT PRODUCTS TAB END
+            ///////////////////////////////////////////////////////////////////////////////////////////////////// */}
+          {/*ACCESSORIES PRODUCTS  BEGIN
+            ///////////////////////////////////////////////////////////////////////////////////////////////////// */}
+          <TabPanel value={value} index={2} dir={theme.direction}>
+            <Grid
+              container
+              rowSpacing={1}
+              columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+            >
+              {accessoriesProducts.map((product) => (
+                <Grid item xs={3}>
+                  <Link to={`/products/all/${product._id}`}>
+                    <Card>
+                      <CardMedia
+                        component="img"
+                        height="100"
+                        image={product.img}
+                        alt={product.name}
+                      />
+                      <CardContent
+                        sx={{ bgcolor: 'secondary.main', height: 14 }}
+                      >
+                        <Typography
+                          variant="subtitle2"
+                          align="center"
+                          color="common.white"
+                        >
+                          {product.userId}
+                        </Typography>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </Grid>
+              ))}
+            </Grid>
+          </TabPanel>
+          {/*ACCESSORIES PRODUCTS  END
+            ///////////////////////////////////////////////////////////////////////////////////////////////////// */}
         </SwipeableViews>
       </Box>
     </>

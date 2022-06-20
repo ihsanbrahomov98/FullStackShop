@@ -55,23 +55,23 @@ router.get('/api/findone/:id', async (req, res) => {
 });
 //updateone
 router.put('/api/update', async (req, res) => {
+  console.log(req.body);
   try {
-    const updatedProduct = await Product.findByIdAndUpdate(
-      req.body.userId,
+    const updatedProduct = await Product.findOneAndUpdate(
+      { userId: req.body.userId },
       { $set: req.body },
       { new: true }
     );
 
-    res.status(200).send(updatedProduct);
+    res.status(200).send(savedProduct);
   } catch (error) {
     res.status(500).send(error);
   }
 });
 //deleteone
 router.delete('/api/deleteone', async (req, res) => {
-  console.log(req.body.userId);
   try {
-    const deleteOne = await Product.findOneAndRemove({
+    const deleteOne = await Product.findOneAndUpdate({
       userId: req.body.userId,
     });
 
