@@ -14,23 +14,12 @@ import ViewAllProducts from './ViewAllProducts';
 
 const validationSchema = yup.object({
   userId: yup.string('Enter your userId').required('userId is required'),
-  name: yup
-    .string('Enter your name')
-    .min(2, 'name should be of minimum 2 characters length')
-    .required('name is required'),
-  img: yup.string('Enter your img').required('img is required'),
-  description: yup
-    .string('Enter your description')
-    .required('description is required'),
 });
 
 const AdminDashDeleteOne = () => {
   const formik = useFormik({
     initialValues: {
       userId: '',
-      name: '',
-      img: '',
-      description: '',
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -41,9 +30,6 @@ const AdminDashDeleteOne = () => {
         {
           data: {
             userId: values.userId,
-            name: values.name,
-            img: values.img,
-            description: values.description,
           },
         },
         {

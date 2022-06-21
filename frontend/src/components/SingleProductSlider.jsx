@@ -9,7 +9,7 @@ import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios, { Axios } from 'axios';
 import { useLocation } from 'react-router-dom';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
@@ -34,26 +34,42 @@ const images = [
 ];
 
 function SingleProductSlider() {
+  const [products, setProducts] = useState([]);
+  const [locationParams, setLocationParams] = useState('');
   let location = useLocation();
 
-  const locationParametar = location.pathname.split('/')[2];
-  console.log(locationParametar);
-  const [products, setProducts] = useState([]);
-  const [loading, Setloading] = useState(true);
+  useEffect(() => {
+    const locationFunc = async () => {
+      try {
+        setLocationParams(location.pathname.split('/')[2]);
+      } catch (error) {}
+    };
+    locationFunc();
+  }, []);
 
   useEffect(() => {
     const fetchproducts = async () => {
-      const { data } = await axios.get(`/back/mock/api/findone/${params.id}`);
-      setProducts(data);
+      console.log(`locationParams: ${locationParams}`);
+      try {
+        const { data } = await axios.get('/back/mock/api/category', {
+          category: 'man',
+        });
 
-      console.log(params, products);
+        setProducts(data);
+
+        console.log(`products: ${data.length}`);
+        if (!products) {
+          const { data } = await axios.get('/back/mock/api/category/', {
+            category: 'man',
+          });
+          setProducts(data);
+          console.log(`locationParams: ${locationParams}`);
+        }
+      } catch (error) {}
     };
     fetchproducts();
+  }, [locationParams]);
 
-    Setloading(false);
-  }, []);
-
-  const params = useParams();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = images.length;

@@ -55,7 +55,7 @@ const AdminDashUpdate = () => {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
-      axios.post('/back/mock/api/update', {
+      axios.put('/back/mock/api/update', {
         userId: values.userId,
         name: values.name,
         img: values.img,
