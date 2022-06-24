@@ -10,34 +10,35 @@ import { autoPlay } from 'react-swipeable-views-utils';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios, { Axios } from 'axios';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-
-const images = [
-  {
-    label: 'San Francisco – Oakland Bay Bridge, United States',
-    imgPath: 'https://eobuvki.bg/img/img_e_shop/thumbs/p_1007054_3.jpg',
-  },
-  {
-    label: 'Bird',
-    imgPath: 'https://eobuvki.bg/img/img_e_shop/thumbs/p_1007050_3.jpg',
-  },
-  {
-    label: 'Bali, Indonesia',
-    imgPath: 'https://eobuvki.bg/img/img_e_shop/thumbs/p_1007045_3.jpg',
-  },
-  {
-    label: 'Goč, Serbia',
-    imgPath: 'https://eobuvki.bg/img/img_e_shop/thumbs/p_11540_3.jpg',
-  },
-];
 
 function SingleProductSlider() {
   const [products, setProducts] = useState([]);
   const [locationParams, setLocationParams] = useState('');
   let location = useLocation();
 
+  useEffect(() => {
+    const fetchAll = async () => {
+      try {
+        const { data } = await axios.get(
+          `/back/mock/api/findallcat/${locationParams}`
+        );
+        setProducts(data);
+        console.log(data);
+        if (!products) {
+          const { data } = await axios.get(
+            `/back/mock/api/findallcat/${locationParams}`
+          );
+          setProducts(data);
+          console.log(data);
+        }
+      } catch (error) {}
+    };
+    fetchAll();
+  }, [locationParams]);
   useEffect(() => {
     const locationFunc = async () => {
       try {
@@ -46,33 +47,9 @@ function SingleProductSlider() {
     };
     locationFunc();
   }, []);
-
-  useEffect(() => {
-    const fetchproducts = async () => {
-      console.log(`locationParams: ${locationParams}`);
-      try {
-        const { data } = await axios.get('/back/mock/api/category', {
-          category: 'man',
-        });
-
-        setProducts(data);
-
-        console.log(`products: ${data.length}`);
-        if (!products) {
-          const { data } = await axios.get('/back/mock/api/category/', {
-            category: 'man',
-          });
-          setProducts(data);
-          console.log(`locationParams: ${locationParams}`);
-        }
-      } catch (error) {}
-    };
-    fetchproducts();
-  }, [locationParams]);
-
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = images.length;
+  const maxSteps = products.length;
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -85,29 +62,35 @@ function SingleProductSlider() {
   const handleStepChange = (step) => {
     setActiveStep(step);
   };
+  const navigate = useNavigate();
+  //  more work is
+  const relocate = () => {};
 
   return (
-    <Box sx={{ width: 150, height: 500, flexGrow: 1 }}>
+    <Box sx={{ width: 150, height: 500, flexGrow: 1, p: 3 }}>
       <AutoPlaySwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={activeStep}
         onChangeIndex={handleStepChange}
         enableMouseEvents
       >
-        {images.map((step, index) => (
+        {products.map((step, index, product) => (
           <div key={step.label}>
             {Math.abs(activeStep - index) <= 2 ? (
-              <Box
-                component="img"
-                sx={{
-                  height: 250,
-                  display: 'block',
-                  overflow: 'hidden',
-                  width: '100%',
-                }}
-                src={step.imgPath}
-                alt={step.label}
-              />
+              <Link to={`/products/${locationParams}/${step._id}`}>
+                <Box
+                  onClick={relocate()}
+                  component="img"
+                  sx={{
+                    height: 250,
+                    display: 'block',
+                    overflow: 'hidden',
+                    width: '100%',
+                  }}
+                  src={step.img}
+                  alt={step.label}
+                />
+              </Link>
             ) : null}
           </div>
         ))}

@@ -17,6 +17,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { addProduct, addTooCart } from '../app/features/cartSlice';
+import ShoeSizes from './ShoeSizes';
 
 const STRIPE_KEY =
   'pk_test_51L5XfCGhswhFxp1SnSWMxrXia8K8TDik4CV8zMmQT1Es3VdYofPdgdYEFzkgqOnPVpYSQf0sEOejlIvKOb9BwSxK00jTVKbULQ';
@@ -84,21 +85,23 @@ const SingleProductMain = ({}) => {
           justifyContent="center"
           alignItems="flex-start"
           spacing={6}
-          sx={{ mb: -5, height: 450 }}
+          sx={{ height: 450 }}
         >
-          <Stack sx={{ flex: 1, height: 450 }}>
+          <Stack sx={{ flex: 1.5, height: 550, pl: 7 }}>
+            <Typography sx={{ fontSize: 19 }} align="left">
+              {products.description}
+            </Typography>
+            <Typography sx={{ pb: 2 }} align="left">
+              {products.description}
+            </Typography>
             <Card>
               <CardMedia
                 component="img"
-                height="240"
+                height="270"
+                width="10"
                 image={products.img}
                 alt={products.name}
               />
-              <CardContent sx={{ bgcolor: 'secondary.main' }}>
-                <Typography align="center" color="common.white">
-                  {products.description}
-                </Typography>
-              </CardContent>
             </Card>
           </Stack>
           <Stack
@@ -109,14 +112,19 @@ const SingleProductMain = ({}) => {
             sx={{ flex: 1, height: 700 }}
           >
             <Stack
-              direction="column"
+              direction="row"
               justifyContent="center"
               alignItems="center"
               spacing={1}
               sx={{ flex: 1 }}
             >
-              <Typography varian="h4">{products.name}</Typography>
-              <Typography varian="h6">{products.price} лв</Typography>
+              <Typography sx={{ fontSize: 20 }} varian="h6">
+                {products.price}00.ЛВ
+              </Typography>
+              <Typography varian="h4">каталожен №:{products.name}</Typography>
+            </Stack>
+            <Stack sx={{ flex: 1 }}>
+              <ShoeSizes />
             </Stack>
 
             <Box sx={{ flex: 1 }}>
@@ -142,18 +150,6 @@ const SingleProductMain = ({}) => {
             </Box>
 
             <Box sx={{ flex: 0.2 }}>
-              <StripeCheckout
-                name="ihsanShop"
-                image="https://eobuvki.bg/img/img_e_shop/thumbs/p_1007045_3.jpg"
-                billingAddress
-                shippingAddress
-                description
-                amount={25000}
-                token={onToken}
-                stripeKey={STRIPE_KEY}
-              >
-                <Button size="large" variant="outlined"></Button>
-              </StripeCheckout>
               <Button onClick={handleClick} size="large" variant="outlined">
                 Buy
               </Button>

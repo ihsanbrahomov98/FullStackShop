@@ -17,6 +17,7 @@ import AdminCreateProduct from './components/forms/AdminCreateProduct';
 import AdminDashDelete from './components/forms/AdminDashDelete';
 import AdminDashDeleteOne from './components/forms/AdminDashDeleteOne';
 import AdminDashUpdate from './components/forms/AdminDashUpdate';
+import TestFormik from './components/forms/TestFormik';
 
 const theme = createTheme({
   palette: {
@@ -35,7 +36,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/products/all" element={<AllProductsPage />} />
-          <Route path="/products/all/:id" element={<SingleProduct />} />
+          <Route exact path="/products/all/:id" element={<SingleProduct />} />
           <Route path="/products/woman" element={<WomanProductsPage />} />
           <Route path="/products/woman/:id" element={<SingleProduct />} />
           <Route path="/products/man" element={<ManProductPage />} />
@@ -52,6 +53,7 @@ const App = () => {
           <Route path="/admin/delete" element={<AdminDashDeleteOne />} />
           <Route path="/admin/deleteall" element={<AdminDashDelete />} />
           <Route path="/admin/update" element={<AdminDashUpdate />} />
+          <Route path="/testFormik" element={<TestFormik />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

@@ -11,6 +11,7 @@ import Grid from '@mui/material/Grid';
 import AdminNav from './AdminNav';
 import CopywritingLine from '../CopywritingLine';
 import ViewAllProducts from './ViewAllProducts';
+import { Formik, Form, Field, FieldArray } from 'formik';
 
 const validationSchema = yup.object({
   userId: yup.string('Enter your userId').required('userId is required'),
@@ -22,9 +23,7 @@ const validationSchema = yup.object({
   description: yup
     .string('Enter your description')
     .required('description is required'),
-  size: yup
-    .string('Enter your description')
-    .required('description is required'),
+  size: yup.array().of(yup.string()).required('size is required'),
   color: yup
     .string('Enter your description')
     .required('description is required'),
@@ -47,7 +46,7 @@ const AdminCreateProduct = () => {
       img: '',
       description: '',
       color: '',
-      size: '',
+      size: ['39', '40'],
       category: '',
       price: 0,
       quantityLeft: 0,

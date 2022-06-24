@@ -81,12 +81,12 @@ router.delete('/api/deleteone', async (req, res) => {
   }
 });
 // find by category
-router.get('/api/category', async (req, res) => {
-  console.log(req.body);
-  try {
-    console.log(req.body.category);
-    const product = await Product.find();
 
+router.get('/api/findallcat/:id', async (req, res) => {
+  console.log('vatre');
+  console.log(req.params.id);
+  try {
+    const product = await Product.find({ category: req.params.id });
     res.status(200).json(product);
   } catch (error) {
     res.status(500).send(error);
