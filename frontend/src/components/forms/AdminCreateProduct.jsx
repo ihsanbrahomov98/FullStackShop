@@ -12,6 +12,8 @@ import AdminNav from './AdminNav';
 import CopywritingLine from '../CopywritingLine';
 import ViewAllProducts from './ViewAllProducts';
 import { Formik, Form, Field, FieldArray } from 'formik';
+import Checkbox from '@mui/material/Checkbox';
+import { grey, blue } from '@mui/material/colors';
 
 const validationSchema = yup.object({
   userId: yup.string('Enter your userId').required('userId is required'),
@@ -23,10 +25,7 @@ const validationSchema = yup.object({
   description: yup
     .string('Enter your description')
     .required('description is required'),
-  size: yup.array().of(yup.string()).required('size is required'),
-  color: yup
-    .string('Enter your description')
-    .required('description is required'),
+
   price: yup
     .number('Enter your description')
     .required('description is required'),
@@ -36,9 +35,36 @@ const validationSchema = yup.object({
   category: yup
     .string('Enter your description')
     .required('description is required'),
+  model: yup
+    .string('Enter your description')
+    .required('description is required'),
 });
 
 const AdminCreateProduct = () => {
+  const [sizeArray, setSizeArray] = React.useState([]);
+  const [filteredArray, setFilteredArray] = React.useState([]);
+  const [checked40Bool, setChecked40Bool] = React.useState(false);
+  const [checked41Bool, setChecked41Bool] = React.useState(false);
+
+  const [checked42Bool, setChecked42Bool] = React.useState(false);
+  const [checked43Bool, setChecked43Bool] = React.useState(false);
+  const [checked44Bool, setChecked44Bool] = React.useState(false);
+  const [checked45Bool, setChecked45Bool] = React.useState(false);
+  const [checkedBlack, setCheckedBlack] = React.useState(false);
+  const [checkedBlue, setCheckedBlue] = React.useState(false);
+  const [checkedWhite, setCheckedWhite] = React.useState(false);
+
+  const sizeOperation = (shoeSize, checkedBool) => {
+    if (!checkedBool) {
+      setSizeArray((sizeArray) => [...sizeArray, shoeSize]);
+
+      setFilteredArray(Array.from(new Set(sizeArray)));
+      console.log(`added ${shoeSize}, array is:${filteredArray}`);
+    } else {
+      setFilteredArray(filteredArray.filter((item) => item === shoeSize));
+      console.log(`removed ${shoeSize}, array is:${filteredArray}`);
+    }
+  };
   const formik = useFormik({
     initialValues: {
       userId: '',
@@ -46,10 +72,11 @@ const AdminCreateProduct = () => {
       img: '',
       description: '',
       color: '',
-      size: ['39', '40'],
+      size: '',
       category: '',
       price: 0,
       quantityLeft: 0,
+      model: '',
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -64,6 +91,7 @@ const AdminCreateProduct = () => {
         price: values.price,
         quantityLeft: values.quantityLeft,
         category: values.category,
+        model: values.model,
       });
     },
   });
@@ -99,7 +127,7 @@ const AdminCreateProduct = () => {
                 <TextField
                   id="userId"
                   name="userId"
-                  label="userId"
+                  label="UserId"
                   value={formik.values.userId}
                   onChange={formik.handleChange}
                   error={formik.touched.userId && Boolean(formik.errors.userId)}
@@ -110,7 +138,7 @@ const AdminCreateProduct = () => {
                 <TextField
                   id="category"
                   name="category"
-                  label="category"
+                  label="Category"
                   value={formik.values.category}
                   onChange={formik.handleChange}
                   error={
@@ -125,7 +153,7 @@ const AdminCreateProduct = () => {
                 <TextField
                   id="name"
                   name="name"
-                  label="name"
+                  label="Name"
                   value={formik.values.name}
                   onChange={formik.handleChange}
                   error={formik.touched.name && Boolean(formik.errors.name)}
@@ -147,7 +175,7 @@ const AdminCreateProduct = () => {
                 <TextField
                   id="description"
                   name="description"
-                  label="description"
+                  label="Description"
                   value={formik.values.description}
                   onChange={formik.handleChange}
                   error={
@@ -161,31 +189,21 @@ const AdminCreateProduct = () => {
               </Grid>
               <Grid item xs={6}>
                 <TextField
-                  id="color"
-                  name="color"
-                  label="color"
-                  value={formik.values.color}
+                  id="model"
+                  name="model"
+                  label="Model"
+                  value={formik.values.model}
                   onChange={formik.handleChange}
-                  error={formik.touched.color && Boolean(formik.errors.color)}
-                  helperText={formik.touched.color && formik.errors.color}
+                  error={formik.touched.model && Boolean(formik.errors.model)}
+                  helperText={formik.touched.model && formik.errors.model}
                 />
               </Grid>
-              <Grid item xs={6}>
-                <TextField
-                  id="size"
-                  name="size"
-                  label="size"
-                  value={formik.values.size}
-                  onChange={formik.handleChange}
-                  error={formik.touched.size && Boolean(formik.errors.size)}
-                  helperText={formik.touched.size && formik.errors.size}
-                />
-              </Grid>
+
               <Grid item xs={6}>
                 <TextField
                   id="quantityLeft"
                   name="quantityLeft"
-                  label="quantityLeft"
+                  label="QuantityLeft"
                   value={formik.values.quantityLeft}
                   onChange={formik.handleChange}
                   error={
@@ -201,7 +219,7 @@ const AdminCreateProduct = () => {
                 <TextField
                   id="price"
                   name="price"
-                  label="price"
+                  label="Price"
                   value={formik.values.price}
                   onChange={formik.handleChange}
                   error={formik.touched.price && Boolean(formik.errors.price)}
@@ -209,7 +227,136 @@ const AdminCreateProduct = () => {
                 />
               </Grid>
               <Grid item xs={6}>
-                {' '}
+                <Stack
+                  direction="row"
+                  justifyContent="flex-start"
+                  alignItems="center"
+                >
+                  <Typography>40</Typography>
+                  <Checkbox
+                    label="Child"
+                    checked={checked40Bool}
+                    name="size"
+                    value={'40'}
+                    onChange={formik.handleChange}
+                    error={formik.touched.size && Boolean(formik.errors.size)}
+                    helperText={formik.touched.size && formik.errors.size}
+                    onClick={() => {
+                      sizeOperation('40', checked40Bool);
+                      setChecked40Bool(!checked40Bool);
+                    }}
+                  />
+                  <Typography>41</Typography>
+                  <Checkbox
+                    label="Child"
+                    checked={checked41Bool}
+                    name="size"
+                    value={'41'}
+                    onChange={formik.handleChange}
+                    error={formik.touched.size && Boolean(formik.errors.size)}
+                    helperText={formik.touched.size && formik.errors.size}
+                    onClick={() => {
+                      sizeOperation('41', checked41Bool);
+                      setChecked41Bool(!checked41Bool);
+                    }}
+                  />
+                  <Typography>42</Typography>
+                  <Checkbox
+                    label="Child"
+                    checked={checked42Bool}
+                    name="size"
+                    value={'42'}
+                    onChange={formik.handleChange}
+                    error={formik.touched.size && Boolean(formik.errors.size)}
+                    helperText={formik.touched.size && formik.errors.size}
+                    onClick={() => {
+                      sizeOperation('42', checked42Bool);
+                      setChecked42Bool(!checked42Bool);
+                    }}
+                  />
+                  <Typography>43</Typography>
+                  <Checkbox
+                    label="Child"
+                    checked={checked43Bool}
+                    name="size"
+                    value={'43'}
+                    onChange={formik.handleChange}
+                    error={formik.touched.size && Boolean(formik.errors.size)}
+                    helperText={formik.touched.size && formik.errors.size}
+                    onClick={() => {
+                      sizeOperation('43', checked43Bool);
+                      setChecked43Bool(!checked43Bool);
+                    }}
+                  />
+                </Stack>
+              </Grid>
+              <Grid item xs={6}>
+                <Stack
+                  direction="row"
+                  justifyContent="flex-start"
+                  alignItems="center"
+                >
+                  <Typography>Black</Typography>
+                  <Checkbox
+                    label="Child"
+                    checked={checkedBlack}
+                    name="color"
+                    value={'black'}
+                    onChange={formik.handleChange}
+                    error={formik.touched.size && Boolean(formik.errors.size)}
+                    helperText={formik.touched.size && formik.errors.size}
+                    onClick={() => {
+                      sizeOperation('black', checkedBlack);
+                      setCheckedBlack(!checkedBlack);
+                    }}
+                    sx={{
+                      color: grey[900],
+                      '&.Mui-checked': {
+                        color: grey[900],
+                      },
+                    }}
+                  />
+                  <Typography>Blue</Typography>
+                  <Checkbox
+                    label="Child"
+                    checked={checkedBlue}
+                    name="color"
+                    value={'blue'}
+                    onChange={formik.handleChange}
+                    error={formik.touched.size && Boolean(formik.errors.size)}
+                    helperText={formik.touched.size && formik.errors.size}
+                    onClick={() => {
+                      sizeOperation('blue', checkedBlue);
+                      setCheckedBlue(!checkedBlue);
+                    }}
+                    sx={{
+                      color: blue[800],
+                      '&.Mui-checked': {
+                        color: blue[800],
+                      },
+                    }}
+                  />
+                  <Typography>White</Typography>
+                  <Checkbox
+                    label="Child"
+                    checked={checkedWhite}
+                    name="color"
+                    value={'white'}
+                    onChange={formik.handleChange}
+                    error={formik.touched.size && Boolean(formik.errors.size)}
+                    helperText={formik.touched.size && formik.errors.size}
+                    onClick={() => {
+                      sizeOperation('white', checkedWhite);
+                      setCheckedWhite(!checkedWhite);
+                    }}
+                    sx={{
+                      color: grey[200],
+                      '&.Mui-checked': {
+                        color: grey[200],
+                      },
+                    }}
+                  />
+                </Stack>
               </Grid>
               <Grid item></Grid>
               <Grid item xs={6}>

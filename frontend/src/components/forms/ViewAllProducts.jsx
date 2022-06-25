@@ -172,7 +172,7 @@ const ViewAllProducts = () => {
                         alt={product.name}
                       />
                       <CardContent
-                        sx={{ bgcolor: 'secondary.main', height: 14 }}
+                        sx={{ bgcolor: 'secondary.main', height: 6 }}
                       >
                         <Typography
                           variant="subtitle2"

@@ -6,7 +6,7 @@ import {
   CardMedia,
   CardContent,
 } from '@mui/material';
-import React from 'react';
+
 import Button from '@mui/material/Button';
 import { useSelector, useDispatch } from 'react-redux';
 import { decrement, increment } from '../app/features/counterSlice';
@@ -18,6 +18,14 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { addProduct, addTooCart } from '../app/features/cartSlice';
 import ShoeSizes from './ShoeSizes';
+import * as React from 'react';
+import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
+import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
+import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
+import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
+
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 const STRIPE_KEY =
   'pk_test_51L5XfCGhswhFxp1SnSWMxrXia8K8TDik4CV8zMmQT1Es3VdYofPdgdYEFzkgqOnPVpYSQf0sEOejlIvKOb9BwSxK00jTVKbULQ';
@@ -74,6 +82,33 @@ const SingleProductMain = ({}) => {
   const handleClick = () => {
     dispatch(addProduct({ ...products, quantity }));
   };
+  // size and color
+  const [alignment, setAlignment] = React.useState('left');
+
+  const handleChange = (event, newAlignment) => {
+    setAlignment(newAlignment);
+  };
+  const children = [
+    <ToggleButton value="42" key="42"></ToggleButton>,
+    <ToggleButton value="center" key="center">
+      <FormatAlignCenterIcon />
+    </ToggleButton>,
+    <ToggleButton value="right" key="right">
+      <FormatAlignRightIcon />
+    </ToggleButton>,
+    <ToggleButton value="justify" key="justify">
+      <FormatAlignJustifyIcon />
+    </ToggleButton>,
+    <ToggleButton value="justify" key="justify">
+      <FormatAlignJustifyIcon />
+    </ToggleButton>,
+  ];
+
+  const control = {
+    value: alignment,
+    onChange: handleChange,
+    exclusive: true,
+  };
 
   return (
     <>
@@ -121,10 +156,24 @@ const SingleProductMain = ({}) => {
               <Typography sx={{ fontSize: 20 }} varian="h6">
                 {products.price}00.ЛВ
               </Typography>
+
               <Typography varian="h4">каталожен №:{products.name}</Typography>
             </Stack>
             <Stack sx={{ flex: 1 }}>
-              <ShoeSizes />
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  // TODO Replace with Stack
+                  '& > :not(style) + :not(style)': { mt: 2 },
+                }}
+              >
+                <Typography>{2}</Typography>
+                <ToggleButtonGroup size="small" {...control}>
+                  {children}
+                </ToggleButtonGroup>
+              </Box>
             </Stack>
 
             <Box sx={{ flex: 1 }}>

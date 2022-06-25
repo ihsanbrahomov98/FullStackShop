@@ -3,6 +3,7 @@ import { pink } from '@mui/material/colors';
 import Checkbox from '@mui/material/Checkbox';
 import { useState } from 'react';
 import { Typography } from '@mui/material';
+import { Formik, Form, Field, FieldArray } from 'formik';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
@@ -22,9 +23,7 @@ export default function TestFormik() {
       setFilteredArray(Array.from(new Set(sizeArray)));
       console.log(`added ${shoeSize}, array is:${filteredArray}`);
     } else {
-        setFilteredArray(filteredArray.filter(item => !==shoeSize))
-        setFilteredArray(filteredArray.filter(item =>  !==shoeSize))
-      ;
+      setFilteredArray(filteredArray.filter((item) => item !== shoeSize));
       console.log(`removed ${shoeSize}, array is:${filteredArray}`);
     }
   };

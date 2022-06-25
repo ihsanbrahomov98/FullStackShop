@@ -6,18 +6,20 @@ import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
 import Box from '@mui/material/Box';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import { Typography } from '@mui/material';
 
-export default function ShoeSizes() {
+const ShoeSizes = (props) => {
   const [alignment, setAlignment] = React.useState('left');
 
   const handleChange = (event, newAlignment) => {
     setAlignment(newAlignment);
   };
+  // const childrenItems = props.products.size.map((number) => (
+  //   <FormatAlignCenterIcon />
+  // ));
 
   const children = [
-    <ToggleButton value="left" key="left">
-      <FormatAlignLeftIcon />
-    </ToggleButton>,
+    <ToggleButton value="42" key="42"></ToggleButton>,
     <ToggleButton value="center" key="center">
       <FormatAlignCenterIcon />
     </ToggleButton>,
@@ -48,9 +50,11 @@ export default function ShoeSizes() {
         '& > :not(style) + :not(style)': { mt: 2 },
       }}
     >
+      <Typography>{props.products}</Typography>
       <ToggleButtonGroup size="small" {...control}>
         {children}
       </ToggleButtonGroup>
     </Box>
   );
-}
+};
+export default ShoeSizes;
