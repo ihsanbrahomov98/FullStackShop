@@ -28,7 +28,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function TestCollapse() {
+export default function DropDownMenuFreeShipping() {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -36,9 +36,9 @@ export default function TestCollapse() {
   };
 
   return (
-    <Card sx={{ maxWidth: 250 }}>
+    <Card sx={{ maxWidth: '100%' }}>
       <CardActions disableSpacing>
-        <Typography>Описание на продукта</Typography>
+        <Typography>Безплатна доставка</Typography>
 
         <ExpandMore
           expand={expanded}
@@ -58,20 +58,12 @@ export default function TestCollapse() {
             spacing={2}
           >
             <Stack spacing={2} sx={{ flex: 1, fontSize: 13 }}>
-              <Box>Материал</Box>
-              <Box>Цвят</Box>
-              <Box>Колекция</Box>
-              <Box>Код </Box>
-              <Box>Кройка</Box>
-              <Box>Марка</Box>
+              <Box>Безплатна доставка</Box>
+              <Box>Връщане</Box>
             </Stack>
             <Stack spacing={2} sx={{ flex: 1, fontSize: 13 }}>
-              <Box>100% вискоза</Box>
-              <Box>Черен</Box>
-              <Box>Лято 2016</Box>
-              <Box>ICE2WCU01 </Box>
-              <Box>Relaxed </Box>
-              <Box>Bumba</Box>
+              <Box>При покупки над 200,00 лв.</Box>
+              <Box>До 30 дни</Box>
             </Stack>
           </Stack>
         </CardContent>

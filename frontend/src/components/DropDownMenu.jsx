@@ -28,7 +28,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function TestCollapse() {
+export default function DropDownMenu() {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -36,7 +36,7 @@ export default function TestCollapse() {
   };
 
   return (
-    <Card sx={{ maxWidth: 250 }}>
+    <Card sx={{ maxWidth: '100%' }}>
       <CardActions disableSpacing>
         <Typography>Описание на продукта</Typography>
 

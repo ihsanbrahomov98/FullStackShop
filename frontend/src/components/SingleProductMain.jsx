@@ -10,23 +10,22 @@ import Divider from '@mui/material/Divider';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import { useSelector, useDispatch } from 'react-redux';
-import { decrement, increment } from '../app/features/counterSlice';
-import SingleProductSlider from './SingleProductSlider';
-import StripeCheckout from 'react-stripe-checkout';
+
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { addProduct, addTooCart } from '../app/features/cartSlice';
-import ShoeSizes from './ShoeSizes';
+
+import { ShopAddButton } from './styles/SingleProductMain';
+
 import * as React from 'react';
-import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
-import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
-import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
-import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
 
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import DropDownMenu from './DropDownMenu';
+
+import DropDownMenuFreeShipping from './DropDownMenuFreeShipping';
 
 const STRIPE_KEY =
   'pk_test_51L5XfCGhswhFxp1SnSWMxrXia8K8TDik4CV8zMmQT1Es3VdYofPdgdYEFzkgqOnPVpYSQf0sEOejlIvKOb9BwSxK00jTVKbULQ';
@@ -102,7 +101,7 @@ const SingleProductMain = ({}) => {
             spacing={6}
             sx={{ height: 450 }}
           >
-            <Stack sx={{ flex: 1.5, height: 550, pl: 7 }}>
+            <Stack sx={{ flex: 1, height: 550, pl: 7 }}>
               <Typography sx={{ fontSize: 19 }} align="left">
                 {products.description}
               </Typography>
@@ -124,78 +123,10 @@ const SingleProductMain = ({}) => {
               justifyContent="center"
               alignItems="center"
               spacing={2}
-              sx={{ flex: 1, height: 700 }}
-            >
-              <Stack
-                direction="row"
-                justifyContent="space-around"
-                alignItems="flex-end"
-                sx={{ flex: 0.5 }}
-              >
-                <Typography sx={{ fontSize: 20 }} varian="h6">
-                  {products.price}.00 ЛВ
-                </Typography>
-              </Stack>
+              sx={{ flex: 2, height: 700 }}
+            ></Stack>
 
-              <Stack spacing={1} sx={{ flex: 1 }}>
-                <Divider flexItem />
-                <Typography align="left" variant="h4" sx={{ fontSize: 14 }}>
-                  Налични размери/изберете размер
-                </Typography>
-                <ToggleButtonGroup
-                  value={alignment}
-                  exclusive
-                  onChange={handleAlignment}
-                  aria-label="text alignment"
-                >
-                  {products.size.map((item) => (
-                    <ToggleButton
-                      color="primary"
-                      value={item}
-                      aria-label={item}
-                    >
-                      {item}
-                    </ToggleButton>
-                  ))}
-                </ToggleButtonGroup>
-                <Typography variant="h4" sx={{ fontSize: 14 }}>
-                  използвай код VIP за НАМАЛЕНИЕ
-                </Typography>
-                <Divider flexItem />
-              </Stack>
-
-              <Box sx={{ flex: 1 }}>
-                <Button
-                  size="small"
-                  variant="outlined"
-                  onClick={() => handleQuantity('inc')}
-                >
-                  +
-                </Button>
-
-                <Button size="small" variant="outlined">
-                  {quantity}
-                </Button>
-
-                <Button
-                  size="small"
-                  variant="outlined"
-                  onClick={() => handleQuantity('dec')}
-                >
-                  -
-                </Button>
-              </Box>
-
-              <Box sx={{ flex: 0.2 }}>
-                <Button onClick={handleClick} size="large" variant="outlined">
-                  Buy
-                </Button>
-              </Box>
-              <Box sx={{ flex: 1 }}></Box>
-              <Box sx={{ flex: 4 }}></Box>
-            </Stack>
-
-            <Stack direction="column" sx={{ flex: 1 }}>
+            <Stack direction="column" sx={{ flex: 1.2 }}>
               {/* First Stack Begin */}
               <Stack
                 justifyContent="space-between"
@@ -265,17 +196,36 @@ const SingleProductMain = ({}) => {
               </Stack>
               {/* Third Stack ENds */}
               {/* Fourth Stack Begins */}
-              <Stack directions="row">
-                <Box>
-                  <Button
-                    size="small"
-                    variant="outlined"
-                    onClick={() => handleQuantity('inc')}
-                  >
-                    +
-                  </Button>
+              <Stack
+                justifyContent="space-between"
+                direction="row"
+                sx={{ pb: 3, pt: 2 }}
+              >
+                <Box direction="column">
+                  <Box>
+                    <ShopAddButton onClick={() => handleQuantity('inc')}>
+                      <Typography variant="h4" sx={{ fontSize: 10 }}>
+                        Добави в кошмицата
+                      </Typography>
+                    </ShopAddButton>
+                  </Box>
                 </Box>
-                <Box></Box>
+                <Box>
+                  <ShopAddButton onClick={() => handleQuantity('dec')}>
+                    <Typography variant="h4" sx={{ fontSize: 10 }}>
+                      Премахни продукт
+                    </Typography>
+                  </ShopAddButton>
+                </Box>
+              </Stack>
+              {/* Fourth Stack END */}
+              {/* Fifth Stack Begin */}
+              <Stack>
+                <DropDownMenu />
+              </Stack>
+              <Divider flexItem />
+              <Stack>
+                <DropDownMenuFreeShipping />
               </Stack>
             </Stack>
           </Stack>
