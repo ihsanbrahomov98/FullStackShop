@@ -6,7 +6,8 @@ import {
   CardMedia,
   CardContent,
 } from '@mui/material';
-
+import Divider from '@mui/material/Divider';
+import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import { useSelector, useDispatch } from 'react-redux';
 import { decrement, increment } from '../app/features/counterSlice';
@@ -41,10 +42,9 @@ const SingleProductMain = ({}) => {
     const fetchproducts = async () => {
       const { data } = await axios.get(`/back/mock/api/findone/${params.id}`);
       setProducts(data);
+      Setloading(false);
     };
     fetchproducts();
-
-    Setloading(false);
   }, []);
 
   // const product = products.find((p)=> p._id === match.params.id);
@@ -85,138 +85,203 @@ const SingleProductMain = ({}) => {
   // size and color
   const [alignment, setAlignment] = React.useState('left');
 
-  const handleChange = (event, newAlignment) => {
+  const handleAlignment = (event, newAlignment) => {
     setAlignment(newAlignment);
-  };
-  const children = [
-    <ToggleButton value="42" key="42"></ToggleButton>,
-    <ToggleButton value="center" key="center">
-      <FormatAlignCenterIcon />
-    </ToggleButton>,
-    <ToggleButton value="right" key="right">
-      <FormatAlignRightIcon />
-    </ToggleButton>,
-    <ToggleButton value="justify" key="justify">
-      <FormatAlignJustifyIcon />
-    </ToggleButton>,
-    <ToggleButton value="justify" key="justify">
-      <FormatAlignJustifyIcon />
-    </ToggleButton>,
-  ];
-
-  const control = {
-    value: alignment,
-    onChange: handleChange,
-    exclusive: true,
   };
 
   return (
     <>
-      {loading ? (
-        showLoading
-      ) : (
-        <Stack
-          direction="row"
-          justifyContent="center"
-          alignItems="flex-start"
-          spacing={6}
-          sx={{ height: 450 }}
-        >
-          <Stack sx={{ flex: 1.5, height: 550, pl: 7 }}>
-            <Typography sx={{ fontSize: 19 }} align="left">
-              {products.description}
-            </Typography>
-            <Typography sx={{ pb: 2 }} align="left">
-              {products.description}
-            </Typography>
-            <Card>
-              <CardMedia
-                component="img"
-                height="270"
-                width="10"
-                image={products.img}
-                alt={products.name}
-              />
-            </Card>
-          </Stack>
-          <Stack
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-            spacing={2}
-            sx={{ flex: 1, height: 700 }}
-          >
-            <Stack
-              direction="row"
-              justifyContent="center"
-              alignItems="center"
-              spacing={1}
-              sx={{ flex: 1 }}
-            >
-              <Typography sx={{ fontSize: 20 }} varian="h6">
-                {products.price}00.ЛВ
-              </Typography>
-
-              <Typography varian="h4">каталожен №:{products.name}</Typography>
-            </Stack>
-            <Stack sx={{ flex: 1 }}>
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  // TODO Replace with Stack
-                  '& > :not(style) + :not(style)': { mt: 2 },
-                }}
-              >
-                <Typography>{2}</Typography>
-                <ToggleButtonGroup size="small" {...control}>
-                  {children}
-                </ToggleButtonGroup>
-              </Box>
-            </Stack>
-
-            <Box sx={{ flex: 1 }}>
-              <Button
-                size="small"
-                variant="outlined"
-                onClick={() => handleQuantity('inc')}
-              >
-                +
-              </Button>
-
-              <Button size="small" variant="outlined">
-                {quantity}
-              </Button>
-
-              <Button
-                size="small"
-                variant="outlined"
-                onClick={() => handleQuantity('dec')}
-              >
-                -
-              </Button>
-            </Box>
-
-            <Box sx={{ flex: 0.2 }}>
-              <Button onClick={handleClick} size="large" variant="outlined">
-                Buy
-              </Button>
-            </Box>
-            <Box sx={{ flex: 1 }}></Box>
-            <Box sx={{ flex: 4 }}></Box>
-          </Stack>
+      <Container>
+        {loading ? (
+          showLoading
+        ) : (
           <Stack
             direction="row"
             justifyContent="center"
-            alignItems="center"
-            sx={{ flex: 2, height: 500, width: 500 }}
+            alignItems="flex-start"
+            spacing={6}
+            sx={{ height: 450 }}
           >
-            <SingleProductSlider />
+            <Stack sx={{ flex: 1.5, height: 550, pl: 7 }}>
+              <Typography sx={{ fontSize: 19 }} align="left">
+                {products.description}
+              </Typography>
+              <Typography sx={{ pb: 2 }} align="left">
+                {products.description}
+              </Typography>
+              <Card>
+                <CardMedia
+                  component="img"
+                  height="270"
+                  width="10"
+                  image={products.img}
+                  alt={products.name}
+                />
+              </Card>
+            </Stack>
+            <Stack
+              direction="column"
+              justifyContent="center"
+              alignItems="center"
+              spacing={2}
+              sx={{ flex: 1, height: 700 }}
+            >
+              <Stack
+                direction="row"
+                justifyContent="space-around"
+                alignItems="flex-end"
+                sx={{ flex: 0.5 }}
+              >
+                <Typography sx={{ fontSize: 20 }} varian="h6">
+                  {products.price}.00 ЛВ
+                </Typography>
+              </Stack>
+
+              <Stack spacing={1} sx={{ flex: 1 }}>
+                <Divider flexItem />
+                <Typography align="left" variant="h4" sx={{ fontSize: 14 }}>
+                  Налични размери/изберете размер
+                </Typography>
+                <ToggleButtonGroup
+                  value={alignment}
+                  exclusive
+                  onChange={handleAlignment}
+                  aria-label="text alignment"
+                >
+                  {products.size.map((item) => (
+                    <ToggleButton
+                      color="primary"
+                      value={item}
+                      aria-label={item}
+                    >
+                      {item}
+                    </ToggleButton>
+                  ))}
+                </ToggleButtonGroup>
+                <Typography variant="h4" sx={{ fontSize: 14 }}>
+                  използвай код VIP за НАМАЛЕНИЕ
+                </Typography>
+                <Divider flexItem />
+              </Stack>
+
+              <Box sx={{ flex: 1 }}>
+                <Button
+                  size="small"
+                  variant="outlined"
+                  onClick={() => handleQuantity('inc')}
+                >
+                  +
+                </Button>
+
+                <Button size="small" variant="outlined">
+                  {quantity}
+                </Button>
+
+                <Button
+                  size="small"
+                  variant="outlined"
+                  onClick={() => handleQuantity('dec')}
+                >
+                  -
+                </Button>
+              </Box>
+
+              <Box sx={{ flex: 0.2 }}>
+                <Button onClick={handleClick} size="large" variant="outlined">
+                  Buy
+                </Button>
+              </Box>
+              <Box sx={{ flex: 1 }}></Box>
+              <Box sx={{ flex: 4 }}></Box>
+            </Stack>
+
+            <Stack direction="column" sx={{ flex: 1 }}>
+              {/* First Stack Begin */}
+              <Stack
+                justifyContent="space-between"
+                direction="row"
+                sx={{ pb: 3 }}
+              >
+                <Box direction="column">
+                  <Box>
+                    <Typography> Марка </Typography>
+                  </Box>
+                  <Box>
+                    {' '}
+                    <Typography> Рокля </Typography>
+                  </Box>
+                </Box>
+                <Box>
+                  <Typography> Лого </Typography>
+                </Box>
+              </Stack>
+              {/* First Stack End */}
+
+              {/* Second Stack Begin */}
+              <Stack justifyContent="space-between" direction="row">
+                <Box direction="column">
+                  <Box justifyContent="flex-start">
+                    <Typography> Марка </Typography>
+                  </Box>
+                  <Box>
+                    {' '}
+                    <Typography> Рокля </Typography>
+                  </Box>
+                </Box>
+                <Box>
+                  <Typography> Лого </Typography>
+                </Box>
+              </Stack>
+
+              {/* Second Stack End */}
+              {/* Third Stack Begins */}
+              <Stack
+                spacing={2}
+                justifyContent="space-between"
+                direction="column"
+                alignItems="flex-start"
+              >
+                <Divider flexItem />
+                <Typography align="left" variant="h4" sx={{ fontSize: 14 }}>
+                  Налични размери/изберете размер
+                </Typography>
+                <ToggleButtonGroup
+                  value={alignment}
+                  exclusive
+                  onChange={handleAlignment}
+                  aria-label="text alignment"
+                >
+                  {products.size.map((item) => (
+                    <ToggleButton
+                      color="primary"
+                      value={item}
+                      aria-label={item}
+                    >
+                      {item}
+                    </ToggleButton>
+                  ))}
+                </ToggleButtonGroup>
+                <Divider flexItem />
+              </Stack>
+              {/* Third Stack ENds */}
+              {/* Fourth Stack Begins */}
+              <Stack directions="row">
+                <Box>
+                  <Button
+                    size="small"
+                    variant="outlined"
+                    onClick={() => handleQuantity('inc')}
+                  >
+                    +
+                  </Button>
+                </Box>
+                <Box></Box>
+              </Stack>
+            </Stack>
           </Stack>
-        </Stack>
-      )}
-      ;
+        )}
+        ;
+      </Container>
     </>
   );
 };
