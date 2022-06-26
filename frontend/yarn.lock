@@ -1284,6 +1284,11 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@fontsource/montez@^4.5.8":
+  version "4.5.8"
+  resolved "https://registry.yarnpkg.com/@fontsource/montez/-/montez-4.5.8.tgz#9d7274a331a2f04d574b78c322161261f7224fa9"
+  integrity sha512-igG2X56SIDoxsRfdKUSUuIH7pUakglxE78K+yICQLpOvc5gkWzllktnOLAucs6/qD0rUJLs1J9EsHepsk5oqmg==
+
 "@humanwhocodes/config-array@^0.9.2":
   version "0.9.5"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.9.5.tgz#2cbaf9a89460da24b5ca6531b8bbfc23e1df50c7"

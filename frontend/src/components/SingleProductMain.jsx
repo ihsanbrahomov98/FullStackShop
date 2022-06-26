@@ -101,8 +101,10 @@ const SingleProductMain = ({}) => {
             alignItems="flex-start"
             spacing={6}
             sx={{ height: 450 }}
+            posotion="relative"
           >
             <Stack
+              posotion="relative"
               direction="column"
               justifyContent="center"
               alignItems="space-between"

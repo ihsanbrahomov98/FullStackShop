@@ -2,7 +2,8 @@ import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MobileStepper from '@mui/material/MobileStepper';
-import Button from '@mui/material/Button';
+import ShareIcon from '@mui/icons-material/Share';
+
 import Stack from '@mui/material/Stack';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
@@ -17,6 +18,11 @@ import { Colors } from './styles/theme';
 import './Slider/Slider.css';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import { Button, CardActionArea, CardActions, Typography } from '@mui/material';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -81,13 +87,38 @@ function SingleProductSlider() {
       alignItems="space-between"
     >
       <Stack
-        sx={{ flex: 1 }}
+        sx={{ flex: 1.5, left: 200 }}
         direction="column"
         justifyContent="flex-start"
         alignItems="flex-start"
+        posotion="absolute"
       >
-        <Button>23</Button>
-        <Button>23</Button>
+        <Grid direction="column" container spacing={3}>
+          {products.map((step, index) => (
+            <Grid item xs={1}>
+              <Card
+                disableUnderline
+                sx={{ width: 85 }}
+                onClick={() => setActiveStep(index)}
+              >
+                <CardMedia
+                  component="img"
+                  height="100"
+                  width="20"
+                  image={step.img}
+                  alt={step.name}
+                />
+              </Card>
+            </Grid>
+          ))}
+          <Button
+            sx={{ color: Colors.black, width: 150, pt: 3, fontSize: 21 }}
+            variant="text"
+            endIcon={<ShareIcon />}
+          >
+            Сподели{' '}
+          </Button>
+        </Grid>
       </Stack>
       <Stack sx={{ flex: 3 }} direction="column">
         <Box sx={{ width: 450, height: 650, flexGrow: 1 }}>
