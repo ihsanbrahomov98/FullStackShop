@@ -11,6 +11,7 @@ const SingleProduct = () => {
       <Navbar />
       <BlackLine />
       <SingleProductMain />
+
       <SubscribeToUs />
       <ManBotListItems />
       <ManBotLine />

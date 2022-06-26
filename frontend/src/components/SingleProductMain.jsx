@@ -26,6 +26,7 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import DropDownMenu from './DropDownMenu';
 
 import DropDownMenuFreeShipping from './DropDownMenuFreeShipping';
+import SingleProductSlider from './SingleProductSlider';
 
 const STRIPE_KEY =
   'pk_test_51L5XfCGhswhFxp1SnSWMxrXia8K8TDik4CV8zMmQT1Es3VdYofPdgdYEFzkgqOnPVpYSQf0sEOejlIvKOb9BwSxK00jTVKbULQ';
@@ -101,30 +102,14 @@ const SingleProductMain = ({}) => {
             spacing={6}
             sx={{ height: 450 }}
           >
-            <Stack sx={{ flex: 1, height: 550, pl: 7 }}>
-              <Typography sx={{ fontSize: 19 }} align="left">
-                {products.description}
-              </Typography>
-              <Typography sx={{ pb: 2 }} align="left">
-                {products.description}
-              </Typography>
-              <Card>
-                <CardMedia
-                  component="img"
-                  height="270"
-                  width="10"
-                  image={products.img}
-                  alt={products.name}
-                />
-              </Card>
-            </Stack>
             <Stack
               direction="column"
               justifyContent="center"
-              alignItems="center"
-              spacing={2}
-              sx={{ flex: 2, height: 700 }}
-            ></Stack>
+              alignItems="space-between"
+              sx={{ flex: 3, height: 700 }}
+            >
+              <SingleProductSlider />
+            </Stack>
 
             <Stack direction="column" sx={{ flex: 1.2 }}>
               {/* First Stack Begin */}

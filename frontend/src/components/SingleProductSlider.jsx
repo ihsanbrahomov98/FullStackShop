@@ -3,6 +3,7 @@ import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MobileStepper from '@mui/material/MobileStepper';
 import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
@@ -12,6 +13,10 @@ import { useEffect, useState } from 'react';
 import axios, { Axios } from 'axios';
 import { useLocation, Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { Colors } from './styles/theme';
+import './Slider/Slider.css';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -53,78 +58,108 @@ function SingleProductSlider() {
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    if (activeStep === maxSteps - 1) {
+      setActiveStep(0);
+    }
   };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    if (activeStep === 0) {
+      setActiveStep(maxSteps - 1);
+    }
   };
 
   const handleStepChange = (step) => {
     setActiveStep(step);
   };
-  const navigate = useNavigate();
-  //  more work is
-  const relocate = () => {};
 
   return (
-    <Box sx={{ width: 150, height: 500, flexGrow: 1, p: 3 }}>
-      <AutoPlaySwipeableViews
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        index={activeStep}
-        onChangeIndex={handleStepChange}
-        enableMouseEvents
+    <Stack
+      direction="row"
+      justifyContent="flex-start"
+      alignItems="space-between"
+    >
+      <Stack
+        sx={{ flex: 1 }}
+        direction="column"
+        justifyContent="flex-start"
+        alignItems="flex-start"
       >
-        {products.map((step, index, product) => (
-          <div key={step.label}>
-            {Math.abs(activeStep - index) <= 2 ? (
-              <Link to={`/products/${locationParams}/${step._id}`}>
-                <Box
-                  onClick={relocate()}
-                  component="img"
-                  sx={{
-                    height: 250,
-                    display: 'block',
-                    overflow: 'hidden',
-                    width: '100%',
-                  }}
-                  src={step.img}
-                  alt={step.label}
-                />
-              </Link>
-            ) : null}
-          </div>
-        ))}
-      </AutoPlaySwipeableViews>
-      <MobileStepper
-        steps={maxSteps}
-        position="static"
-        activeStep={activeStep}
-        nextButton={
-          <Button
-            size="small"
-            onClick={handleNext}
-            disabled={activeStep === maxSteps - 1}
+        <Button>23</Button>
+        <Button>23</Button>
+      </Stack>
+      <Stack sx={{ flex: 3 }} direction="column">
+        <Box sx={{ width: 450, height: 650, flexGrow: 1 }}>
+          <SwipeableViews
+            className="slider"
+            axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+            index={activeStep}
+            onChangeIndex={handleStepChange}
+            enableMouseEvents
+            sx={{ color: Colors.black }}
           >
-            Next
-            {theme.direction === 'rtl' ? (
-              <KeyboardArrowLeft />
-            ) : (
-              <KeyboardArrowRight />
-            )}
-          </Button>
-        }
-        backButton={
-          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-            {theme.direction === 'rtl' ? (
-              <KeyboardArrowRight />
-            ) : (
-              <KeyboardArrowLeft />
-            )}
-            Back
-          </Button>
-        }
-      />
-    </Box>
+            {products.map((step, index, product) => (
+              <div key={step.label}>
+                {Math.abs(activeStep - index) <= 2 ? (
+                  <Link to={`/products/${locationParams}/${step._id}`}>
+                    <Box
+                      position="relative"
+                      component="img"
+                      sx={{
+                        height: 455,
+                        display: 'block',
+                        overflow: 'hidden',
+                        width: '90%',
+                      }}
+                      src={step.img}
+                      alt={step.label}
+                    />
+                  </Link>
+                ) : null}
+              </div>
+            ))}
+          </SwipeableViews>
+
+          <MobileStepper
+            className="slider"
+            ps={maxSteps}
+            position="absolute"
+            nextButton={
+              <Button
+                disableFocusRipple
+                disableRipple
+                position="absolute"
+                sx={{ color: Colors.black, left: 45, bottom: 250 }}
+                size="small"
+                onClick={handleNext}
+              >
+                {theme.direction === 'rtl' ? (
+                  <ArrowForwardIosIcon fontSize={'large'} />
+                ) : (
+                  <ArrowForwardIosIcon fontSize={'large'} />
+                )}
+              </Button>
+            }
+            backButton={
+              <Button
+                disableFocusRipple
+                disableRipple
+                sx={{ color: Colors.black, right: 95, bottom: 250 }}
+                size="small"
+                onClick={handleBack}
+              >
+                {theme.direction === 'rtl' ? (
+                  <ArrowBackIosIcon fontSize={'large'} />
+                ) : (
+                  <ArrowBackIosIcon fontSize={'large'} />
+                )}
+              </Button>
+            }
+          />
+        </Box>
+      </Stack>
+    </Stack>
   );
 }
 
