@@ -2,6 +2,7 @@ import React from 'react';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
+import { Colors } from './styles/theme';
 
 const BlackLine = (props) => {
   return (
@@ -12,7 +13,7 @@ const BlackLine = (props) => {
         alignItems="center"
         spacing={2}
         back
-        sx={{ height: 40, bgcolor: 'secondary.main', p: 1.5 }}
+        sx={{ height: 40, p: 1.5 }}
       >
         <Box>
           <Typography variant="h6" color="common.white">

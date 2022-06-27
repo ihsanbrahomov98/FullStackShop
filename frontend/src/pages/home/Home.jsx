@@ -5,17 +5,20 @@ import Cards from '../../components/Cards';
 import ListItems from '../../components/ListItems';
 import Counter from '../../app/features/Counter';
 import ManBotLine from '../../components/CopywritingLine';
+import { Container } from '@mui/system';
 
+import TopNavbar from './../../components/TopNavbar';
 const Home = () => {
   return (
-    <>
+    <Container>
+      <TopNavbar />
       <Navbar />
       <Slider />
       <Cards />
       <ListItems />
       <Counter />
       <ManBotLine />
-    </>
+    </Container>
   );
 };
 

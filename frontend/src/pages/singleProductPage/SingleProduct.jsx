@@ -4,17 +4,20 @@ import SingleProductMain from '../../components/SingleProductMain';
 import SubscribeToUs from '../../components/SubscribeToUs';
 import ManBotListItems from '../../components/ManBotListItems';
 import ManBotLine from '../../components/CopywritingLine';
+import { Container } from '@mui/system';
 
 const SingleProduct = () => {
   return (
     <>
-      <Navbar />
-      <BlackLine />
-      <SingleProductMain />
+      <Container>
+        <Navbar />
+        <BlackLine />
+        <SingleProductMain />
 
-      <SubscribeToUs />
-      <ManBotListItems />
-      <ManBotLine />
+        <SubscribeToUs />
+        <ManBotListItems />
+        <ManBotLine />
+      </Container>
     </>
   );
 };

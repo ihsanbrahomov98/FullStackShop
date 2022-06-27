@@ -12,6 +12,11 @@ import { Button } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import CallIcon from '@mui/icons-material/Call';
 import SeacrhInput from './SearchInput';
+import { AppbarHeaderSansSerif30, AppbarHeader } from './styles/TopNav';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+import SearchIcon from '@mui/icons-material/Search';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { Colors } from './styles/theme';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -31,10 +36,10 @@ const Navbar = () => {
           position={'relaitve'}
           direction="row"
           justifyContent="space-between"
-          alignItems="flex-start"
+          alignItems="center"
           spacing={2}
           back
-          sx={{ height: 55 }}
+          sx={{ height: 65 }}
         >
           <Stack
             direction="row"
@@ -42,48 +47,103 @@ const Navbar = () => {
             alignItems="flex-start"
             spacing={2}
           >
-            <IconButton aria-label="cart">
-              <Link to="/">
-                <HomeIcon />
+            <Link to="/products/man" style={{ textDecoration: 'none' }}>
+              <AppbarHeaderSansSerif30>МЪЖЕ </AppbarHeaderSansSerif30>
+            </Link>
+            <Link to="/products/woman" sx={{ textDecoration: 'none' }}>
+              <AppbarHeaderSansSerif30>ЖЕНИ </AppbarHeaderSansSerif30>
+            </Link>
+            <Link to="/products/child" sx={{ textDecoration: 'none' }}>
+              <AppbarHeaderSansSerif30>ДЕТЕ </AppbarHeaderSansSerif30>
+            </Link>
+            <Link to="/products/accessories" sx={{ textDecoration: 'none' }}>
+              <AppbarHeaderSansSerif30>АКСЕСОАРИ </AppbarHeaderSansSerif30>
+            </Link>
+            <Link to="/products/sport" sx={{ textDecoration: 'none' }}>
+              <AppbarHeaderSansSerif30>СПОРТ </AppbarHeaderSansSerif30>
+            </Link>
+          </Stack>
+          <Stack
+            direction="row"
+            justifyContent="flex-start"
+            alignItems="flex-start"
+            spacing={2}
+          >
+            <Stack
+              direction="row"
+              justifyContent="flex-start"
+              alignItems="flex-start"
+            >
+              <Link to="/" style={{ textDecoration: 'none' }}>
+                {' '}
+                <AppbarHeader>КАНТЕ</AppbarHeader>{' '}
               </Link>
-            </IconButton>
+            </Stack>
           </Stack>
           <Stack
             direction="row"
-            justifyContent="flex-start"
-            alignItems="flex-start"
-            spacing={2}
-            sx={{ pt: 1.4, pl: 4.7 }}
-          >
-            <Box>
-              <SeacrhInput></SeacrhInput>
-            </Box>
-            <Box>
-              <CallIcon />
-            </Box>
-            <Box sx={{ pt: 0.4 }}>0893231212</Box>
-          </Stack>
-          <Stack
-            direction="row"
-            justifyContent="flex-start"
-            alignItems="flex-start"
+            justifyContent="center"
+            alignItems="center"
             spacing={2}
           >
-            <Box sx={{ pt: 1.6 }}>Register</Box>
             <Box>
+              <AppbarHeaderSansSerif30></AppbarHeaderSansSerif30>
               <IconButton aria-label="cart">
                 <StyledBadge badgeContent={cartTotal} color="secondary">
                   <Link to="/adminboard">
-                    <AccountBoxRoundedIcon />
+                    <SearchIcon color="secondary" />
                   </Link>
                 </StyledBadge>
               </IconButton>
             </Box>
-            <Box sx={{ pr: 1.2 }}>
+            <Box>
+              <AppbarHeaderSansSerif30></AppbarHeaderSansSerif30>
               <IconButton aria-label="cart">
                 <StyledBadge badgeContent={cartTotal} color="secondary">
                   <Link to="/cartpage">
-                    <ShoppingCartIcon />
+                    <CallIcon color="secondary" />
+                  </Link>
+                </StyledBadge>
+              </IconButton>
+            </Box>
+            <Box>
+              <AppbarHeaderSansSerif30></AppbarHeaderSansSerif30>
+              <IconButton aria-label="cart">
+                <Link to="/cartpage">
+                  <AccountBoxRoundedIcon
+                    badgeContent={cartTotal}
+                    color="secondary"
+                  ></AccountBoxRoundedIcon>
+                </Link>
+              </IconButton>
+            </Box>
+            <Box>
+              <AppbarHeaderSansSerif30></AppbarHeaderSansSerif30>
+              <IconButton aria-label="cart">
+                <StyledBadge badgeContent={cartTotal} color="secondary">
+                  <Link to="/cartpage">
+                    <StarBorderIcon color="secondary"></StarBorderIcon>
+                  </Link>
+                </StyledBadge>
+              </IconButton>
+            </Box>
+
+            <Box>
+              <AppbarHeaderSansSerif30></AppbarHeaderSansSerif30>
+              <IconButton aria-label="cart">
+                <StyledBadge badgeContent={cartTotal} color="secondary">
+                  <Link to="/cartpage">
+                    <InfoOutlinedIcon color="secondary" />
+                  </Link>
+                </StyledBadge>
+              </IconButton>
+            </Box>
+            <Box>
+              <AppbarHeaderSansSerif30></AppbarHeaderSansSerif30>
+              <IconButton aria-label="cart">
+                <StyledBadge badgeContent={cartTotal} color="secondary">
+                  <Link to="/cartpage">
+                    <ShoppingCartIcon color="secondary" />
                   </Link>
                 </StyledBadge>
               </IconButton>
@@ -94,9 +154,9 @@ const Navbar = () => {
       <Stack
         direction="row"
         justifyContent="space-around"
-        alignItems="flex-start"
+        alignItems="center"
         spacing={2}
-        sx={{ height: 25, bgcolor: 'text.disabled' }}
+        sx={{ height: 53, bgcolor: Colors.black }}
       >
         <Box>
           <Link to="/products/all">Всички обувки</Link>

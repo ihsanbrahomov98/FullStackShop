@@ -15,7 +15,7 @@ export const Colors = {
   inverse: '#2F3D4A',
   shaft: '#333',
   dim_grey: '#696969',
-  dove_gray: '#d5d5d5',
+  dove_gray: '#505050',
   body_bg: '#f3f6f9',
   light_gray: 'rgb(230,230,230)',
   white: '#fff',
