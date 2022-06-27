@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import { Box } from '@mui/system';
 import '@fontsource/montez';
 import { Colors } from './theme';
-import { Button } from '@mui/material';
+import { Button, Container } from '@mui/material';
 export const AppbarContainer = styled(Box)(() => ({
   display: 'flex',
   marginTop: 4,
@@ -69,6 +69,13 @@ export const AppbarHeaderSansSerif30Procent = styled(Typography)(() => ({
   fontSize: '1em',
   fontFamily: '"sans-serif", "cursive"',
   color: Colors.black,
+}));
+export const StyledContainer = styled(Container)(() => ({
+  flexGrow: 1,
+  fontSize: '1em',
+  fontFamily: '"sans-serif", "cursive"',
+  color: Colors.black,
+  backgroundColor: Colors.dark,
 }));
 export const ShopAddButton = styled(Button, {
   shouldForwardProp: (prop) => prop !== 'color',
