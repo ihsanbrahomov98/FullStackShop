@@ -20,7 +20,8 @@ export const Colors = {
   light_gray: 'rgb(230,230,230)',
   white: '#fff',
   black: '#000000',
-  almostWhite: 'f2f2f2',
+  almostWhite: '#f2f2f2',
+  grayForSub: '#f7f7f7',
 };
 const theme = createTheme({
   palette: {

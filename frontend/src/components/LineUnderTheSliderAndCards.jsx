@@ -15,7 +15,7 @@ import HighQualityOutlinedIcon from '@mui/icons-material/HighQualityOutlined';
 
 const LineUnderTheSliderAndCards = () => {
   return (
-    <Container spacing={2} sx={{ pt: 7 }}>
+    <Container spacing={2} sx={{ pt: 7, pb: 7 }}>
       <Divider sx={{ pb: 1 }} />
       <Stack
         direction="row"

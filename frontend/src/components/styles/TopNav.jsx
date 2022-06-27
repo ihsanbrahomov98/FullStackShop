@@ -37,6 +37,7 @@ export const AppbarHeaderSansSerif30 = styled(Typography)(() => ({
   fontSize: '1em',
   fontFamily: '"sans-serif", "cursive"',
   color: Colors.dove_gray,
+  fontWeight: 'bold',
   '&:hover': {
     color: Colors.dark,
     borderColor: Colors.dark,
