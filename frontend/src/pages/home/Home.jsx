@@ -5,6 +5,7 @@ import Cards from '../../components/Cards';
 import ListItems from '../../components/ListItems';
 import Counter from '../../app/features/Counter';
 import ManBotLine from '../../components/CopywritingLine';
+import CardsUnderSlider from '../../components/CardsUnderSlider';
 import { Container } from '@mui/system';
 
 import TopNavbar from './../../components/TopNavbar';
@@ -14,6 +15,7 @@ const Home = () => {
       <TopNavbar />
       <Navbar />
       <Slider />
+      <CardsUnderSlider />
       <Cards />
       <ListItems />
       <Counter />

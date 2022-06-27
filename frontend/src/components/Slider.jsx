@@ -58,7 +58,7 @@ function Slider() {
 
   return (
     <Container>
-      <Box sx={{ width: 1, height: 400, flexGrow: 1, pt: 1.5 }}>
+      <Box sx={{ width: 1, height: 600, flexGrow: 1, pt: 1.5 }}>
         <AutoPlaySwipeableViews
           axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
           index={activeStep}
