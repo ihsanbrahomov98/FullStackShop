@@ -19,7 +19,8 @@ export const Colors = {
   body_bg: '#f3f6f9',
   light_gray: 'rgb(230,230,230)',
   white: '#fff',
-  black: '#000',
+  black: '#000000',
+  almostWhite: 'f2f2f2',
 };
 const theme = createTheme({
   palette: {

@@ -36,12 +36,23 @@ export const AppbarHeaderSansSerif30 = styled(Typography)(() => ({
   flexGrow: 1,
   fontSize: '1em',
   fontFamily: '"sans-serif", "cursive"',
-  color: Colors.black,
+  color: Colors.dove_gray,
   '&:hover': {
     color: Colors.dark,
     borderColor: Colors.dark,
   },
 }));
+export const BottomNavListItems = styled(Typography)(() => ({
+  padding: '4px',
+  flexGrow: 1,
+  fontSize: '1em',
+  fontFamily: '"sans-serif", "cursive"',
+  color: Colors.white,
+  '&:hover': {
+    textDecoration: 'underline',
+  },
+}));
+
 export const NavbarListItemsTypoghrpahy = styled(Typography)(() => ({
   padding: '4px',
   flexGrow: 1,

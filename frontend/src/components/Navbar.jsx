@@ -12,7 +12,11 @@ import { Button } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import CallIcon from '@mui/icons-material/Call';
 import SeacrhInput from './SearchInput';
-import { AppbarHeaderSansSerif30, AppbarHeader } from './styles/TopNav';
+import {
+  AppbarHeaderSansSerif30,
+  AppbarHeader,
+  BottomNavListItems,
+} from './styles/TopNav';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import SearchIcon from '@mui/icons-material/Search';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
@@ -39,27 +43,27 @@ const Navbar = () => {
           alignItems="center"
           spacing={2}
           back
-          sx={{ height: 65 }}
+          sx={{ height: 65, pl: 3, pr: 3 }}
         >
           <Stack
             direction="row"
-            justifyContent="flex-start"
+            justifyContent="center"
             alignItems="flex-start"
             spacing={2}
           >
             <Link to="/products/man" style={{ textDecoration: 'none' }}>
               <AppbarHeaderSansSerif30>МЪЖЕ </AppbarHeaderSansSerif30>
             </Link>
-            <Link to="/products/woman" sx={{ textDecoration: 'none' }}>
+            <Link to="/products/woman" style={{ textDecoration: 'none' }}>
               <AppbarHeaderSansSerif30>ЖЕНИ </AppbarHeaderSansSerif30>
             </Link>
-            <Link to="/products/child" sx={{ textDecoration: 'none' }}>
+            <Link to="/products/child" style={{ textDecoration: 'none' }}>
               <AppbarHeaderSansSerif30>ДЕТЕ </AppbarHeaderSansSerif30>
             </Link>
-            <Link to="/products/accessories" sx={{ textDecoration: 'none' }}>
+            <Link to="/products/accessories" style={{ textDecoration: 'none' }}>
               <AppbarHeaderSansSerif30>АКСЕСОАРИ </AppbarHeaderSansSerif30>
             </Link>
-            <Link to="/products/sport" sx={{ textDecoration: 'none' }}>
+            <Link to="/products/sport" style={{ textDecoration: 'none' }}>
               <AppbarHeaderSansSerif30>СПОРТ </AppbarHeaderSansSerif30>
             </Link>
           </Stack>
@@ -159,22 +163,39 @@ const Navbar = () => {
         sx={{ height: 53, bgcolor: Colors.black }}
       >
         <Box>
-          <Link to="/products/all">Всички обувки</Link>
+          <Link
+            to="/products/all"
+            style={{
+              textDecoration: 'none',
+            }}
+          >
+            <BottomNavListItems>ВСИЧКИ АРТИКУЛИ </BottomNavListItems>
+          </Link>
         </Box>
         <Box>
-          <Link to="/products/man">Мъжки обувки</Link>
+          <Link to="/products/man" style={{ textDecoration: 'none' }}>
+            <BottomNavListItems>МЪЖЕ </BottomNavListItems>
+          </Link>
         </Box>
         <Box>
-          <Link to="/products/woman">Дамски обувки</Link>
+          <Link to="/products/woman" style={{ textDecoration: 'none' }}>
+            <BottomNavListItems>ЖЕНИ</BottomNavListItems>
+          </Link>
         </Box>
         <Box>
-          <Link to="/products/child">Детски обувки</Link>
+          <Link to="/products/child" style={{ textDecoration: 'none' }}>
+            <BottomNavListItems>ДЕТЕ </BottomNavListItems>
+          </Link>
         </Box>
         <Box>
-          <Link to="/products/accessories">Аксесоари</Link>
+          <Link to="/products/accessories" style={{ textDecoration: 'none' }}>
+            <BottomNavListItems> АКСЕСОАРИ </BottomNavListItems>
+          </Link>
         </Box>
         <Box>
-          <Link to="/products/sport">Спротни Обувки</Link>
+          <Link to="/products/sport" style={{ textDecoration: 'none' }}>
+            <BottomNavListItems>СПОРТНИ</BottomNavListItems>
+          </Link>
         </Box>
       </Stack>
     </>

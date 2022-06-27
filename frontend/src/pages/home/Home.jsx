@@ -10,7 +10,7 @@ import { Container } from '@mui/system';
 import TopNavbar from './../../components/TopNavbar';
 const Home = () => {
   return (
-    <Container>
+    <>
       <TopNavbar />
       <Navbar />
       <Slider />
@@ -18,7 +18,7 @@ const Home = () => {
       <ListItems />
       <Counter />
       <ManBotLine />
-    </Container>
+    </>
   );
 };
 
