@@ -80,7 +80,7 @@ const Navbar = () => {
             >
               <Link to="/" style={{ textDecoration: 'none' }}>
                 {' '}
-                <AppbarHeader>КАНТЕ</AppbarHeader>{' '}
+                <AppbarHeader>КОНТЕ</AppbarHeader>{' '}
               </Link>
             </Stack>
           </Stack>

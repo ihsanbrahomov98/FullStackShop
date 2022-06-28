@@ -25,3 +25,25 @@ export const SubscribeToUsTypographyLigherBlack = styled(Typography)(() => ({
   fontFamily: '"sans-serif", "cursive"',
   color: Colors.gray,
 }));
+export const ShopAddButton = styled(Button, {
+  shouldForwardProp: (prop) => prop !== 'color',
+  name: 'MyShopButton',
+  slot: 'Root',
+  overridesResolver: (props, styles) => [
+    styles.root,
+    props.color === 'primary' && styles.primary,
+    props.color === 'secondary' && styles.secondary,
+  ],
+})(({ theme }) => ({
+  width: '6.3rem',
+  height: '100%',
+  color: Colors.white,
+  borderColor: Colors.dark,
+  border: '2px solid',
+
+  backgroundColor: Colors.dark,
+  '&:hover': { backgroundColor: Colors.white, color: Colors.dark },
+  fontWeight: 'bold',
+  fontSize: '16px',
+  [theme.breakpoints.down('sm')]: { padding: '10px 0px', fontSize: '14px' },
+}));
