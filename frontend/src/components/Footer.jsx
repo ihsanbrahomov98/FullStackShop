@@ -15,7 +15,7 @@ import FooterSlider from './FooterSlider';
 const Footer = () => {
   return (
     <>
-      <Container sx={{ height: 600, pt: 7 }}>
+      <Container sx={{ height: 500, pt: 7 }}>
         <Stack
           sx={{ height: 280 }}
           direction="column"

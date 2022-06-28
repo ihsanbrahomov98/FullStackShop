@@ -25,7 +25,7 @@ const Home = () => {
       <SubscribeToUs />
 
       <Footer />
-      <Counter />
+      {/* <Counter /> */}
       <ManBotLine />
     </>
   );
