@@ -7,6 +7,7 @@ import Counter from '../../app/features/Counter';
 import ManBotLine from '../../components/CopywritingLine';
 import CardsUnderSlider from '../../components/CardsUnderSlider';
 import SubscribeToUs from '../../components/SubscribeToUs';
+import Footer from '../../components/Footer';
 
 import { Container } from '@mui/system';
 
@@ -23,7 +24,7 @@ const Home = () => {
 
       <SubscribeToUs />
 
-      <ListItems />
+      <Footer />
       <Counter />
       <ManBotLine />
     </>
