@@ -7,6 +7,7 @@ import ManBotListItems from '../../components/ManBotListItems';
 import ManBotLine from '../../components/CopywritingLine';
 
 import SportProducts from './../../components/categories/SportProducts';
+import Footer from './../../components/Footer';
 
 const SportProductsPage = () => {
   return (
@@ -15,7 +16,7 @@ const SportProductsPage = () => {
       <BlackLine type="Спортни Обувки" />
       <SportProducts />
       <SubscribeToUs />
-      <ManBotListItems />
+      <Footer />
       <ManBotLine />
     </>
   );

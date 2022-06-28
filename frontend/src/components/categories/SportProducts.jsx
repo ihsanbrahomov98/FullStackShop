@@ -7,6 +7,7 @@ import Stack from '@mui/material/Stack';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Container from '@mui/material/Container';
 
 import Grid from '@mui/material/Grid';
 
@@ -28,35 +29,37 @@ const SportProducts = () => {
 
   return (
     <>
-      <Stack
-        direction="row"
-        justifyContent="center"
-        alignItems="flex-start"
-        spacing={1}
-        sx={{ flexGrow: 1, pl: 2, pr: 2 }}
-      >
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          {products.map((product) => (
-            <Grid item xs={3}>
-              <Link to={`/products/sport/${product._id}`}>
-                <Card>
-                  <CardMedia
-                    component="img"
-                    height="240"
-                    image={product.img}
-                    alt={product.name}
-                  />
-                  <CardContent sx={{ bgcolor: 'secondary.main' }}>
-                    <Typography align="center" color="common.white">
-                      {product.description}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Link>
-            </Grid>
-          ))}
-        </Grid>
-      </Stack>
+      <Container>
+        <Stack
+          direction="row"
+          justifyContent="center"
+          alignItems="flex-start"
+          spacing={1}
+          sx={{ flexGrow: 1, pl: 2, pr: 2 }}
+        >
+          <Grid container rowSpacing={3} columnSpacing={15}>
+            {products.map((product) => (
+              <Grid item xs={4}>
+                <Link to={`/products/sport/${product._id}`}>
+                  <Card>
+                    <CardMedia
+                      component="img"
+                      height="240"
+                      image={product.img}
+                      alt={product.name}
+                    />
+                    <CardContent sx={{ bgcolor: 'secondary.main' }}>
+                      <Typography align="center" color="common.white">
+                        {product.description}
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Link>
+              </Grid>
+            ))}
+          </Grid>
+        </Stack>
+      </Container>
     </>
   );
 };

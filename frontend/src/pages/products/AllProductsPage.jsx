@@ -6,6 +6,8 @@ import SubscribeToUs from '../../components/SubscribeToUs';
 import ManBotListItems from '../../components/ManBotListItems';
 import ManBotLine from '../../components/CopywritingLine';
 
+import Footer from './../../components/Footer';
+
 const AllProductsPage = () => {
   return (
     <>
@@ -13,7 +15,7 @@ const AllProductsPage = () => {
       <BlackLine type="Всички Продукти" />
       <AllProducts />
       <SubscribeToUs />
-      <ManBotListItems />
+      <Footer />
       <ManBotLine />
     </>
   );
