@@ -14,11 +14,10 @@ import Paper from '@mui/material/Paper';
 import Pagination from '@mui/material/Pagination';
 
 const pageSize = 2;
-const SportProducts = () => {
+const ServiceHelper = () => {
   const [products, setProducts] = useState([]);
   const [hovered, setHovered] = useState(false);
   const [pageProducts, setPageProducts] = useState([]);
-  const [pagginationData, setPagginationData] = useState([]);
   const [paggination, setPaggination] = useState({
     count: 0,
     from: 0,
@@ -51,10 +50,8 @@ const SportProducts = () => {
       .then((response) => {
         console.log(response);
         setPaggination({ ...paggination, count: response.count });
-        setPagginationData(response.data);
-        console.log(pagginationData);
       });
-  }, [paggination.from, paggination.to, products]);
+  }, [paggination.from, paggination.to]);
   const pageChange = (event, page) => {
     const from = (page - 1) * pageSize;
     const to = (page - 1) * pageSize + pageSize;
@@ -66,13 +63,6 @@ const SportProducts = () => {
         count={Math.ceil(paggination.count / pageSize)}
         variant="outlined"
         shape="rounded"
-        sx={{
-          color: Colors.primary,
-          backgroundColor: Colors.white,
-          '& .MuiPaginationItem-root': {
-            color: '#fff',
-          },
-        }}
         onChange={pageChange}
       />
       <Container sx={{ pb: 2 }}>
@@ -84,7 +74,7 @@ const SportProducts = () => {
           sx={{ flexGrow: 1 }}
         >
           <Grid container rowSpacing={3} columnSpacing={13}>
-            {pagginationData.map((product) => (
+            {products.map((product) => (
               <Grid item xs={4}>
                 <Card
                   width="150"
@@ -171,4 +161,4 @@ const SportProducts = () => {
   );
 };
 
-export default SportProducts;
+export default ServiceHelper;
