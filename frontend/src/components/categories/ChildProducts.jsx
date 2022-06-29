@@ -46,6 +46,7 @@ const ChildProducts = () => {
                     image={product.img}
                     alt={product.name}
                   />
+
                   <CardContent sx={{ bgcolor: 'secondary.main' }}>
                     <Typography align="center" color="common.white">
                       {product.description}
