@@ -22,11 +22,13 @@ export const Colors = {
   black: '#000000',
   almostWhite: '#f2f2f2',
   grayForSub: '#f7f7f7',
+  orange: '#f37335',
 };
 const theme = createTheme({
   palette: {
     primary: { main: Colors.primary },
     secondary: { main: Colors.secondary },
+    info: { main: Colors.orange },
   },
   components: {
     MuiButton: {
