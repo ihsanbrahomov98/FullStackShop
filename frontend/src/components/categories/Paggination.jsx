@@ -120,34 +120,22 @@ const Paggination = () => {
     fetchproducts();
   }, [pageSize, setPageSize]);
   useEffect(() => {
-    if (sort === 'newest') {
-      setProducts((prev) =>
-        [...prev].sort((a, b) => b.quantityLeft - a.quantityLeft)
-      );
-    } else if (sort === 'asc') {
+    if (sort === 'cheap') {
       setProducts((prev) => [...prev].sort((a, b) => a.price - b.price));
-    } else {
+    } else if (sort === 'expensive') {
       setProducts((prev) => [...prev].sort((a, b) => b.price - a.price));
+    } else {
+      setProducts((prev) => [...prev].sort((a, b) => a.price - b.price));
     }
   }, [sort]);
 
   useEffect(() => {
-    console.log(` filteredArray is : ${Number(filteredArray)}`);
     console.log(pagginationData[1]?.price);
 
     setPagginationData(() =>
       pagginationData.filter((item) => item.price === Number(filteredArray))
     );
-    if (!checked23Bool && !checked232Bool) {
-      const fetchproducts = async () => {
-        const { data } = await axios.get('/back/mock/api/findall');
-
-        const filteredItemsWoman = data.filter((item) => item.category === cat);
-        setProducts(filteredItemsWoman);
-      };
-      fetchproducts();
-    }
-  }, [filteredArray, sizeArray, sizeArray]);
+  }, [filteredArray, sizeArray, setFilteredArray]);
   //   useEffect(() => {
   //     if (state.antoine) {
   //       setPagginationData((pagginationData) => [...pagginationData]);
@@ -197,10 +185,10 @@ const Paggination = () => {
                   <FormControlLabel
                     control={
                       <Checkbox
+                        style={{ padding: 3 }}
                         checked={checked23Bool}
                         onClick={() => {
-                          handleCategory(23, checked23Bool);
-                          setChecked23Bool(!checked23Bool);
+                          setFilteredArray(23);
                         }}
                         name="23"
                       />
@@ -210,10 +198,12 @@ const Paggination = () => {
                   <FormControlLabel
                     control={
                       <Checkbox
+                        style={{ padding: 3 }}
                         checked={checked232Bool}
                         onClick={() => {
-                          handleCategory(232, checked232Bool);
                           setChecked232Bool(!checked232Bool);
+                          handleCategory(232, checked232Bool);
+                          setFilteredArray(232);
                         }}
                       />
                     }
@@ -222,6 +212,7 @@ const Paggination = () => {
                   <FormControlLabel
                     control={
                       <Checkbox
+                        style={{ padding: 3 }}
                         checked={antoine}
                         name="antoine"
                         onClick={() => handleCategory(2, state.jason)}
@@ -285,20 +276,20 @@ const Paggination = () => {
                   >
                     <MenuItem
                       onClick={() => {
-                        setSort('asc');
+                        setSort('cheap');
                       }}
                       disableRipple
                       onChange={pageChange}
                     >
-                      asc
+                      cheap
                     </MenuItem>
                     <MenuItem
                       onClick={() => {
-                        setSort('newest');
+                        setSort('expensive');
                       }}
                       disableRipple
                     >
-                      newest
+                      expensive
                     </MenuItem>
                   </Menu>
                   <Typography>Покажи по:</Typography>

@@ -12,6 +12,11 @@ import {
   decrement,
   increment,
 } from '../../../app/features/cartSlice';
+import Container from '@mui/material/Container';
+import TopNavbar from '../../TopNavbar';
+import Navbar from '../../Navbar';
+import Breadcrumbs from './Breadcrumbs';
+import Divider from '@mui/material/Divider';
 
 const CartBody = () => {
   const [products, setProducts] = useState([]);
@@ -41,204 +46,19 @@ const CartBody = () => {
 
   return (
     <>
-      {loading ? (
-        showLoading
-      ) : (
-        <Stack
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
-          spacing={2}
-        >
-          <Stack sx={{ flex: 0.1 }}>
-            <Typography variant="h4">YOUR BAG</Typography>
-          </Stack>
-          <Stack
-            direction="row"
-            justifyContent="space-between"
-            alignItems="center"
-            spacing={2}
-            sx={{ flex: 1, width: '100%' }}
-          >
-            <Stack sx={{ ml: 5 }}>
-              <Stack>
-                <Button>COUTINIUE SHOPPING </Button>
-              </Stack>
-            </Stack>
-            <Stack direction="row">
-              <Stack>
-                <Button>COUTINIUE SHOPPING </Button>
-              </Stack>
-              <Stack>
-                <Button>COUTINIUE SHOPPING </Button>
-              </Stack>
-            </Stack>
-            <Stack>
-              <Stack sx={{ mr: 5 }}>
-                <Button>COUTINIUE SHOPPING </Button>
-              </Stack>
-            </Stack>
-          </Stack>
-          <Stack>
-            {' '}
-            <Stack>
-              {' '}
-              <Stack
-                direction="column"
-                justifyContent="center"
-                alignItems="center"
-                spacing={2}
-                sx={{ flex: 1.7, width: '100%', pr: 2 }}
-              >
-                <Typography variant="h4">ORDER SUMMARY</Typography>
-                <Stack
-                  direction="row"
-                  justifyContent="space-between"
-                  alignItems="center"
-                  spacing={2}
-                  sx={{ width: '100%' }}
-                >
-                  <Typography>Subtotal:</Typography>
-                  <Typography>80 лв</Typography>
-                </Stack>
-                <Stack
-                  direction="row"
-                  justifyContent="space-between"
-                  alignItems="center"
-                  spacing={2}
-                  sx={{ width: '100%' }}
-                >
-                  <Typography>Shipping cost:</Typography>
-                  <Typography>6 лв</Typography>
-                </Stack>
-                <Stack
-                  direction="row"
-                  justifyContent="space-between"
-                  alignItems="center"
-                  spacing={2}
-                  sx={{ width: '100%' }}
-                >
-                  <Typography>Shipping discount:</Typography>
-                  <Typography>0 лв</Typography>
-                </Stack>
-                <Stack
-                  direction="row"
-                  justifyContent="space-between"
-                  alignItems="center"
-                  spacing={2}
-                  sx={{ width: '100%' }}
-                >
-                  <Typography>Total</Typography>
-                  <Typography>80 лв</Typography>
-                </Stack>
-                <Stack
-                  direction="row"
-                  justifyContent="space-between"
-                  alignItems="center"
-                  spacing={2}
-                  sx={{ width: '100%' }}
-                >
-                  <Button variant="outlined" sx={{ width: '90%', ml: 2 }}>
-                    Checkout Now
-                  </Button>
-                </Stack>
-              </Stack>
-            </Stack>
-            <Stack>
-              {products.map((cartProduct) => (
-                <Stack
-                  direction="row"
-                  justifyContent="center"
-                  alignItems="flex-start"
-                  spacing={2}
-                  sx={{ flex: 6, width: '100%' }}
-                >
-                  <Stack
-                    direction="row"
-                    justifyContent="space-between"
-                    alignItems="center"
-                    spacing={2}
-                    sx={{ flex: 5 }}
-                  >
-                    <Stack sx={{ p: 3 }}>
-                      <Card>
-                        <CardMedia
-                          component="img"
-                          height="150"
-                          width="150"
-                          image={cartProduct.img}
-                          alt={cartProduct.description}
-                          sx={{ width: '150' }}
-                        />
-                      </Card>
-                    </Stack>
-                    <Stack
-                      alignItems="flex-start"
-                      justifyContent="flex-start"
-                      spacing={3.5}
-                    >
-                      <Stack direction="row">
-                        <Typography>Product Name: </Typography>
-                        <Typography>{cartProduct.name}</Typography>
-                      </Stack>
-                      <Stack direction="row">
-                        <Typography>ID: </Typography>
-                        <Typography> 234</Typography>
-                      </Stack>
-                      <Stack direction="row">
-                        <Typography>COLOR: </Typography>
-                        <Typography> {cartProduct.color} </Typography>
-                      </Stack>
-                      <Stack direction="row">
-                        <Typography>SIZE: </Typography>
-                        <Typography> {cartProduct.size} </Typography>
-                      </Stack>
-                    </Stack>
-                    <Stack>
-                      <Stack
-                        justifyContent="center"
-                        alignItems="flex-end"
-                        spacing={2}
-                        direction="column"
-                      >
-                        <Stack direction="row" spacing={2}>
-                          <Button
-                            size="small"
-                            variant="outlined"
-                            onClick={() => dispatch(increment())}
-                          >
-                            +
-                          </Button>
-
-                          <Typography> </Typography>
-                          <Button
-                            size="small"
-                            variant="outlined"
-                            onClick={() => dispatch(decrement())}
-                          >
-                            -
-                          </Button>
-                        </Stack>
-                        <Stack>
-                          <Stack direction="row" justifyContent="flex-start">
-                            Quantity: {cartProduct.quantity}
-                          </Stack>
-                          <Stack direction="row" justifyContent="flex-start">
-                            Price: {cartProduct.price}
-                          </Stack>
-                          <Stack direction="row" justifyContent="flex-start">
-                            Price: {cartProduct.price * cartProduct.quantity}
-                          </Stack>
-                        </Stack>
-                      </Stack>
-                    </Stack>
-                  </Stack>
-                </Stack>
-              ))}
-            </Stack>
-          </Stack>
-        </Stack>
-      )}
+      <TopNavbar />
+      <Navbar />
+      <Stack height={10}></Stack>
+      <Container>
+        <Breadcrumbs />
+      </Container>
+      <Container>
+        <Stack height={10}></Stack>
+        <Divider />
+      </Container>
+      <Container>
+        <Stack></Stack>
+      </Container>
     </>
   );
 };

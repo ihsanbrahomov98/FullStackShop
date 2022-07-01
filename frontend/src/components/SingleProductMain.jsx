@@ -77,6 +77,7 @@ const SingleProductMain = ({}) => {
       quantity > 1 && SetQuantity(quantity - 1);
     } else {
       SetQuantity(quantity + 1);
+      handleClick();
     }
   };
   const handleClick = () => {
