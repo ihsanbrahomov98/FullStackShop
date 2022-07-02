@@ -23,6 +23,8 @@ export const Colors = {
   almostWhite: '#f2f2f2',
   grayForSub: '#f7f7f7',
   orange: '#f37335',
+  grayForCart: '#f0f0f0',
+  orangeForCartHover: '#ff9211',
 };
 const theme = createTheme({
   palette: {
