@@ -59,12 +59,29 @@ export const CartButtonDelete = styled(Button, {
     props.color === 'secondary' && styles.secondary,
   ],
 })(({ theme }) => ({
-  color: Colors.white,
+  color: Colors.black,
   borderColor: Colors.dark,
-  border: '1px solid',
 
   fontWeight: 'bold',
-  fontSize: '10px',
-  '&:hover': { color: Colors.dark },
+  fontSize: '16px',
+  '&:hover': { color: Colors.black, backgroundColor: Colors.grayForCart },
+  [theme.breakpoints.down('sm')]: { fontSize: '10px' },
+}));
+export const CartButtonContinueShooping = styled(Button, {
+  shouldForwardProp: (prop) => prop !== 'color',
+  name: 'MyShopButton',
+  slot: 'Root',
+  overridesResolver: (props, styles) => [
+    styles.root,
+    props.color === 'primary' && styles.primary,
+    props.color === 'secondary' && styles.secondary,
+  ],
+})(({ theme }) => ({
+  color: Colors.black,
+  borderColor: Colors.dark,
+  border: '1px solid',
+  fontWeight: 'bold',
+  fontSize: '16px',
+  '&:hover': { color: Colors.black, backgroundColor: Colors.grayForCart },
   [theme.breakpoints.down('sm')]: { fontSize: '10px' },
 }));

@@ -7,8 +7,9 @@ import Button from '@mui/material/Button';
 import CardMedia from '@mui/material/CardMedia';
 import Card from '@mui/material/Card';
 import { useSelector, useDispatch } from 'react-redux';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import { useEffect, useState } from 'react';
-
+import { Link, Routes, Route, useNavigate } from 'react-router-dom';
 import {
   addProduct,
   decrement,
@@ -16,11 +17,21 @@ import {
 } from '../../../app/features/cartSlice';
 import Container from '@mui/material/Container';
 import TopNavbar from '../../TopNavbar';
+import LineUnderTheSliderAndCards from '../../LineUnderTheSliderAndCards';
+import SubscribeToUs from '../../LineUnderTheSliderAndCards';
+import Footer from '../../Footer';
+import ManBotLine from '../../CopywritingLine';
+
 import Navbar from '../../Navbar';
 import Breadcrumbs from './Breadcrumbs';
 import Divider from '@mui/material/Divider';
 import { Colors } from '../../styles/theme';
-import { CartButtonOrange, CartButtonBlack } from '../../styles/CartButton';
+import {
+  CartButtonOrange,
+  CartButtonBlack,
+  CartButtonDelete,
+  CartButtonContinueShooping,
+} from '../../styles/CartButton';
 
 const CartBody = () => {
   const [products, setProducts] = useState([]);
@@ -31,7 +42,7 @@ const CartBody = () => {
   const cartQuantity = useSelector((state) => state.cart.quantity);
   const cartTotal = useSelector((state) => state.cart.total);
   console.log(cartProducts);
-
+  const navigate = useNavigate();
   const handleQuantity = (type) => {
     if (type === 'dec') {
       quantity > 1 && SetQuantity(quantity - 1);
@@ -63,7 +74,24 @@ const CartBody = () => {
       <Container>
         <Stack height={35}></Stack>
       </Container>
-      <Container>
+      <Container style={{ position: 'relative' }}>
+        <Stack
+          width="7%"
+          position="fixed"
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          spacing={2}
+          sx={{
+            height: 20,
+            bgcolor: Colors.orange,
+            bottom: 35,
+            left: 25,
+            borderRadius: '50%',
+          }}
+        >
+          <Box sx={{ borderRadius: '50%' }}>67477…</Box>
+        </Stack>
         <Stack>
           <Typography sx={{ fontSize: 35, fontWeight: 'bold' }}>
             ТВОЯТА КОЛИЧКА
@@ -246,11 +274,28 @@ const CartBody = () => {
                     </Stack>
                   </Stack>
                 </Stack>
-                <Stack sx={{ flex: 2 }}>
-                  <Button>X</Button>
+                <Stack
+                  justifyContent="flex-start"
+                  alignItems="flex-start"
+                  sx={{ flex: 2 }}
+                >
+                  <Stack>
+                    <CartButtonDelete> X</CartButtonDelete>
+                  </Stack>
                 </Stack>
               </Stack>
             ))}
+            <Stack sx={{ height: 5 }}></Stack>
+            <Divider />
+            <Stack sx={{ height: 12 }}></Stack>
+            <Stack justifyContent="flex-start" alignItems="flex-start">
+              <CartButtonContinueShooping onClick={() => navigate(-1)}>
+                <KeyboardArrowLeftIcon sx={{ fontWeight: 'bold' }} />
+                <Typography sx={{ fontWeight: 'bold' }}>
+                  Продължи с пазаруването
+                </Typography>
+              </CartButtonContinueShooping>
+            </Stack>
           </Stack>
 
           <Stack sx={{ flex: 0.35 }}></Stack>
@@ -328,6 +373,11 @@ const CartBody = () => {
           </Stack>
         </Stack>
       </Container>
+
+      <SubscribeToUs />
+      <Footer />
+
+      <ManBotLine />
     </>
   );
 };
