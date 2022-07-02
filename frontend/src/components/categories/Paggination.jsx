@@ -13,38 +13,22 @@ import Container from '@mui/material/Container';
 import { useLocation } from 'react-router';
 import Grid from '@mui/material/Grid';
 import Pagination from '@mui/material/Pagination';
-import Box from '@mui/material/Box';
-import FormLabel from '@mui/material/FormLabel';
-import FormControl from '@mui/material/FormControl';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormHelperText from '@mui/material/FormHelperText';
-import Checkbox from '@mui/material/Checkbox';
-
+import { CartButtonBlack } from '../styles/SingleProductStyles';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import Rating from '@mui/material/Rating';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 
 const Paggination = () => {
-  const [checkedBool2, setChecked2Bool] = React.useState(false);
-
-  const [checked23Bool, setChecked23Bool] = React.useState(false);
-  const [checked232Bool, setChecked232Bool] = React.useState(false);
-
-  const [state, setState] = React.useState({
-    gilad: false,
-    jason: false,
-    antoine: false,
-  });
   const location = useLocation();
   const cat = location.pathname.split('/')[2];
-  const [sort, setSort] = useState('newest');
+  const [sort, setSort] = useState('cheap');
+  const [sortBySize, setSortBySize] = useState('small');
   const [products, setProducts] = useState([]);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(1);
+  const [value, setValue] = useState(4);
   const [pagginationData, setPagginationData] = useState([]);
-  const [sizeArray, setSizeArray] = React.useState([]);
-  const [filteredArray, setFilteredArray] = React.useState([]);
   const [paggination, setPaggination] = useState({
     count: 0,
     from: 0,
@@ -54,19 +38,9 @@ const Paggination = () => {
   const open = Boolean(anchorEl);
   const [anchorElFilter, setAnchorElFilter] = useState(null);
   const openFilter = Boolean(anchorElFilter);
-  const handleCategory = (categoryInfo, caregoryBool) => {
-    if (caregoryBool) {
-      setSizeArray((sizeArray) => [...sizeArray, categoryInfo]);
+  const [anchorElSize, setAnchorElSize] = useState(null);
+  const openSize = Boolean(anchorElSize);
 
-      setFilteredArray(Array.from(new Set(sizeArray)));
-      console.log(`added ${categoryInfo}, array is:${filteredArray}`);
-    } else {
-      //   setFilteredArray([]);
-      setFilteredArray(filteredArray.filter((item) => item === categoryInfo));
-
-      console.log(`removed ${categoryInfo}, array is:${filteredArray}`);
-    }
-  };
   const service = {
     getData: ({ from, to }) => {
       return new Promise((resolve, reject) => {
@@ -109,6 +83,12 @@ const Paggination = () => {
   const handleCloseFilter = () => {
     setAnchorElFilter(null);
   };
+  const handleClickSize = (event) => {
+    setAnchorElSize(event.currentTarget);
+  };
+  const handleCloseSize = () => {
+    setAnchorElSize(null);
+  };
 
   useEffect(() => {
     const fetchproducts = async () => {
@@ -119,6 +99,7 @@ const Paggination = () => {
     };
     fetchproducts();
   }, [pageSize, setPageSize]);
+
   useEffect(() => {
     if (sort === 'cheap') {
       setProducts((prev) => [...prev].sort((a, b) => a.price - b.price));
@@ -128,41 +109,15 @@ const Paggination = () => {
       setProducts((prev) => [...prev].sort((a, b) => a.price - b.price));
     }
   }, [sort]);
-
   useEffect(() => {
-    console.log(pagginationData[1]?.price);
-
-    setPagginationData(() =>
-      pagginationData.filter((item) => item.price === Number(filteredArray))
-    );
-  }, [filteredArray, sizeArray, setFilteredArray]);
-  //   useEffect(() => {
-  //     if (state.antoine) {
-  //       setPagginationData((pagginationData) => [...pagginationData]);
-  //     } else if (state.jason) {
-  //       setPagginationData((prev) =>
-  //         pagginationData.filter((item) => item.price === 232)
-  //       );
-  //     } else {
-  //       const fetchproducts = async () => {
-  //         const { data } = await axios.get('/back/mock/api/findall');
-
-  //         const filteredItemsWoman = data.filter((item) => item.category === cat);
-  //         setProducts(filteredItemsWoman);
-  //         console.log(products);
-  //       };
-  //       fetchproducts();
-  //     }
-  //   }, [state]);
-
-  const handleChange = (event) => {
-    setState({
-      ...state,
-      [event.target.name]: event.target.checked,
-    });
-  };
-
-  const { gilad, jason, antoine } = state;
+    if (sortBySize === 'small') {
+      setProducts((prev) => [...prev].sort((a, b) => a.name - b.name));
+    } else if (sortBySize === 'large') {
+      setProducts((prev) => [...prev].sort((a, b) => b.name - a.name));
+    } else {
+      setProducts((prev) => [...prev].sort((a, b) => a.name - b.name));
+    }
+  }, [sortBySize]);
 
   return (
     <>
@@ -172,59 +127,6 @@ const Paggination = () => {
           justifyContent="flex-start"
           alignItems="flex-start"
         >
-          <Stack
-            flex={1}
-            justifyContent="flex-start"
-            alignItems="flex-start"
-            direction="column"
-          >
-            <Stack>
-              <Typography>Цена </Typography>
-              <FormControl component="fieldset" variant="standard">
-                <FormGroup>
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        style={{ padding: 3 }}
-                        checked={checked23Bool}
-                        onClick={() => {
-                          setFilteredArray(23);
-                        }}
-                        name="23"
-                      />
-                    }
-                    label="23"
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        style={{ padding: 3 }}
-                        checked={checked232Bool}
-                        onClick={() => {
-                          setChecked232Bool(!checked232Bool);
-                          handleCategory(232, checked232Bool);
-                          setFilteredArray(232);
-                        }}
-                      />
-                    }
-                    label="232"
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        style={{ padding: 3 }}
-                        checked={antoine}
-                        name="antoine"
-                        onClick={() => handleCategory(2, state.jason)}
-                      />
-                    }
-                    label="2"
-                  />
-                </FormGroup>
-                <FormHelperText>Be careful</FormHelperText>
-              </FormControl>
-            </Stack>
-          </Stack>
           <Stack direction="column" flex={6}>
             <Stack>
               <Typography sx={{ fontSize: 38 }}>НАЙ-НОВИ</Typography>
@@ -249,9 +151,10 @@ const Paggination = () => {
                   justifyContent="center"
                   direction="row"
                 >
-                  <Typography>Сортирай по:</Typography>
-                  <Button
-                    id="size"
+                  {/* First sort */}
+                  <Typography>Сортирай по цена :</Typography>
+                  <CartButtonBlack
+                    id="priceForItem"
                     aria-controls={
                       openFilter ? 'demo-customized-menu' : undefined
                     }
@@ -264,17 +167,26 @@ const Paggination = () => {
                     endIcon={<KeyboardArrowDownIcon />}
                   >
                     {sort}
-                  </Button>
+                  </CartButtonBlack>
                   <Menu
-                    id="sizemenu"
+                    id="priceForItem"
                     MenuListProps={{
                       'aria-labelledby': 'demo-customized-button',
                     }}
                     anchorEl={anchorElFilter}
                     open={openFilter}
                     onClose={handleCloseFilter}
+                    sx={{
+                      '& .MuiMenu-paper': {
+                        backgroundColor: Colors.grayForCart,
+                      },
+                    }}
                   >
                     <MenuItem
+                      sx={{
+                        backgroundColor: Colors.grayForCart,
+                        '&:hover': { backgroundColor: Colors.grayForMenu },
+                      }}
                       onClick={() => {
                         setSort('cheap');
                       }}
@@ -284,6 +196,10 @@ const Paggination = () => {
                       cheap
                     </MenuItem>
                     <MenuItem
+                      sx={{
+                        backgroundColor: Colors.grayForCart,
+                        '&:hover': { backgroundColor: Colors.grayForMenu },
+                      }}
                       onClick={() => {
                         setSort('expensive');
                       }}
@@ -291,9 +207,10 @@ const Paggination = () => {
                     >
                       expensive
                     </MenuItem>
+                    {/* Second Sort */}
                   </Menu>
                   <Typography>Покажи по:</Typography>
-                  <Button
+                  <CartButtonBlack
                     id="pageButton"
                     aria-controls={open ? 'demo-customized-menu' : undefined}
                     aria-haspopup="true"
@@ -305,7 +222,7 @@ const Paggination = () => {
                     endIcon={<KeyboardArrowDownIcon />}
                   >
                     {pageSize}
-                  </Button>
+                  </CartButtonBlack>
                   <Menu
                     id="page"
                     MenuListProps={{
@@ -314,8 +231,17 @@ const Paggination = () => {
                     anchorEl={anchorEl}
                     open={open}
                     onClose={handleClose}
+                    sx={{
+                      '& .MuiMenu-paper': {
+                        backgroundColor: Colors.grayForCart,
+                      },
+                    }}
                   >
                     <MenuItem
+                      sx={{
+                        backgroundColor: Colors.grayForCart,
+                        '&:hover': { backgroundColor: Colors.grayForMenu },
+                      }}
                       onClick={() => {
                         setPageSize(1);
                         handleClick();
@@ -327,6 +253,10 @@ const Paggination = () => {
                       1
                     </MenuItem>
                     <MenuItem
+                      sx={{
+                        backgroundColor: Colors.grayForCart,
+                        '&:hover': { backgroundColor: Colors.grayForMenu },
+                      }}
                       onClick={() => {
                         setPageSize(2);
                         handleClick();
@@ -337,6 +267,10 @@ const Paggination = () => {
                       2
                     </MenuItem>
                     <MenuItem
+                      sx={{
+                        backgroundColor: Colors.grayForCart,
+                        '&:hover': { backgroundColor: Colors.grayForMenu },
+                      }}
                       onClick={() => {
                         setPageSize(5);
                         handleClick();
@@ -348,6 +282,10 @@ const Paggination = () => {
                     </MenuItem>
 
                     <MenuItem
+                      sx={{
+                        backgroundColor: Colors.grayForCart,
+                        '&:hover': { backgroundColor: Colors.grayForMenu },
+                      }}
                       onClick={() => {
                         setPageSize(10);
                         handleClick();
@@ -356,6 +294,63 @@ const Paggination = () => {
                       disableRipple
                     >
                       10
+                    </MenuItem>
+                  </Menu>
+                  {/* Third Sort */}
+                  <Typography>Сортирай по име:</Typography>
+                  <CartButtonBlack
+                    id="sizeFilter"
+                    aria-controls={
+                      openSize ? 'demo-customized-menu' : undefined
+                    }
+                    aria-haspopup="true"
+                    aria-expanded={openSize ? 'true' : undefined}
+                    variant="contained"
+                    disableElevation
+                    style={{ width: 80 }}
+                    onClick={handleClickSize}
+                    endIcon={<KeyboardArrowDownIcon />}
+                  >
+                    {sortBySize}
+                  </CartButtonBlack>
+                  <Menu
+                    id="sizeFilter"
+                    MenuListProps={{
+                      'aria-labelledby': 'demo-customized-button',
+                    }}
+                    anchorEl={anchorElSize}
+                    open={openSize}
+                    onClose={handleCloseSize}
+                    sx={{
+                      '& .MuiMenu-paper': {
+                        backgroundColor: Colors.grayForCart,
+                      },
+                    }}
+                  >
+                    <MenuItem
+                      sx={{
+                        backgroundColor: Colors.grayForCart,
+                        '&:hover': { backgroundColor: Colors.grayForMenu },
+                      }}
+                      onClick={() => {
+                        setSortBySize('small');
+                      }}
+                      disableRipple
+                      onChange={pageChange}
+                    >
+                      small
+                    </MenuItem>
+                    <MenuItem
+                      sx={{
+                        backgroundColor: Colors.grayForCart,
+                        '&:hover': { backgroundColor: Colors.grayForMenu },
+                      }}
+                      onClick={() => {
+                        setSortBySize('large');
+                      }}
+                      disableRipple
+                    >
+                      large
                     </MenuItem>
                   </Menu>
                 </Stack>
@@ -392,19 +387,58 @@ const Paggination = () => {
                 columnSpacing={{ xs: 1, sm: 2, md: 3 }}
               >
                 {pagginationData?.map((product) => (
-                  <Grid item xs={4}>
+                  <Grid item xs={3}>
                     <Link to={`/products/sport/${product._id}`}>
-                      <Card>
+                      <Card
+                        sx={{
+                          border: 2,
+                          borderColor: Colors.white,
+                          p: 2,
+                          '&:hover': {
+                            borderColor: Colors.grayForMenu,
+                          },
+                        }}
+                      >
                         <CardMedia
                           component="img"
                           height="240"
                           image={product.img}
                           alt={product.name}
                         />
-                        <CardContent sx={{ bgcolor: 'secondary.main' }}>
-                          <Typography align="center" color="common.white">
-                            {product.price}
-                          </Typography>
+                        <CardContent sx={{}}>
+                          <Stack
+                            direction="column"
+                            justifyContent="center"
+                            alignItems="center"
+                          >
+                            <Stack
+                              direction="row"
+                              justifyContent="space-between"
+                              alignItems="center"
+                              sx={{ width: '100%' }}
+                            >
+                              <Stack>
+                                {' '}
+                                <Rating
+                                  name="read-only"
+                                  value={value}
+                                  readOnly
+                                />
+                              </Stack>
+                              <Stack direction="row" spacing={2}>
+                                <Stack>
+                                  <FavoriteBorderOutlinedIcon
+                                    sx={{ color: Colors.yellow }}
+                                  />
+                                </Stack>
+                                <Stack>9</Stack>
+                              </Stack>
+                            </Stack>
+                            <Stack>1</Stack>
+                            <Stack>1</Stack>
+                            <Stack>1</Stack>
+                            <Stack>1</Stack>
+                          </Stack>
                         </CardContent>
                       </Card>
                     </Link>

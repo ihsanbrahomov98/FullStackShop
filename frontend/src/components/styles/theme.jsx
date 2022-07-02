@@ -25,6 +25,7 @@ export const Colors = {
   orange: '#f37335',
   grayForCart: '#f0f0f0',
   orangeForCartHover: '#ff9211',
+  grayForMenu: '#e4e4e4',
 };
 const theme = createTheme({
   palette: {

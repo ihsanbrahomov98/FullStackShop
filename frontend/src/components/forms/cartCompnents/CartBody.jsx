@@ -9,7 +9,9 @@ import Card from '@mui/material/Card';
 import { useSelector, useDispatch } from 'react-redux';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import { useEffect, useState } from 'react';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { Link, Routes, Route, useNavigate } from 'react-router-dom';
+import MessageIcon from '@mui/icons-material/Message';
 import {
   addProduct,
   decrement,
@@ -21,7 +23,7 @@ import LineUnderTheSliderAndCards from '../../LineUnderTheSliderAndCards';
 import SubscribeToUs from '../../LineUnderTheSliderAndCards';
 import Footer from '../../Footer';
 import ManBotLine from '../../CopywritingLine';
-
+import FixedCricles from '../../FixedCricles';
 import Navbar from '../../Navbar';
 import Breadcrumbs from './Breadcrumbs';
 import Divider from '@mui/material/Divider';
@@ -59,6 +61,9 @@ const CartBody = () => {
   }, [products, setProducts, cartProducts]);
   const showLoading = <Typography>Loading....</Typography>;
 
+  const scrollToTOP = () => {
+    window.scrollTo(0, 0);
+  };
   return (
     <>
       <TopNavbar />
@@ -75,23 +80,7 @@ const CartBody = () => {
         <Stack height={35}></Stack>
       </Container>
       <Container style={{ position: 'relative' }}>
-        <Stack
-          width="7%"
-          position="fixed"
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-          spacing={2}
-          sx={{
-            height: 20,
-            bgcolor: Colors.orange,
-            bottom: 35,
-            left: 25,
-            borderRadius: '50%',
-          }}
-        >
-          <Box sx={{ borderRadius: '50%' }}>67477…</Box>
-        </Stack>
+        <FixedCricles />
         <Stack>
           <Typography sx={{ fontSize: 35, fontWeight: 'bold' }}>
             ТВОЯТА КОЛИЧКА
