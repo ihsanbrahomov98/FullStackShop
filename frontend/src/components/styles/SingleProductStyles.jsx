@@ -26,3 +26,9 @@ export const CartButtonBlack = styled(Button, {
   '&:hover': { backgroundColor: Colors.grayForMenu, color: Colors.dark },
   [theme.breakpoints.down('sm')]: { fontSize: '10px' },
 }));
+export const TypographyStyled = styled(Typography)(() => ({
+  flexGrow: 1,
+  fontSize: '1em',
+  fontFamily: '"sans-serif", "cursive"',
+  color: Colors.black,
+}));

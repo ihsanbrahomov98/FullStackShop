@@ -12,13 +12,18 @@ import axios from 'axios';
 import Container from '@mui/material/Container';
 import { useLocation } from 'react-router';
 import Grid from '@mui/material/Grid';
+import BoxForColor from './BoxForColor';
 import Pagination from '@mui/material/Pagination';
-import { CartButtonBlack } from '../styles/SingleProductStyles';
+import {
+  CartButtonBlack,
+  TypographyStyled,
+} from '../styles/SingleProductStyles';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Rating from '@mui/material/Rating';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 const Paggination = () => {
   const location = useLocation();
@@ -388,23 +393,42 @@ const Paggination = () => {
               >
                 {pagginationData?.map((product) => (
                   <Grid item xs={3}>
-                    <Link to={`/products/sport/${product._id}`}>
-                      <Card
-                        sx={{
-                          border: 2,
-                          borderColor: Colors.white,
-                          p: 2,
-                          '&:hover': {
-                            borderColor: Colors.grayForMenu,
-                          },
-                        }}
+                    <Card
+                      sx={{
+                        border: 2,
+                        borderColor: Colors.white,
+                        p: 2,
+                        '&:hover': {
+                          borderColor: Colors.grayForMenu,
+                          backgroundColor: Colors.grayForMenu,
+                          transform: 'scale3d(1.05, 1.05, 1)',
+                          image:
+                            'https://gomez.bg/assets/photo/detect/align-bc/margin-25/white/upload/product/292/25-05-edytuj-trim-398-600.jpg',
+                        },
+                      }}
+                    >
+                      <Link
+                        style={{ textDecoration: 'none' }}
+                        to={`/products/sport/${product._id}`}
                       >
                         <CardMedia
                           component="img"
                           height="240"
-                          image={product.img}
+                          image={
+                            'https://gomez.bg/assets/photo/detect/align-bc/margin-25/upload/product/445/25-05-5-trim-398-600.jpg'
+                          }
                           alt={product.name}
+                          style={{
+                            '&:hover': {
+                              image:
+                                'https://gomez.bg/assets/photo/detect/align-bc/margin-25/white/upload/product/292/25-05-edytuj-trim-398-600.jpg',
+                              transform: 'scale3d(1.05, 1.05, 1)',
+                              height: '140',
+                            },
+                          }}
+                          sx={{}}
                         />
+
                         <CardContent sx={{}}>
                           <Stack
                             direction="column"
@@ -415,7 +439,9 @@ const Paggination = () => {
                               direction="row"
                               justifyContent="space-between"
                               alignItems="center"
-                              sx={{ width: '100%' }}
+                              sx={{
+                                width: '100%',
+                              }}
                             >
                               <Stack>
                                 {' '}
@@ -425,23 +451,99 @@ const Paggination = () => {
                                   readOnly
                                 />
                               </Stack>
-                              <Stack direction="row" spacing={2}>
+                              <Stack direction="row" spacing={1}>
                                 <Stack>
                                   <FavoriteBorderOutlinedIcon
                                     sx={{ color: Colors.yellow }}
                                   />
                                 </Stack>
-                                <Stack>9</Stack>
+                                <Stack>
+                                  <ShoppingCartOutlinedIcon
+                                    sx={{ color: Colors.yellow }}
+                                  />
+                                </Stack>
                               </Stack>
                             </Stack>
-                            <Stack>1</Stack>
-                            <Stack>1</Stack>
-                            <Stack>1</Stack>
-                            <Stack>1</Stack>
+
+                            <Stack spacing={2} sx={{ width: '100%', pt: 1 }}>
+                              <TypographyStyled
+                                align="center"
+                                sx={{ fontWeight: 'bold' }}
+                              >
+                                {product.name}
+                              </TypographyStyled>
+                            </Stack>
+                            <Stack
+                              spacing={2}
+                              justifyContent="center"
+                              direction="row"
+                              alignItems="center"
+                              sx={{ width: '100%' }}
+                            >
+                              <Typography
+                                sx={{ pl: 0.3 }}
+                                variant="body2"
+                                color={Colors.black}
+                              >
+                                Категория: {product.category}
+                              </Typography>
+                            </Stack>
+                            <Stack
+                              direction="row"
+                              justifyContent="flex-end"
+                              alignItems="flex-end"
+                              sx={{
+                                flex: 2,
+                                width: '100%',
+                              }}
+                            >
+                              <Stack
+                                direction="row"
+                                justifyContent="center"
+                                alignItems="center"
+                                sx={{ width: '100%', pt: 1 }}
+                                spacing={1}
+                              >
+                                <Typography
+                                  align="right"
+                                  style={{ textDecoration: 'none' }}
+                                  sx={{
+                                    fontWeight: 'bold',
+                                    color: Colors.black,
+                                  }}
+                                >
+                                  {product.price}
+                                </Typography>
+                                <Stack
+                                  direction="column"
+                                  alignItems="center"
+                                  justifyContent="center"
+                                >
+                                  <Typography sx={{ fontSize: 10 }}>
+                                    .99{' '}
+                                  </Typography>
+                                  <Typography
+                                    sx={{
+                                      fontSize: 10,
+                                      color: Colors.orange,
+                                      ml: 0.2,
+                                    }}
+                                  >
+                                    {' '}
+                                    ЛВ
+                                  </Typography>
+                                </Stack>
+                              </Stack>
+                            </Stack>
+                            <Stack>
+                              {product.color.map((sizeItem) => (
+                                <BoxForColor />
+                              ))}
+                            </Stack>
                           </Stack>
                         </CardContent>
-                      </Card>
-                    </Link>
+                      </Link>
+                    </Card>
                   </Grid>
                 ))}
               </Grid>
