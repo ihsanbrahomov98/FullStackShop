@@ -126,7 +126,7 @@ const Paggination = () => {
 
   return (
     <>
-      <Container direction="row">
+      <Container sx={{ pb: 5, pt: 5 }} direction="row">
         <Stack
           direction="row"
           justifyContent="flex-start"
@@ -388,6 +388,7 @@ const Paggination = () => {
             >
               <Grid
                 container
+                sx={{ pt: 3 }}
                 rowSpacing={1}
                 columnSpacing={{ xs: 1, sm: 2, md: 3 }}
               >
@@ -400,7 +401,7 @@ const Paggination = () => {
                         p: 2,
                         '&:hover': {
                           borderColor: Colors.grayForMenu,
-                          backgroundColor: Colors.grayForMenu,
+                          border: 2.5,
                           transform: 'scale3d(1.05, 1.05, 1)',
                           image:
                             'https://gomez.bg/assets/photo/detect/align-bc/margin-25/white/upload/product/292/25-05-edytuj-trim-398-600.jpg',
@@ -519,11 +520,20 @@ const Paggination = () => {
                                   alignItems="center"
                                   justifyContent="center"
                                 >
-                                  <Typography sx={{ fontSize: 10 }}>
+                                  <Typography
+                                    style={{ textDecoration: 'none' }}
+                                    sx={{
+                                      fontWeight: 'bold',
+                                      fontSize: 10,
+                                      color: Colors.black,
+                                    }}
+                                  >
                                     .99{' '}
                                   </Typography>
                                   <Typography
+                                    style={{ textDecoration: 'none' }}
                                     sx={{
+                                      fontWeight: 'bold',
                                       fontSize: 10,
                                       color: Colors.orange,
                                       ml: 0.2,
@@ -535,9 +545,36 @@ const Paggination = () => {
                                 </Stack>
                               </Stack>
                             </Stack>
-                            <Stack>
+
+                            <Stack
+                              direction="row"
+                              justifyContent="center"
+                              alignItems="center"
+                              spacing={0.7}
+                              sx={{ pt: 1, pr: 0.4 }}
+                            >
                               {product.color.map((sizeItem) => (
-                                <BoxForColor />
+                                <BoxForColor sizeItem={sizeItem} />
+                              ))}
+                            </Stack>
+                            <Stack
+                              direction="row"
+                              justifyContent="center"
+                              alignItems="center"
+                              spacing={0.7}
+                              sx={{ pt: 1.5 }}
+                            >
+                              {product.size.map((sizeNumber) => (
+                                <Typography
+                                  style={{ textDecoration: 'none' }}
+                                  sx={{
+                                    fontSize: 12,
+                                    color: Colors.black,
+                                    fontWeight: 'bold',
+                                  }}
+                                >
+                                  {sizeNumber}
+                                </Typography>
                               ))}
                             </Stack>
                           </Stack>

@@ -98,7 +98,7 @@ const AdminCreateProduct = () => {
 
   return (
     <>
-      <Stack sx={{ height: 55, bgcolor: 'info.main' }}>
+      <Stack sx={{ height: 65 }}>
         <AdminNav />
       </Stack>{' '}
       <Stack direction="row" justifyContent="center" alignItems="flex-start">

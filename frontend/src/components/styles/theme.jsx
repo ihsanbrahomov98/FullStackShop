@@ -27,6 +27,7 @@ export const Colors = {
   orangeForCartHover: '#ff9211',
   grayForMenu: '#e4e4e4',
   yellow: '#faaf00',
+  adminNavbar: '#444444',
 };
 const theme = createTheme({
   palette: {

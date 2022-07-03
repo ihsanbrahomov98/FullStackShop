@@ -287,15 +287,15 @@ const CartBody = () => {
             </Stack>
           </Stack>
 
-          <Stack sx={{ flex: 0.35 }}></Stack>
+          <Stack sx={{ flex: 0.3 }}></Stack>
 
           {/* END OF ITEMS */}
           <Stack
-            sx={{ flex: 1.8 }}
             direction="column"
             justifyContent="center"
             alignItems="center"
             spacing={2}
+            sx={{ borderColor: Colors.black, flex: 1.8 }}
           >
             <Stack
               direction="row"
