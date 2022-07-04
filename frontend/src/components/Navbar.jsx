@@ -169,32 +169,87 @@ const Navbar = () => {
               textDecoration: 'none',
             }}
           >
-            <BottomNavListItems>ВСИЧКИ АРТИКУЛИ </BottomNavListItems>
+            <BottomNavListItems
+              style={{ textDecoration: 'none' }}
+              sx={{
+                '&:hover': {
+                  color: Colors.orange,
+                },
+              }}
+            >
+              ВСИЧКИ АРТИКУЛИ{' '}
+            </BottomNavListItems>
           </Link>
         </Box>
         <Box>
           <Link to="/products/man" style={{ textDecoration: 'none' }}>
-            <BottomNavListItems>МЪЖЕ </BottomNavListItems>
+            <BottomNavListItems
+              style={{ textDecoration: 'none' }}
+              sx={{
+                '&:hover': {
+                  color: Colors.orange,
+                },
+              }}
+            >
+              МЪЖЕ{' '}
+            </BottomNavListItems>
           </Link>
         </Box>
         <Box>
           <Link to="/products/woman" style={{ textDecoration: 'none' }}>
-            <BottomNavListItems>ЖЕНИ</BottomNavListItems>
+            <BottomNavListItems
+              style={{ textDecoration: 'none' }}
+              sx={{
+                '&:hover': {
+                  color: Colors.orange,
+                },
+              }}
+            >
+              ЖЕНИ
+            </BottomNavListItems>
           </Link>
         </Box>
         <Box>
           <Link to="/products/child" style={{ textDecoration: 'none' }}>
-            <BottomNavListItems>ДЕТЕ </BottomNavListItems>
+            <BottomNavListItems
+              style={{ textDecoration: 'none' }}
+              sx={{
+                '&:hover': {
+                  color: Colors.orange,
+                },
+              }}
+            >
+              ДЕТЕ{' '}
+            </BottomNavListItems>
           </Link>
         </Box>
         <Box>
           <Link to="/products/accessories" style={{ textDecoration: 'none' }}>
-            <BottomNavListItems> АКСЕСОАРИ </BottomNavListItems>
+            <BottomNavListItems
+              style={{ textDecoration: 'none' }}
+              sx={{
+                '&:hover': {
+                  color: Colors.orange,
+                },
+              }}
+            >
+              {' '}
+              АКСЕСОАРИ{' '}
+            </BottomNavListItems>
           </Link>
         </Box>
         <Box>
           <Link to="/products/sport" style={{ textDecoration: 'none' }}>
-            <BottomNavListItems>СПОРТНИ</BottomNavListItems>
+            <BottomNavListItems
+              style={{ textDecoration: 'none' }}
+              sx={{
+                '&:hover': {
+                  color: Colors.orange,
+                },
+              }}
+            >
+              СПОРТНИ
+            </BottomNavListItems>
           </Link>
         </Box>
       </Stack>

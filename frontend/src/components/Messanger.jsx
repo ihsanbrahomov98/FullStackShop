@@ -29,8 +29,8 @@ const Messanger = () => {
         sx={{
           height: 60,
           bgcolor: Colors.orange,
-          bottom: 35,
-          right: 15,
+          bottom: 65,
+          right: 13,
           borderRadius: '50%',
         }}
       >

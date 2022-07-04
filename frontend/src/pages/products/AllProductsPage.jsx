@@ -5,6 +5,7 @@ import AllProducts from '../../components/categories/AllProducts';
 import SubscribeToUs from '../../components/SubscribeToUs';
 import ManBotListItems from '../../components/ManBotListItems';
 import ManBotLine from '../../components/CopywritingLine';
+import LineUnderTheSliderAndCards from '../../components/LineUnderTheSliderAndCards';
 
 import Footer from './../../components/Footer';
 
@@ -12,8 +13,9 @@ const AllProductsPage = () => {
   return (
     <>
       <Navbar />
-      <BlackLine type="Всички Продукти" />
+
       <AllProducts />
+      <LineUnderTheSliderAndCards />
       <SubscribeToUs />
       <Footer />
       <ManBotLine />

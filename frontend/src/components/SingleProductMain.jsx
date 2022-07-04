@@ -92,7 +92,7 @@ const SingleProductMain = ({}) => {
 
   return (
     <>
-      <Container sx={{ pb: 20 }}>
+      <Container sx={{ pt: 8, pb: 20 }}>
         {loading ? (
           showLoading
         ) : (

@@ -1,125 +1,118 @@
 import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import MobileStepper from '@mui/material/MobileStepper';
-import Button from '@mui/material/Button';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import SwipeableViews from 'react-swipeable-views';
-import { autoPlay } from 'react-swipeable-views-utils';
+
 import { Container } from '@mui/system';
 import { Colors } from './styles/theme';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-
-const images = [
-  {
-    label: 'San Francisco – Oakland Bay Bridge, United States',
-    imgPath: 'https://eobuvki.bg/img/img_e_shop/thumbs/p_1007054_3.jpg',
-  },
-  {
-    label: 'Bird',
-    imgPath: 'https://eobuvki.bg/img/img_e_shop/thumbs/p_1007050_3.jpg',
-  },
-  {
-    label: 'Bali, Indonesia',
-    imgPath: 'https://eobuvki.bg/img/img_e_shop/thumbs/p_1007045_3.jpg',
-  },
-  {
-    label: 'Goč, Serbia',
-    imgPath: 'https://eobuvki.bg/img/img_e_shop/thumbs/p_11540_3.jpg',
-  },
-];
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardMedia from '@mui/material/CardMedia';
+import { Stack } from '@mui/material';
 
 function Slider() {
-  const theme = useTheme();
-  const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = images.length;
-
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    if (activeStep === maxSteps - 1) {
-      setActiveStep(0);
-    }
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    if (activeStep === 0) {
-      setActiveStep(maxSteps - 1);
-    }
-  };
-
-  const handleStepChange = (step) => {
-    setActiveStep(step);
-  };
-
   return (
     <Container>
-      <Box sx={{ width: 1, height: 565, flexGrow: 1, pt: 3.5 }}>
-        <AutoPlaySwipeableViews
-          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-          index={activeStep}
-          onChangeIndex={handleStepChange}
-          enableMouseEvents
+      {' '}
+      <Stack
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+        sx={{ height: 500 }}
+      >
+        <Stack
+          direction="column"
+          justifyContent="space-between"
+          alignItems="center"
+          spacing={3}
+          flex={2}
         >
-          {images.map((step, index) => (
-            <div key={step.label}>
-              {Math.abs(activeStep - index) <= 2 ? (
-                <Box
-                  component="img"
-                  sx={{
-                    height: 500,
-                    display: 'block',
-                    overflow: 'hidden',
-                    width: '100%',
-                  }}
-                  src={step.imgPath}
-                  alt={step.label}
-                />
-              ) : null}
-            </div>
-          ))}
-        </AutoPlaySwipeableViews>
-        <MobileStepper
-          className="slider"
-          ps={maxSteps}
-          position="absolute"
-          nextButton={
-            <Button
-              disableFocusRipple
-              disableRipple
-              position="absolute"
-              sx={{ color: Colors.black, left: 10, bottom: 265 }}
-              size="small"
-              onClick={handleNext}
-            >
-              {theme.direction === 'rtl' ? (
-                <ArrowForwardIosIcon fontSize={'large'} />
-              ) : (
-                <ArrowForwardIosIcon fontSize={'large'} />
-              )}
-            </Button>
-          }
-          backButton={
-            <Button
-              disableFocusRipple
-              disableRipple
-              sx={{ color: Colors.black, right: 10, bottom: 265 }}
-              size="small"
-              onClick={handleBack}
-            >
-              {theme.direction === 'rtl' ? (
-                <ArrowBackIosIcon fontSize={'large'} />
-              ) : (
-                <ArrowBackIosIcon fontSize={'large'} />
-              )}
-            </Button>
-          }
-        />
-      </Box>
+          <Stack>
+            <Card>
+              <CardMedia
+                component="img"
+                height="200"
+                image="https://cdn.shopify.com/s/files/1/0491/6432/0923/files/Shoe-Shop_SS22_Push-Box_800x520_FINBAL_25_800x.gif?v=1651736994"
+                alt="Paella dish"
+                sx={{
+                  '&:hover': {
+                    transform: 'scale3d(1.15, 1.15, 1.1)',
+                  },
+                }}
+              />
+            </Card>
+          </Stack>
+          <Stack>
+            <Card>
+              <CardMedia
+                component="img"
+                height="200"
+                image="  https://cdn.shopify.com/s/files/1/0491/6432/0923/files/Shoe-Shop_SS22_Push-Box_800x520_FINAL_50_800x.gif?v=1651737065"
+                alt="Paella dish"
+                sx={{
+                  '&:hover': {
+                    transform: 'scale3d(1.15, 1.15, 1.1)',
+                  },
+                }}
+              />
+            </Card>
+          </Stack>
+        </Stack>
+
+        <Stack justifyContent="center" alignItems="center" flex={2}>
+          <Stack>
+            <Card>
+              <CardMedia
+                component="img"
+                height="425"
+                image="   https://cdn.shopify.com/s/files/1/0491/6432/0923/files/Shoe-Shop_SS22_Push-Box_1100x1100_2_1000x.gif?v=1652085700"
+                alt="Paella dish"
+                sx={{
+                  '&:hover': {
+                    transform: 'scale3d(1.15, 1.15, 1.1)',
+                  },
+                }}
+              />
+            </Card>
+          </Stack>
+        </Stack>
+
+        <Stack
+          direction="column"
+          justifyContent="space-between"
+          alignItems="center"
+          spacing={3}
+          flex={2}
+        >
+          <Stack>
+            <Card>
+              <CardMedia
+                component="img"
+                height="200"
+                image="https://cdn.shopify.com/s/files/1/0491/6432/0923/files/Shoe-Shop_SS22_Push-Box_800x520_FINBAL_25_800x.gif?v=1651736994"
+                alt="Paella dish"
+                sx={{
+                  '&:hover': {
+                    transform: 'scale3d(1.15, 1.15, 1.1)',
+                  },
+                }}
+              />
+            </Card>
+          </Stack>
+          <Stack>
+            <Card>
+              <CardMedia
+                component="img"
+                height="200"
+                image="  https://cdn.shopify.com/s/files/1/0491/6432/0923/files/Shoe-Shop_SS22_Push-Box_800x520_FINAL_50_800x.gif?v=1651737065"
+                alt="Paella dish"
+                sx={{
+                  '&:hover': {
+                    transform: 'scale3d(1.15, 1.15, 1.1)',
+                  },
+                }}
+              />
+            </Card>
+          </Stack>
+        </Stack>
+      </Stack>
     </Container>
   );
 }

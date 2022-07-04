@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 const CardsUnderSlider = () => {
   return (
     <>
+      <Stack sx={{ height: 25 }}></Stack>
       <Grid
         container
         direction="row"

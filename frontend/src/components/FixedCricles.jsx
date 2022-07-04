@@ -1,5 +1,5 @@
 import React from 'react';
-import Stack from '@mui/material/Stack';
+import { Stack } from '@mui/material';
 
 import Box from '@mui/material/Box';
 
@@ -31,12 +31,12 @@ const FixedCricles = () => {
           sx={{
             height: 60,
             bgcolor: Colors.orange,
-            bottom: 35,
-            left: 15,
+            bottom: 65,
+            left: 13,
             borderRadius: '50%',
           }}
         >
-          <Box sx={{ borderRadius: '50%' }}>
+          <Box>
             <KeyboardArrowUpIcon />
           </Box>
         </Stack>

@@ -9,15 +9,13 @@ import { Container } from '@mui/system';
 const SingleProduct = () => {
   return (
     <>
-      <Container>
-        <Navbar />
-        <BlackLine />
-        <SingleProductMain />
+      <Navbar />
 
-        <SubscribeToUs />
-        <ManBotListItems />
-        <ManBotLine />
-      </Container>
+      <SingleProductMain />
+
+      <SubscribeToUs />
+      <ManBotListItems />
+      <ManBotLine />
     </>
   );
 };

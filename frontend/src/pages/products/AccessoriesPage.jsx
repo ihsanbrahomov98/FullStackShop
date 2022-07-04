@@ -8,13 +8,15 @@ import ManBotLine from '../../components/CopywritingLine';
 
 import AccessoriesProducts from './../../components/categories/ChildProducts';
 import Footer from './../../components/Footer';
+import LineUnderTheSliderAndCards from '../../components/LineUnderTheSliderAndCards';
 
 const AccessoriesPage = () => {
   return (
     <>
       <Navbar />
-      <BlackLine type="Аксесоари" />
+
       <AccessoriesProducts />
+      <LineUnderTheSliderAndCards />
       <SubscribeToUs />
       <Footer />
       <ManBotLine />

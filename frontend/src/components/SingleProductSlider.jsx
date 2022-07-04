@@ -76,6 +76,7 @@ function SingleProductSlider() {
     }
   };
 
+  const onlyFourItems = products.slice(0, 4);
   const handleStepChange = (step) => {
     setActiveStep(step);
   };
@@ -94,7 +95,7 @@ function SingleProductSlider() {
         posotion="absolute"
       >
         <Grid direction="column" container spacing={3}>
-          {products.map((step, index) => (
+          {onlyFourItems.map((step, index) => (
             <Grid item xs={1}>
               <Card
                 disableUnderline
@@ -105,7 +106,10 @@ function SingleProductSlider() {
                   component="img"
                   height="100"
                   width="20"
-                  image={step.img}
+                  image={
+                    'https://gomez.bg/assets/photo/detect/align-bc/margin-25/upload/product/445/25-05-5-trim-398-600.jpg'
+                  }
+                  //  step.img
                   alt={step.name}
                 />
               </Card>
@@ -143,7 +147,10 @@ function SingleProductSlider() {
                         overflow: 'hidden',
                         width: '90%',
                       }}
-                      src={step.img}
+                      src={
+                        'https://gomez.bg/assets/photo/detect/align-bc/margin-25/upload/product/445/25-05-5-trim-398-600.jpg'
+                      }
+                      // step.img
                       alt={step.label}
                     />
                   </Link>

@@ -127,6 +127,7 @@ const AdminDashDeleteOne = () => {
         </Stack>
       </form>
       <CopywritingLine />
+      <Stack sx={{ height: 45 }}> </Stack>
     </>
   );
 };

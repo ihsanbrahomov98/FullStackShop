@@ -31,7 +31,7 @@ const Paggination = () => {
   const [sort, setSort] = useState('cheap');
   const [sortBySize, setSortBySize] = useState('small');
   const [products, setProducts] = useState([]);
-  const [pageSize, setPageSize] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
   const [value, setValue] = useState(4);
   const [pagginationData, setPagginationData] = useState([]);
   const [paggination, setPaggination] = useState({
@@ -389,7 +389,7 @@ const Paggination = () => {
               <Grid
                 container
                 sx={{ pt: 3 }}
-                rowSpacing={1}
+                rowSpacing={3}
                 columnSpacing={{ xs: 1, sm: 2, md: 3 }}
               >
                 {pagginationData?.map((product) => (

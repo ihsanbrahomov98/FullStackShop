@@ -606,8 +606,9 @@ const AdminCreateProduct = () => {
             </Stack>
           </Stack>
         </Container>
-        <CopywritingLine />
       </Stack>
+      <CopywritingLine />
+      <Stack sx={{ height: 45 }}> </Stack>
     </>
   );
 };

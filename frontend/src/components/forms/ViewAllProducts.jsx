@@ -58,6 +58,7 @@ function a11yProps(index) {
   };
 }
 const ViewAllProducts = () => {
+  const [allProducts, setAllProducts] = useState([]);
   const [manProducts, setManproducts] = useState([]);
   const [womanProducts, setWomanProducts] = useState([]);
   const [childProducts, setChildProducts] = useState([]);
@@ -68,7 +69,7 @@ const ViewAllProducts = () => {
   useEffect(() => {
     const fetchproducts = async () => {
       const { data } = await axios.get('/back/mock/api/findall');
-
+      setAllProducts(data);
       const filteredItemsMan = data.filter((item) => item.category === 'man');
       setManproducts(filteredItemsMan);
     };
@@ -77,51 +78,44 @@ const ViewAllProducts = () => {
   // WOMAN
   useEffect(() => {
     const fetchproducts = async () => {
-      const { data } = await axios.get('/back/mock/api/findall');
-
-      const filteredItemsWoman = data.filter(
+      const filteredItemsWoman = allProducts.filter(
         (item) => item.category === 'woman'
       );
       setWomanProducts(filteredItemsWoman);
+      console.log(filteredItemsWoman);
     };
     fetchproducts();
-  }, []);
+  }, [allProducts, manProducts]);
   // CHILD
   useEffect(() => {
     const fetchproducts = async () => {
-      const { data } = await axios.get('/back/mock/api/findall');
-
-      const filteredItemsChild = data.filter(
+      const filteredItemsChild = allProducts.filter(
         (item) => item.category === 'child'
       );
       setChildProducts(filteredItemsChild);
     };
     fetchproducts();
-  }, []);
+  }, [allProducts]);
   // SPORT
   useEffect(() => {
     const fetchproducts = async () => {
-      const { data } = await axios.get('/back/mock/api/findall');
-
-      const filteredItemsSport = data.filter(
+      const filteredItemsSport = allProducts.filter(
         (item) => item.category === 'sport'
       );
       setSportProducts(filteredItemsSport);
     };
     fetchproducts();
-  }, []);
+  }, [allProducts]);
   // Accessories
   useEffect(() => {
     const fetchproducts = async () => {
-      const { data } = await axios.get('/back/mock/api/findall');
-
-      const filteredItemsAccessories = data.filter(
+      const filteredItemsAccessories = allProducts.filter(
         (item) => item.category === 'accessories'
       );
       setAccessoriesProducts(filteredItemsAccessories);
     };
     fetchproducts();
-  }, []);
+  }, [allProducts]);
   // useEffect HELL END
 
   const theme = useTheme();
@@ -383,29 +377,180 @@ const ViewAllProducts = () => {
               rowSpacing={1}
               columnSpacing={{ xs: 1, sm: 2, md: 3 }}
             >
-              {womanProducts.map((product) => (
-                <Grid item xs={3}>
-                  <Link to={`/products/all/${product._id}`}>
-                    <Card>
+              {womanProducts?.map((product) => (
+                <Grid item xs={4}>
+                  <Card
+                    sx={{
+                      border: 2,
+                      borderColor: Colors.white,
+                      p: 2,
+                      '&:hover': {
+                        borderColor: Colors.grayForMenu,
+                        border: 2.5,
+                        transform: 'scale3d(1.05, 1.05, 1)',
+                        image:
+                          'https://gomez.bg/assets/photo/detect/align-bc/margin-25/white/upload/product/292/25-05-edytuj-trim-398-600.jpg',
+                      },
+                    }}
+                  >
+                    <Link
+                      style={{ textDecoration: 'none' }}
+                      to={`/products/sport/${product._id}`}
+                    >
                       <CardMedia
                         component="img"
                         height="100"
-                        image={product.img}
+                        image={
+                          'https://gomez.bg/assets/photo/detect/align-bc/margin-25/upload/product/445/25-05-5-trim-398-600.jpg'
+                        }
                         alt={product.name}
+                        style={{
+                          '&:hover': {
+                            image:
+                              'https://gomez.bg/assets/photo/detect/align-bc/margin-25/white/upload/product/292/25-05-edytuj-trim-398-600.jpg',
+                            transform: 'scale3d(1.05, 1.05, 1)',
+                            height: '100',
+                          },
+                        }}
+                        sx={{}}
                       />
-                      <CardContent
-                        sx={{ bgcolor: 'secondary.main', height: 14 }}
-                      >
-                        <Typography
-                          variant="subtitle2"
-                          align="center"
-                          color="common.white"
+
+                      <CardContent sx={{ height: 150 }}>
+                        <Stack
+                          direction="column"
+                          justifyContent="center"
+                          alignItems="center"
                         >
-                          {product.userId}
-                        </Typography>
+                          <Stack
+                            direction="row"
+                            justifyContent="space-between"
+                            alignItems="center"
+                            sx={{
+                              width: '100%',
+                            }}
+                          >
+                            <Stack> </Stack>
+                            <Stack direction="row" spacing={1}>
+                              <Stack></Stack>
+                              <Stack></Stack>
+                            </Stack>
+                          </Stack>
+
+                          <Stack spacing={2} sx={{ width: '100%', pt: 1 }}>
+                            <TypographyStyled
+                              align="center"
+                              sx={{ fontWeight: 'bold' }}
+                            >
+                              {product.name}
+                            </TypographyStyled>
+                          </Stack>
+                          <Stack
+                            spacing={2}
+                            justifyContent="center"
+                            direction="row"
+                            alignItems="center"
+                            sx={{ width: '100%' }}
+                          >
+                            <Typography
+                              sx={{ pl: 0.3 }}
+                              variant="body2"
+                              color={Colors.black}
+                            >
+                              Категория: {product.category}
+                            </Typography>
+                          </Stack>
+                          <Stack
+                            direction="row"
+                            justifyContent="flex-end"
+                            alignItems="flex-end"
+                            sx={{
+                              flex: 2,
+                              width: '100%',
+                            }}
+                          >
+                            <Stack
+                              direction="row"
+                              justifyContent="center"
+                              alignItems="center"
+                              sx={{ width: '100%', pt: 1 }}
+                              spacing={1}
+                            >
+                              <Typography
+                                align="right"
+                                style={{ textDecoration: 'none' }}
+                                sx={{
+                                  fontWeight: 'bold',
+                                  color: Colors.black,
+                                }}
+                              >
+                                {product.price}
+                              </Typography>
+                              <Stack
+                                direction="column"
+                                alignItems="center"
+                                justifyContent="center"
+                              >
+                                <Typography
+                                  style={{ textDecoration: 'none' }}
+                                  sx={{
+                                    fontWeight: 'bold',
+                                    fontSize: 10,
+                                    color: Colors.black,
+                                  }}
+                                >
+                                  .99{' '}
+                                </Typography>
+                                <Typography
+                                  style={{ textDecoration: 'none' }}
+                                  sx={{
+                                    fontWeight: 'bold',
+                                    fontSize: 10,
+                                    color: Colors.orange,
+                                    ml: 0.2,
+                                  }}
+                                >
+                                  {' '}
+                                  ЛВ
+                                </Typography>
+                              </Stack>
+                            </Stack>
+                          </Stack>
+
+                          <Stack
+                            direction="row"
+                            justifyContent="center"
+                            alignItems="center"
+                            spacing={0.7}
+                            sx={{ pt: 1, pr: 0.4 }}
+                          >
+                            {product.color.map((sizeItem) => (
+                              <BoxForColor sizeItem={sizeItem} />
+                            ))}
+                          </Stack>
+                          <Stack
+                            direction="row"
+                            justifyContent="center"
+                            alignItems="center"
+                            spacing={0.7}
+                            sx={{ pt: 1.5 }}
+                          >
+                            {product.size.map((sizeNumber) => (
+                              <Typography
+                                style={{ textDecoration: 'none' }}
+                                sx={{
+                                  fontSize: 12,
+                                  color: Colors.black,
+                                  fontWeight: 'bold',
+                                }}
+                              >
+                                {sizeNumber}
+                              </Typography>
+                            ))}
+                          </Stack>
+                        </Stack>
                       </CardContent>
-                    </Card>
-                  </Link>
+                    </Link>
+                  </Card>
                 </Grid>
               ))}
             </Grid>
@@ -420,29 +565,180 @@ const ViewAllProducts = () => {
               rowSpacing={1}
               columnSpacing={{ xs: 1, sm: 2, md: 3 }}
             >
-              {childProducts.map((product) => (
-                <Grid item xs={3}>
-                  <Link to={`/products/all/${product._id}`}>
-                    <Card>
+              {childProducts?.map((product) => (
+                <Grid item xs={4}>
+                  <Card
+                    sx={{
+                      border: 2,
+                      borderColor: Colors.white,
+                      p: 2,
+                      '&:hover': {
+                        borderColor: Colors.grayForMenu,
+                        border: 2.5,
+                        transform: 'scale3d(1.05, 1.05, 1)',
+                        image:
+                          'https://gomez.bg/assets/photo/detect/align-bc/margin-25/white/upload/product/292/25-05-edytuj-trim-398-600.jpg',
+                      },
+                    }}
+                  >
+                    <Link
+                      style={{ textDecoration: 'none' }}
+                      to={`/products/sport/${product._id}`}
+                    >
                       <CardMedia
                         component="img"
                         height="100"
-                        image={product.img}
+                        image={
+                          'https://gomez.bg/assets/photo/detect/align-bc/margin-25/upload/product/445/25-05-5-trim-398-600.jpg'
+                        }
                         alt={product.name}
+                        style={{
+                          '&:hover': {
+                            image:
+                              'https://gomez.bg/assets/photo/detect/align-bc/margin-25/white/upload/product/292/25-05-edytuj-trim-398-600.jpg',
+                            transform: 'scale3d(1.05, 1.05, 1)',
+                            height: '100',
+                          },
+                        }}
+                        sx={{}}
                       />
-                      <CardContent
-                        sx={{ bgcolor: 'secondary.main', height: 14 }}
-                      >
-                        <Typography
-                          variant="subtitle2"
-                          align="center"
-                          color="common.white"
+
+                      <CardContent sx={{ height: 150 }}>
+                        <Stack
+                          direction="column"
+                          justifyContent="center"
+                          alignItems="center"
                         >
-                          {product.userId}
-                        </Typography>
+                          <Stack
+                            direction="row"
+                            justifyContent="space-between"
+                            alignItems="center"
+                            sx={{
+                              width: '100%',
+                            }}
+                          >
+                            <Stack> </Stack>
+                            <Stack direction="row" spacing={1}>
+                              <Stack></Stack>
+                              <Stack></Stack>
+                            </Stack>
+                          </Stack>
+
+                          <Stack spacing={2} sx={{ width: '100%', pt: 1 }}>
+                            <TypographyStyled
+                              align="center"
+                              sx={{ fontWeight: 'bold' }}
+                            >
+                              {product.name}
+                            </TypographyStyled>
+                          </Stack>
+                          <Stack
+                            spacing={2}
+                            justifyContent="center"
+                            direction="row"
+                            alignItems="center"
+                            sx={{ width: '100%' }}
+                          >
+                            <Typography
+                              sx={{ pl: 0.3 }}
+                              variant="body2"
+                              color={Colors.black}
+                            >
+                              Категория: {product.category}
+                            </Typography>
+                          </Stack>
+                          <Stack
+                            direction="row"
+                            justifyContent="flex-end"
+                            alignItems="flex-end"
+                            sx={{
+                              flex: 2,
+                              width: '100%',
+                            }}
+                          >
+                            <Stack
+                              direction="row"
+                              justifyContent="center"
+                              alignItems="center"
+                              sx={{ width: '100%', pt: 1 }}
+                              spacing={1}
+                            >
+                              <Typography
+                                align="right"
+                                style={{ textDecoration: 'none' }}
+                                sx={{
+                                  fontWeight: 'bold',
+                                  color: Colors.black,
+                                }}
+                              >
+                                {product.price}
+                              </Typography>
+                              <Stack
+                                direction="column"
+                                alignItems="center"
+                                justifyContent="center"
+                              >
+                                <Typography
+                                  style={{ textDecoration: 'none' }}
+                                  sx={{
+                                    fontWeight: 'bold',
+                                    fontSize: 10,
+                                    color: Colors.black,
+                                  }}
+                                >
+                                  .99{' '}
+                                </Typography>
+                                <Typography
+                                  style={{ textDecoration: 'none' }}
+                                  sx={{
+                                    fontWeight: 'bold',
+                                    fontSize: 10,
+                                    color: Colors.orange,
+                                    ml: 0.2,
+                                  }}
+                                >
+                                  {' '}
+                                  ЛВ
+                                </Typography>
+                              </Stack>
+                            </Stack>
+                          </Stack>
+
+                          <Stack
+                            direction="row"
+                            justifyContent="center"
+                            alignItems="center"
+                            spacing={0.7}
+                            sx={{ pt: 1, pr: 0.4 }}
+                          >
+                            {product.color.map((sizeItem) => (
+                              <BoxForColor sizeItem={sizeItem} />
+                            ))}
+                          </Stack>
+                          <Stack
+                            direction="row"
+                            justifyContent="center"
+                            alignItems="center"
+                            spacing={0.7}
+                            sx={{ pt: 1.5 }}
+                          >
+                            {product.size.map((sizeNumber) => (
+                              <Typography
+                                style={{ textDecoration: 'none' }}
+                                sx={{
+                                  fontSize: 12,
+                                  color: Colors.black,
+                                  fontWeight: 'bold',
+                                }}
+                              >
+                                {sizeNumber}
+                              </Typography>
+                            ))}
+                          </Stack>
+                        </Stack>
                       </CardContent>
-                    </Card>
-                  </Link>
+                    </Link>
+                  </Card>
                 </Grid>
               ))}
             </Grid>
@@ -451,35 +747,186 @@ const ViewAllProducts = () => {
             ///////////////////////////////////////////////////////////////////////////////////////////////////// */}
           {/*SPORT PRODUCTS  BEGIN
             ///////////////////////////////////////////////////////////////////////////////////////////////////// */}
-          <TabPanel value={value} index={2} dir={theme.direction}>
+          <TabPanel value={value} index={3} dir={theme.direction}>
             <Grid
               container
               rowSpacing={1}
               columnSpacing={{ xs: 1, sm: 2, md: 3 }}
             >
-              {sportProducts.map((product) => (
-                <Grid item xs={3}>
-                  <Link to={`/products/all/${product._id}`}>
-                    <Card>
+              {sportProducts?.map((product) => (
+                <Grid item xs={4}>
+                  <Card
+                    sx={{
+                      border: 2,
+                      borderColor: Colors.white,
+                      p: 2,
+                      '&:hover': {
+                        borderColor: Colors.grayForMenu,
+                        border: 2.5,
+                        transform: 'scale3d(1.05, 1.05, 1)',
+                        image:
+                          'https://gomez.bg/assets/photo/detect/align-bc/margin-25/white/upload/product/292/25-05-edytuj-trim-398-600.jpg',
+                      },
+                    }}
+                  >
+                    <Link
+                      style={{ textDecoration: 'none' }}
+                      to={`/products/sport/${product._id}`}
+                    >
                       <CardMedia
                         component="img"
                         height="100"
-                        image={product.img}
+                        image={
+                          'https://gomez.bg/assets/photo/detect/align-bc/margin-25/upload/product/445/25-05-5-trim-398-600.jpg'
+                        }
                         alt={product.name}
+                        style={{
+                          '&:hover': {
+                            image:
+                              'https://gomez.bg/assets/photo/detect/align-bc/margin-25/white/upload/product/292/25-05-edytuj-trim-398-600.jpg',
+                            transform: 'scale3d(1.05, 1.05, 1)',
+                            height: '100',
+                          },
+                        }}
+                        sx={{}}
                       />
-                      <CardContent
-                        sx={{ bgcolor: 'secondary.main', height: 14 }}
-                      >
-                        <Typography
-                          variant="subtitle2"
-                          align="center"
-                          color="common.white"
+
+                      <CardContent sx={{ height: 150 }}>
+                        <Stack
+                          direction="column"
+                          justifyContent="center"
+                          alignItems="center"
                         >
-                          {product.userId}
-                        </Typography>
+                          <Stack
+                            direction="row"
+                            justifyContent="space-between"
+                            alignItems="center"
+                            sx={{
+                              width: '100%',
+                            }}
+                          >
+                            <Stack> </Stack>
+                            <Stack direction="row" spacing={1}>
+                              <Stack></Stack>
+                              <Stack></Stack>
+                            </Stack>
+                          </Stack>
+
+                          <Stack spacing={2} sx={{ width: '100%', pt: 1 }}>
+                            <TypographyStyled
+                              align="center"
+                              sx={{ fontWeight: 'bold' }}
+                            >
+                              {product.name}
+                            </TypographyStyled>
+                          </Stack>
+                          <Stack
+                            spacing={2}
+                            justifyContent="center"
+                            direction="row"
+                            alignItems="center"
+                            sx={{ width: '100%' }}
+                          >
+                            <Typography
+                              sx={{ pl: 0.3 }}
+                              variant="body2"
+                              color={Colors.black}
+                            >
+                              Категория: {product.category}
+                            </Typography>
+                          </Stack>
+                          <Stack
+                            direction="row"
+                            justifyContent="flex-end"
+                            alignItems="flex-end"
+                            sx={{
+                              flex: 2,
+                              width: '100%',
+                            }}
+                          >
+                            <Stack
+                              direction="row"
+                              justifyContent="center"
+                              alignItems="center"
+                              sx={{ width: '100%', pt: 1 }}
+                              spacing={1}
+                            >
+                              <Typography
+                                align="right"
+                                style={{ textDecoration: 'none' }}
+                                sx={{
+                                  fontWeight: 'bold',
+                                  color: Colors.black,
+                                }}
+                              >
+                                {product.price}
+                              </Typography>
+                              <Stack
+                                direction="column"
+                                alignItems="center"
+                                justifyContent="center"
+                              >
+                                <Typography
+                                  style={{ textDecoration: 'none' }}
+                                  sx={{
+                                    fontWeight: 'bold',
+                                    fontSize: 10,
+                                    color: Colors.black,
+                                  }}
+                                >
+                                  .99{' '}
+                                </Typography>
+                                <Typography
+                                  style={{ textDecoration: 'none' }}
+                                  sx={{
+                                    fontWeight: 'bold',
+                                    fontSize: 10,
+                                    color: Colors.orange,
+                                    ml: 0.2,
+                                  }}
+                                >
+                                  {' '}
+                                  ЛВ
+                                </Typography>
+                              </Stack>
+                            </Stack>
+                          </Stack>
+
+                          <Stack
+                            direction="row"
+                            justifyContent="center"
+                            alignItems="center"
+                            spacing={0.7}
+                            sx={{ pt: 1, pr: 0.4 }}
+                          >
+                            {product.color.map((sizeItem) => (
+                              <BoxForColor sizeItem={sizeItem} />
+                            ))}
+                          </Stack>
+                          <Stack
+                            direction="row"
+                            justifyContent="center"
+                            alignItems="center"
+                            spacing={0.7}
+                            sx={{ pt: 1.5 }}
+                          >
+                            {product.size.map((sizeNumber) => (
+                              <Typography
+                                style={{ textDecoration: 'none' }}
+                                sx={{
+                                  fontSize: 12,
+                                  color: Colors.black,
+                                  fontWeight: 'bold',
+                                }}
+                              >
+                                {sizeNumber}
+                              </Typography>
+                            ))}
+                          </Stack>
+                        </Stack>
                       </CardContent>
-                    </Card>
-                  </Link>
+                    </Link>
+                  </Card>
                 </Grid>
               ))}
             </Grid>
@@ -488,35 +935,186 @@ const ViewAllProducts = () => {
             ///////////////////////////////////////////////////////////////////////////////////////////////////// */}
           {/*ACCESSORIES PRODUCTS  BEGIN
             ///////////////////////////////////////////////////////////////////////////////////////////////////// */}
-          <TabPanel value={value} index={2} dir={theme.direction}>
+          <TabPanel value={value} index={4} dir={theme.direction}>
             <Grid
               container
               rowSpacing={1}
               columnSpacing={{ xs: 1, sm: 2, md: 3 }}
             >
-              {accessoriesProducts.map((product) => (
-                <Grid item xs={3}>
-                  <Link to={`/products/all/${product._id}`}>
-                    <Card>
+              {accessoriesProducts?.map((product) => (
+                <Grid item xs={4}>
+                  <Card
+                    sx={{
+                      border: 2,
+                      borderColor: Colors.white,
+                      p: 2,
+                      '&:hover': {
+                        borderColor: Colors.grayForMenu,
+                        border: 2.5,
+                        transform: 'scale3d(1.05, 1.05, 1)',
+                        image:
+                          'https://gomez.bg/assets/photo/detect/align-bc/margin-25/white/upload/product/292/25-05-edytuj-trim-398-600.jpg',
+                      },
+                    }}
+                  >
+                    <Link
+                      style={{ textDecoration: 'none' }}
+                      to={`/products/sport/${product._id}`}
+                    >
                       <CardMedia
                         component="img"
                         height="100"
-                        image={product.img}
+                        image={
+                          'https://gomez.bg/assets/photo/detect/align-bc/margin-25/upload/product/445/25-05-5-trim-398-600.jpg'
+                        }
                         alt={product.name}
+                        style={{
+                          '&:hover': {
+                            image:
+                              'https://gomez.bg/assets/photo/detect/align-bc/margin-25/white/upload/product/292/25-05-edytuj-trim-398-600.jpg',
+                            transform: 'scale3d(1.05, 1.05, 1)',
+                            height: '100',
+                          },
+                        }}
+                        sx={{}}
                       />
-                      <CardContent
-                        sx={{ bgcolor: 'secondary.main', height: 14 }}
-                      >
-                        <Typography
-                          variant="subtitle2"
-                          align="center"
-                          color="common.white"
+
+                      <CardContent sx={{ height: 150 }}>
+                        <Stack
+                          direction="column"
+                          justifyContent="center"
+                          alignItems="center"
                         >
-                          {product.userId}
-                        </Typography>
+                          <Stack
+                            direction="row"
+                            justifyContent="space-between"
+                            alignItems="center"
+                            sx={{
+                              width: '100%',
+                            }}
+                          >
+                            <Stack> </Stack>
+                            <Stack direction="row" spacing={1}>
+                              <Stack></Stack>
+                              <Stack></Stack>
+                            </Stack>
+                          </Stack>
+
+                          <Stack spacing={2} sx={{ width: '100%', pt: 1 }}>
+                            <TypographyStyled
+                              align="center"
+                              sx={{ fontWeight: 'bold' }}
+                            >
+                              {product.name}
+                            </TypographyStyled>
+                          </Stack>
+                          <Stack
+                            spacing={2}
+                            justifyContent="center"
+                            direction="row"
+                            alignItems="center"
+                            sx={{ width: '100%' }}
+                          >
+                            <Typography
+                              sx={{ pl: 0.3 }}
+                              variant="body2"
+                              color={Colors.black}
+                            >
+                              Категория: {product.category}
+                            </Typography>
+                          </Stack>
+                          <Stack
+                            direction="row"
+                            justifyContent="flex-end"
+                            alignItems="flex-end"
+                            sx={{
+                              flex: 2,
+                              width: '100%',
+                            }}
+                          >
+                            <Stack
+                              direction="row"
+                              justifyContent="center"
+                              alignItems="center"
+                              sx={{ width: '100%', pt: 1 }}
+                              spacing={1}
+                            >
+                              <Typography
+                                align="right"
+                                style={{ textDecoration: 'none' }}
+                                sx={{
+                                  fontWeight: 'bold',
+                                  color: Colors.black,
+                                }}
+                              >
+                                {product.price}
+                              </Typography>
+                              <Stack
+                                direction="column"
+                                alignItems="center"
+                                justifyContent="center"
+                              >
+                                <Typography
+                                  style={{ textDecoration: 'none' }}
+                                  sx={{
+                                    fontWeight: 'bold',
+                                    fontSize: 10,
+                                    color: Colors.black,
+                                  }}
+                                >
+                                  .99{' '}
+                                </Typography>
+                                <Typography
+                                  style={{ textDecoration: 'none' }}
+                                  sx={{
+                                    fontWeight: 'bold',
+                                    fontSize: 10,
+                                    color: Colors.orange,
+                                    ml: 0.2,
+                                  }}
+                                >
+                                  {' '}
+                                  ЛВ
+                                </Typography>
+                              </Stack>
+                            </Stack>
+                          </Stack>
+
+                          <Stack
+                            direction="row"
+                            justifyContent="center"
+                            alignItems="center"
+                            spacing={0.7}
+                            sx={{ pt: 1, pr: 0.4 }}
+                          >
+                            {product.color.map((sizeItem) => (
+                              <BoxForColor sizeItem={sizeItem} />
+                            ))}
+                          </Stack>
+                          <Stack
+                            direction="row"
+                            justifyContent="center"
+                            alignItems="center"
+                            spacing={0.7}
+                            sx={{ pt: 1.5 }}
+                          >
+                            {product.size.map((sizeNumber) => (
+                              <Typography
+                                style={{ textDecoration: 'none' }}
+                                sx={{
+                                  fontSize: 12,
+                                  color: Colors.black,
+                                  fontWeight: 'bold',
+                                }}
+                              >
+                                {sizeNumber}
+                              </Typography>
+                            ))}
+                          </Stack>
+                        </Stack>
                       </CardContent>
-                    </Card>
-                  </Link>
+                    </Link>
+                  </Card>
                 </Grid>
               ))}
             </Grid>

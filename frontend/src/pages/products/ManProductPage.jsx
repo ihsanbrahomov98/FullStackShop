@@ -7,13 +7,15 @@ import ManBotListItems from '../../components/ManBotListItems';
 import ManBotLine from '../../components/CopywritingLine';
 import ManProducts from './../../components/categories/ManProducts';
 import Footer from './../../components/Footer';
+import LineUnderTheSliderAndCards from '../../components/LineUnderTheSliderAndCards';
 
 const ManProductsPage = () => {
   return (
     <>
       <Navbar />
-      <BlackLine type="Мъжки Обувки" />
+
       <ManProducts />
+      <LineUnderTheSliderAndCards />
       <SubscribeToUs />
       <Footer />
       <ManBotLine />

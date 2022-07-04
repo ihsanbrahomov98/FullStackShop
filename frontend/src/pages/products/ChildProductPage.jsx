@@ -8,7 +8,7 @@ import ManBotLine from '../../components/CopywritingLine';
 
 import ChildProducts from './../../components/categories/ChildProducts';
 import Footer from './../../components/Footer';
-
+import LineUnderTheSliderAndCards from '../../components/LineUnderTheSliderAndCards';
 const ChildProductsPage = () => {
   return (
     <>

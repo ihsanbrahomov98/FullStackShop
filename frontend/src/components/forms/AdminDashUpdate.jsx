@@ -14,6 +14,9 @@ import ViewAllProducts from './ViewAllProducts';
 import { Formik, Form, Field, FieldArray } from 'formik';
 import Checkbox from '@mui/material/Checkbox';
 import { grey, blue } from '@mui/material/colors';
+import Container from '@mui/material/Container';
+import { Colors } from '../styles/theme';
+import FixedCricles from '../FixedCricles';
 
 const validationSchema = yup.object({
   userId: yup.string('Enter your userId').required('userId is required'),
@@ -101,285 +104,484 @@ const AdminDashUpdate = () => {
       <Stack sx={{ height: 65 }}>
         <AdminNav />
       </Stack>{' '}
-      <Stack direction="row" justifyContent="center" alignItems="flex-start">
-        <form onSubmit={formik.handleSubmit}>
-          <Stack
-            direction="row"
-            justifyContent="center"
-            alignItems="flex-start"
-          >
-            <Grid
-              container
+      <FixedCricles />
+      <Container>
+        <Stack direction="row" justifyContent="center" alignItems="flex-start">
+          <form onSubmit={formik.handleSubmit}>
+            <Stack
               direction="row"
-              justifyContent="space-evenly"
-              alignItems="center"
-              spacing={3}
-              width="150%"
-              sx={{ pt: 5, pb: 5, pl: 10 }}
+              justifyContent="center"
+              alignItems="flex-start"
             >
-              <Grid item xs={12}>
-                <Typography ali sx={{ pl: 17 }} variant="h3">
-                  Update Product!
-                </Typography>
-              </Grid>
+              <Grid
+                container
+                direction="row"
+                justifyContent="space-evenly"
+                alignItems="center"
+                spacing={3}
+                width="150%"
+                sx={{ pt: 5 }}
+              >
+                <Grid item xs={10}>
+                  <Typography
+                    sx={{
+                      fontSize: 30,
+                      fontWeight: 'bold',
 
-              <Grid item xs={6}>
-                <TextField
-                  id="userId"
-                  name="userId"
-                  label="UserId"
-                  value={formik.values.userId}
-                  onChange={formik.handleChange}
-                  error={formik.touched.userId && Boolean(formik.errors.userId)}
-                  helperText={formik.touched.userId && formik.errors.userId}
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <TextField
-                  id="category"
-                  name="category"
-                  label="Category"
-                  value={formik.values.category}
-                  onChange={formik.handleChange}
-                  error={
-                    formik.touched.category && Boolean(formik.errors.category)
-                  }
-                  helperText={formik.touched.category && formik.errors.category}
-                />
-              </Grid>
+                      pr: 7.5,
+                    }}
+                    align="center"
+                    variant="h3"
+                  >
+                    Промяна на Продукт
+                  </Typography>
+                </Grid>
 
-              <Grid item xs={6}>
-                {' '}
-                <TextField
-                  id="name"
-                  name="name"
-                  label="Name"
-                  value={formik.values.name}
-                  onChange={formik.handleChange}
-                  error={formik.touched.name && Boolean(formik.errors.name)}
-                  helperText={formik.touched.name && formik.errors.name}
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <TextField
-                  id="img"
-                  name="img"
-                  label="img"
-                  value={formik.values.img}
-                  onChange={formik.handleChange}
-                  error={formik.touched.img && Boolean(formik.errors.img)}
-                  helperText={formik.touched.img && formik.errors.img}
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <TextField
-                  id="description"
-                  name="description"
-                  label="Description"
-                  value={formik.values.description}
-                  onChange={formik.handleChange}
-                  error={
-                    formik.touched.description &&
-                    Boolean(formik.errors.description)
-                  }
-                  helperText={
-                    formik.touched.description && formik.errors.description
-                  }
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <TextField
-                  id="model"
-                  name="model"
-                  label="Model"
-                  value={formik.values.model}
-                  onChange={formik.handleChange}
-                  error={formik.touched.model && Boolean(formik.errors.model)}
-                  helperText={formik.touched.model && formik.errors.model}
-                />
-              </Grid>
-
-              <Grid item xs={6}>
-                <TextField
-                  id="quantityLeft"
-                  name="quantityLeft"
-                  label="QuantityLeft"
-                  value={formik.values.quantityLeft}
-                  onChange={formik.handleChange}
-                  error={
-                    formik.touched.quantityLeft &&
-                    Boolean(formik.errors.quantityLeft)
-                  }
-                  helperText={
-                    formik.touched.quantityLeft && formik.errors.quantityLeft
-                  }
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <TextField
-                  id="price"
-                  name="price"
-                  label="Price"
-                  value={formik.values.price}
-                  onChange={formik.handleChange}
-                  error={formik.touched.price && Boolean(formik.errors.price)}
-                  helperText={formik.touched.price && formik.errors.price}
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <Stack
-                  direction="row"
-                  justifyContent="flex-start"
-                  alignItems="center"
-                >
-                  <Typography>40</Typography>
-                  <Checkbox
-                    label="Child"
-                    checked={checked40Bool}
-                    name="size"
-                    value={'40'}
-                    onChange={formik.handleChange}
-                    error={formik.touched.size && Boolean(formik.errors.size)}
-                    helperText={formik.touched.size && formik.errors.size}
-                    onClick={() => {
-                      sizeOperation('40', checked40Bool);
-                      setChecked40Bool(!checked40Bool);
-                    }}
-                  />
-                  <Typography>41</Typography>
-                  <Checkbox
-                    label="Child"
-                    checked={checked41Bool}
-                    name="size"
-                    value={'41'}
-                    onChange={formik.handleChange}
-                    error={formik.touched.size && Boolean(formik.errors.size)}
-                    helperText={formik.touched.size && formik.errors.size}
-                    onClick={() => {
-                      sizeOperation('41', checked41Bool);
-                      setChecked41Bool(!checked41Bool);
-                    }}
-                  />
-                  <Typography>42</Typography>
-                  <Checkbox
-                    label="Child"
-                    checked={checked42Bool}
-                    name="size"
-                    value={'42'}
-                    onChange={formik.handleChange}
-                    error={formik.touched.size && Boolean(formik.errors.size)}
-                    helperText={formik.touched.size && formik.errors.size}
-                    onClick={() => {
-                      sizeOperation('42', checked42Bool);
-                      setChecked42Bool(!checked42Bool);
-                    }}
-                  />
-                  <Typography>43</Typography>
-                  <Checkbox
-                    label="Child"
-                    checked={checked43Bool}
-                    name="size"
-                    value={'43'}
-                    onChange={formik.handleChange}
-                    error={formik.touched.size && Boolean(formik.errors.size)}
-                    helperText={formik.touched.size && formik.errors.size}
-                    onClick={() => {
-                      sizeOperation('43', checked43Bool);
-                      setChecked43Bool(!checked43Bool);
-                    }}
-                  />
-                </Stack>
-              </Grid>
-              <Grid item xs={6}>
-                <Stack
-                  direction="row"
-                  justifyContent="flex-start"
-                  alignItems="center"
-                >
-                  <Typography>Black</Typography>
-                  <Checkbox
-                    label="Child"
-                    checked={checkedBlack}
-                    name="color"
-                    value={'black'}
-                    onChange={formik.handleChange}
-                    error={formik.touched.size && Boolean(formik.errors.size)}
-                    helperText={formik.touched.size && formik.errors.size}
-                    onClick={() => {
-                      sizeOperation('black', checkedBlack);
-                      setCheckedBlack(!checkedBlack);
+                <Grid item xs={6}>
+                  <TextField
+                    placeholder="ID на продукт"
+                    InputLabelProps={{
+                      style: { color: Colors.black },
                     }}
                     sx={{
-                      color: grey[900],
+                      color: Colors.black,
+
+                      '& .MuiInputLabel-root': { color: Colors.black },
+                      '& .MuiOutlinedInput-root': {
+                        '& > fieldset': { borderColor: Colors.black },
+                      },
+                      '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
+                        {
+                          borderColor: Colors.black,
+                        },
                       '&.Mui-checked': {
+                        color: Colors.black,
+                      },
+                    }}
+                    id="userId"
+                    name="userId"
+                    label="ID на продукт"
+                    value={formik.values.userId}
+                    onChange={formik.handleChange}
+                    error={
+                      formik.touched.userId && Boolean(formik.errors.userId)
+                    }
+                    helperText={formik.touched.userId && formik.errors.userId}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <TextField
+                    placeholder="Категория"
+                    InputLabelProps={{
+                      style: { color: Colors.black },
+                    }}
+                    sx={{
+                      color: Colors.black,
+
+                      '& .MuiInputLabel-root': { color: Colors.black },
+                      '& .MuiOutlinedInput-root': {
+                        '& > fieldset': { borderColor: Colors.black },
+                      },
+                      '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
+                        {
+                          borderColor: Colors.black,
+                        },
+                      '&.Mui-checked': {
+                        color: Colors.black,
+                      },
+                    }}
+                    id="category"
+                    name="category"
+                    label="Категория"
+                    value={formik.values.category}
+                    onChange={formik.handleChange}
+                    error={
+                      formik.touched.category && Boolean(formik.errors.category)
+                    }
+                    helperText={
+                      formik.touched.category && formik.errors.category
+                    }
+                  />
+                </Grid>
+
+                <Grid item xs={6}>
+                  {' '}
+                  <TextField
+                    placeholder="Име"
+                    InputLabelProps={{
+                      style: { color: Colors.black },
+                    }}
+                    sx={{
+                      color: Colors.black,
+
+                      '& .MuiInputLabel-root': { color: Colors.black },
+                      '& .MuiOutlinedInput-root': {
+                        '& > fieldset': { borderColor: Colors.black },
+                      },
+                      '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
+                        {
+                          borderColor: Colors.black,
+                        },
+                      '&.Mui-checked': {
+                        color: Colors.black,
+                      },
+                    }}
+                    id="name"
+                    name="name"
+                    label="Име"
+                    value={formik.values.name}
+                    onChange={formik.handleChange}
+                    error={formik.touched.name && Boolean(formik.errors.name)}
+                    helperText={formik.touched.name && formik.errors.name}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <TextField
+                    placeholder="Снимка"
+                    InputLabelProps={{
+                      style: { color: Colors.black },
+                    }}
+                    sx={{
+                      color: Colors.black,
+
+                      '& .MuiInputLabel-root': { color: Colors.black },
+                      '& .MuiOutlinedInput-root': {
+                        '& > fieldset': { borderColor: Colors.black },
+                      },
+                      '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
+                        {
+                          borderColor: Colors.black,
+                        },
+                      '&.Mui-checked': {
+                        color: Colors.black,
+                      },
+                    }}
+                    id="img"
+                    name="img"
+                    label="Снимка"
+                    value={formik.values.img}
+                    onChange={formik.handleChange}
+                    error={formik.touched.img && Boolean(formik.errors.img)}
+                    helperText={formik.touched.img && formik.errors.img}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <TextField
+                    placeholder="Описание"
+                    InputLabelProps={{
+                      style: { color: Colors.black },
+                    }}
+                    sx={{
+                      color: Colors.black,
+
+                      '& .MuiInputLabel-root': { color: Colors.black },
+                      '& .MuiOutlinedInput-root': {
+                        '& > fieldset': { borderColor: Colors.black },
+                      },
+                      '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
+                        {
+                          borderColor: Colors.black,
+                        },
+                      '&.Mui-checked': {
+                        color: Colors.black,
+                      },
+                    }}
+                    id="description"
+                    name="description"
+                    label="Описание"
+                    value={formik.values.description}
+                    onChange={formik.handleChange}
+                    error={
+                      formik.touched.description &&
+                      Boolean(formik.errors.description)
+                    }
+                    helperText={
+                      formik.touched.description && formik.errors.description
+                    }
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <TextField
+                    placeholder="Марка"
+                    InputLabelProps={{
+                      style: { color: Colors.black },
+                    }}
+                    sx={{
+                      color: Colors.black,
+
+                      '& .MuiInputLabel-root': { color: Colors.black },
+                      '& .MuiOutlinedInput-root': {
+                        '& > fieldset': { borderColor: Colors.black },
+                      },
+                      '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
+                        {
+                          borderColor: Colors.black,
+                        },
+                      '&.Mui-checked': {
+                        color: Colors.black,
+                      },
+                    }}
+                    id="model"
+                    name="model"
+                    label="Марка"
+                    value={formik.values.model}
+                    onChange={formik.handleChange}
+                    error={formik.touched.model && Boolean(formik.errors.model)}
+                    helperText={formik.touched.model && formik.errors.model}
+                  />
+                </Grid>
+
+                <Grid item xs={6}>
+                  <TextField
+                    placeholder="Оставащо количество"
+                    InputLabelProps={{
+                      style: { color: Colors.black },
+                    }}
+                    sx={{
+                      color: Colors.black,
+
+                      '& .MuiInputLabel-root': { color: Colors.black },
+                      '& .MuiOutlinedInput-root': {
+                        '& > fieldset': { borderColor: Colors.black },
+                      },
+                      '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
+                        {
+                          borderColor: Colors.black,
+                        },
+                      '&.Mui-checked': {
+                        color: Colors.black,
+                      },
+                    }}
+                    id="quantityLeft"
+                    name="quantityLeft"
+                    label="Оставащо количество"
+                    value={formik.values.quantityLeft}
+                    onChange={formik.handleChange}
+                    error={
+                      formik.touched.quantityLeft &&
+                      Boolean(formik.errors.quantityLeft)
+                    }
+                    helperText={
+                      formik.touched.quantityLeft && formik.errors.quantityLeft
+                    }
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <TextField
+                    placeholder="Цена"
+                    InputLabelProps={{
+                      style: { color: Colors.black },
+                    }}
+                    sx={{
+                      color: Colors.black,
+
+                      '& .MuiInputLabel-root': { color: Colors.black },
+                      '& .MuiOutlinedInput-root': {
+                        '& > fieldset': { borderColor: Colors.black },
+                      },
+                      '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
+                        {
+                          borderColor: Colors.black,
+                        },
+                      '&.Mui-checked': {
+                        color: Colors.black,
+                      },
+                    }}
+                    id="price"
+                    name="price"
+                    label="Цена"
+                    value={formik.values.price}
+                    onChange={formik.handleChange}
+                    error={formik.touched.price && Boolean(formik.errors.price)}
+                    helperText={formik.touched.price && formik.errors.price}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <Stack
+                    direction="row"
+                    justifyContent="flex-start"
+                    alignItems="center"
+                  >
+                    <Typography>40</Typography>
+                    <Checkbox
+                      sx={{
                         color: grey[900],
-                      },
-                    }}
-                  />
-                  <Typography>Blue</Typography>
-                  <Checkbox
-                    label="Child"
-                    checked={checkedBlue}
-                    name="color"
-                    value={'blue'}
-                    onChange={formik.handleChange}
-                    error={formik.touched.size && Boolean(formik.errors.size)}
-                    helperText={formik.touched.size && formik.errors.size}
-                    onClick={() => {
-                      sizeOperation('blue', checkedBlue);
-                      setCheckedBlue(!checkedBlue);
-                    }}
-                    sx={{
-                      color: blue[800],
-                      '&.Mui-checked': {
+                        '&.Mui-checked': {
+                          color: grey[900],
+                        },
+                      }}
+                      label="Child"
+                      checked={checked40Bool}
+                      name="size"
+                      value={'40'}
+                      onChange={formik.handleChange}
+                      error={formik.touched.size && Boolean(formik.errors.size)}
+                      helperText={formik.touched.size && formik.errors.size}
+                      onClick={() => {
+                        sizeOperation('40', checked40Bool);
+                        setChecked40Bool(!checked40Bool);
+                      }}
+                    />
+                    <Typography>41</Typography>
+                    <Checkbox
+                      sx={{
+                        color: grey[900],
+                        '&.Mui-checked': {
+                          color: grey[900],
+                        },
+                      }}
+                      label="Child"
+                      checked={checked41Bool}
+                      name="size"
+                      value={'41'}
+                      onChange={formik.handleChange}
+                      error={formik.touched.size && Boolean(formik.errors.size)}
+                      helperText={formik.touched.size && formik.errors.size}
+                      onClick={() => {
+                        sizeOperation('41', checked41Bool);
+                        setChecked41Bool(!checked41Bool);
+                      }}
+                    />
+                    <Typography>42</Typography>
+                    <Checkbox
+                      sx={{
+                        color: grey[900],
+                        '&.Mui-checked': {
+                          color: grey[900],
+                        },
+                      }}
+                      label="Child"
+                      checked={checked42Bool}
+                      name="size"
+                      value={'42'}
+                      onChange={formik.handleChange}
+                      error={formik.touched.size && Boolean(formik.errors.size)}
+                      helperText={formik.touched.size && formik.errors.size}
+                      onClick={() => {
+                        sizeOperation('42', checked42Bool);
+                        setChecked42Bool(!checked42Bool);
+                      }}
+                    />
+                    <Typography>43</Typography>
+                    <Checkbox
+                      sx={{
+                        color: grey[900],
+                        '&.Mui-checked': {
+                          color: grey[900],
+                        },
+                      }}
+                      label="Child"
+                      checked={checked43Bool}
+                      name="size"
+                      value={'43'}
+                      onChange={formik.handleChange}
+                      error={formik.touched.size && Boolean(formik.errors.size)}
+                      helperText={formik.touched.size && formik.errors.size}
+                      onClick={() => {
+                        sizeOperation('43', checked43Bool);
+                        setChecked43Bool(!checked43Bool);
+                      }}
+                    />
+                  </Stack>
+                </Grid>
+                <Grid item xs={6}>
+                  <Stack
+                    direction="row"
+                    justifyContent="flex-start"
+                    alignItems="center"
+                  >
+                    <Typography>Black</Typography>
+                    <Checkbox
+                      label="Child"
+                      checked={checkedBlack}
+                      name="color"
+                      value={'black'}
+                      onChange={formik.handleChange}
+                      error={formik.touched.size && Boolean(formik.errors.size)}
+                      helperText={formik.touched.size && formik.errors.size}
+                      onClick={() => {
+                        sizeOperation('black', checkedBlack);
+                        setCheckedBlack(!checkedBlack);
+                      }}
+                      sx={{
+                        color: grey[900],
+                        '&.Mui-checked': {
+                          color: grey[900],
+                        },
+                      }}
+                    />
+                    <Typography>Blue</Typography>
+                    <Checkbox
+                      label="Child"
+                      checked={checkedBlue}
+                      name="color"
+                      value={'blue'}
+                      onChange={formik.handleChange}
+                      error={formik.touched.size && Boolean(formik.errors.size)}
+                      helperText={formik.touched.size && formik.errors.size}
+                      onClick={() => {
+                        sizeOperation('blue', checkedBlue);
+                        setCheckedBlue(!checkedBlue);
+                      }}
+                      sx={{
                         color: blue[800],
-                      },
-                    }}
-                  />
-                  <Typography>White</Typography>
-                  <Checkbox
-                    label="Child"
-                    checked={checkedWhite}
-                    name="color"
-                    value={'white'}
-                    onChange={formik.handleChange}
-                    error={formik.touched.size && Boolean(formik.errors.size)}
-                    helperText={formik.touched.size && formik.errors.size}
-                    onClick={() => {
-                      sizeOperation('white', checkedWhite);
-                      setCheckedWhite(!checkedWhite);
-                    }}
-                    sx={{
-                      color: grey[200],
-                      '&.Mui-checked': {
+                        '&.Mui-checked': {
+                          color: blue[800],
+                        },
+                      }}
+                    />
+                    <Typography>White</Typography>
+                    <Checkbox
+                      label="Child"
+                      checked={checkedWhite}
+                      name="color"
+                      value={'white'}
+                      onChange={formik.handleChange}
+                      error={formik.touched.size && Boolean(formik.errors.size)}
+                      helperText={formik.touched.size && formik.errors.size}
+                      onClick={() => {
+                        sizeOperation('white', checkedWhite);
+                        setCheckedWhite(!checkedWhite);
+                      }}
+                      sx={{
                         color: grey[200],
+                        '&.Mui-checked': {
+                          color: grey[200],
+                        },
+                      }}
+                    />
+                  </Stack>
+                </Grid>
+                <Grid item></Grid>
+                <Grid item xs={6}>
+                  <Button
+                    color="primary"
+                    size="large"
+                    variant="contained"
+                    type="submit"
+                    fullWidth
+                    sx={{
+                      backgroundColor: Colors.orange,
+                      '&:hover': {
+                        backgroundColor: Colors.orangeForCartHover,
                       },
                     }}
-                  />
-                </Stack>
+                  >
+                    Промяна на Продукт
+                  </Button>
+                </Grid>
+                <Grid item></Grid>
+                <Grid item></Grid>
               </Grid>
-              <Grid item></Grid>
-              <Grid item xs={6}>
-                <Button
-                  color="primary"
-                  size="large"
-                  variant="contained"
-                  type="submit"
-                  fullWidth
-                >
-                  Submit
-                </Button>
-              </Grid>
-              <Grid item></Grid>
-              <Grid item></Grid>
-            </Grid>
+            </Stack>
+          </form>
+          <Stack sx={{ p: 5 }}>
+            <ViewAllProducts />
           </Stack>
-        </form>
-        <Stack sx={{ p: 5 }}>
-          <ViewAllProducts />
         </Stack>
-      </Stack>
-      <CopywritingLine />
+        <CopywritingLine />
+        <Stack sx={{ height: 45 }}> </Stack>
+      </Container>
     </>
   );
 };
