@@ -16,17 +16,15 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { addProduct, addTooCart } from '../app/features/cartSlice';
-
 import { ShopAddButton } from './styles/SingleProductMain';
-
 import * as React from 'react';
-
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import DropDownMenu from './DropDownMenu';
-
+import { Colors } from './styles/theme';
 import DropDownMenuFreeShipping from './DropDownMenuFreeShipping';
 import SingleProductSlider from './SingleProductSlider';
+import { SmallButton } from './styles/SingleProductStyles';
 
 const STRIPE_KEY =
   'pk_test_51L5XfCGhswhFxp1SnSWMxrXia8K8TDik4CV8zMmQT1Es3VdYofPdgdYEFzkgqOnPVpYSQf0sEOejlIvKOb9BwSxK00jTVKbULQ';
@@ -92,7 +90,7 @@ const SingleProductMain = ({}) => {
 
   return (
     <>
-      <Container sx={{ pt: 8, pb: 20 }}>
+      <Container sx={{ pt: 6, pb: 20 }}>
         {loading ? (
           showLoading
         ) : (
@@ -123,15 +121,21 @@ const SingleProductMain = ({}) => {
               >
                 <Box direction="column">
                   <Box>
-                    <Typography> Марка </Typography>
+                    <Typography sx={{ fontSize: 10, fontWeight: 'thin' }}>
+                      {' '}
+                      X-Ray Speed Lite Jr
+                    </Typography>
                   </Box>
                   <Box>
                     {' '}
-                    <Typography> Рокля </Typography>
+                    <Typography sx={{ fontSize: 14, fontWeight: 'bold' }}>
+                      {' '}
+                      Обувка{' '}
+                    </Typography>
                   </Box>
                 </Box>
                 <Box>
-                  <Typography> Лого </Typography>
+                  <Typography sx={{ fontWeight: 'bold' }}> PUMA</Typography>
                 </Box>
               </Stack>
               {/* First Stack End */}
@@ -140,16 +144,30 @@ const SingleProductMain = ({}) => {
               <Stack justifyContent="space-between" direction="row">
                 <Box direction="column">
                   <Box justifyContent="flex-start">
-                    <Typography> Марка </Typography>
+                    <SmallButton sx={{ width: 5, height: 25 }}>
+                      {' '}
+                      new{' '}
+                    </SmallButton>
                   </Box>
                   <Box>
                     {' '}
-                    <Typography> Рокля </Typography>
+                    <Typography sx={{ fontWeight: 'bold' }}>
+                      {' '}
+                      {products.price}.00 ЛВ{' '}
+                    </Typography>
                   </Box>
                 </Box>
-                <Box>
-                  <Typography> Лого </Typography>
-                </Box>
+                <Stack>
+                  <Stack direction="row">
+                    <Typography sx={{ fontSize: 10, fontWeight: 'thin' }}>
+                      Информация за остъпки
+                    </Typography>
+                    <span> &nbsp; </span>
+                    <Typography sx={{ fontSize: 10, fontWeight: 'bold' }}>
+                      Ihsan.bg
+                    </Typography>
+                  </Stack>
+                </Stack>
               </Stack>
 
               {/* Second Stack End */}
@@ -165,6 +183,7 @@ const SingleProductMain = ({}) => {
                   Налични размери/изберете размер
                 </Typography>
                 <ToggleButtonGroup
+                  color={Colors.black}
                   value={alignment}
                   exclusive
                   onChange={handleAlignment}
@@ -172,7 +191,7 @@ const SingleProductMain = ({}) => {
                 >
                   {products.size.map((item) => (
                     <ToggleButton
-                      color="primary"
+                      color="secondary"
                       value={item}
                       aria-label={item}
                     >
@@ -183,6 +202,9 @@ const SingleProductMain = ({}) => {
                 <Divider flexItem />
               </Stack>
               {/* Third Stack ENds */}
+              {/* SIZE STACK */}
+
+              {/* SIZE STACK END */}
               {/* Fourth Stack Begins */}
               <Stack
                 justifyContent="space-between"

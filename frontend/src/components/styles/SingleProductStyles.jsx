@@ -32,3 +32,26 @@ export const TypographyStyled = styled(Typography)(() => ({
   fontFamily: '"sans-serif", "cursive"',
   color: Colors.black,
 }));
+
+export const SmallButton = styled(Button, {
+  shouldForwardProp: (prop) => prop !== 'color',
+  name: 'MyShopButton',
+  slot: 'Root',
+  overridesResolver: (props, styles) => [
+    styles.root,
+    props.color === 'primary' && styles.primary,
+    props.color === 'secondary' && styles.secondary,
+  ],
+})(({ theme }) => ({
+  color: Colors.dark,
+  borderColor: Colors.dark,
+  border: '1px solid',
+
+  backgroundColor: Colors.grayForCart,
+  height: '2',
+
+  fontWeight: 'bold',
+  fontSize: '4',
+  '&:hover': { backgroundColor: Colors.grayForMenu, color: Colors.dark },
+  [theme.breakpoints.down('sm')]: { fontSize: '4' },
+}));
