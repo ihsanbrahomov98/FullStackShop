@@ -6,6 +6,7 @@ import AdminNav from './AdminNav';
 import Typography from '@mui/material/Typography';
 import CopywritingLine from '../CopywritingLine';
 import Container from '@mui/material/Container';
+import FixedCricles from '../FixedCricles';
 const AdminDashDelete = () => {
   const deleteAll = () => {
     axios.delete('/back/mock/api/delete');
@@ -13,6 +14,7 @@ const AdminDashDelete = () => {
   return (
     <>
       <AdminNav />
+      <FixedCricles />
       <Stack
         direction="column"
         justifyContent="center"

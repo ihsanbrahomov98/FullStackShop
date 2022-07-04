@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router';
-
+import FixedCricles from '../FixedCricles';
 import Grid from '@mui/material/Grid';
 import Paggination from './Paggination';
 
@@ -31,6 +31,7 @@ const SportProducts = () => {
   return (
     <>
       <Paggination />
+      <FixedCricles />
       {/* <Stack
         direction="row"
         justifyContent="center"

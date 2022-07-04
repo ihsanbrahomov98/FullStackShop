@@ -141,20 +141,45 @@ const ViewAllProducts = () => {
       <Box sx={{ bgcolor: 'background.paper', width: 500 }}>
         {/* TAB
          */}
-        <AppBar position="static">
+        <AppBar position="static" sx={{ backgroundColor: Colors.black }}>
           <Tabs
             value={value}
             onChange={handleChange}
-            indicatorColor="secondary"
+            indicatorColor="primary"
             textColor="inherit"
             variant="fullWidth"
             aria-label="full width tabs example"
           >
-            <Tab label="Man" {...a11yProps(0)} />
-            <Tab label="Woman" {...a11yProps(1)} />
-            <Tab label="Child" {...a11yProps(2)} />
-            <Tab label="Sport" {...a11yProps(3)} />
-            <Tab label="Acces.." {...a11yProps(4)} />
+            <Tab
+              disableRipple
+              sx={{ color: Colors.white, '&:hover': { color: Colors.orange } }}
+              label="Man"
+              {...a11yProps(0)}
+            />
+            <Tab
+              disableRipple
+              sx={{ color: Colors.white, '&:hover': { color: Colors.orange } }}
+              label="Woman"
+              {...a11yProps(1)}
+            />
+            <Tab
+              disableRipple
+              sx={{ color: Colors.white, '&:hover': { color: Colors.orange } }}
+              label="Child"
+              {...a11yProps(2)}
+            />
+            <Tab
+              disableRipple
+              sx={{ color: Colors.white, '&:hover': { color: Colors.orange } }}
+              label="Sport"
+              {...a11yProps(3)}
+            />
+            <Tab
+              disableRipple
+              sx={{ color: Colors.white, '&:hover': { color: Colors.orange } }}
+              label="Acces.."
+              {...a11yProps(4)}
+            />
           </Tabs>
         </AppBar>
         <SwipeableViews

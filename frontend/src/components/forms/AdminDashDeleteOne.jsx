@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import { Colors } from '../styles/theme';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
@@ -11,6 +12,7 @@ import AdminNav from './AdminNav';
 import AdminDashDelete from './AdminDashDelete';
 import CopywritingLine from '../CopywritingLine';
 import ViewAllProducts from './ViewAllProducts';
+import FixedCricles from '../FixedCricles';
 
 const validationSchema = yup.object({
   userId: yup.string('Enter your userId').required('userId is required'),
@@ -46,14 +48,14 @@ const AdminDashDeleteOne = () => {
   return (
     <>
       <AdminNav />
-
+      <FixedCricles />
       <form onSubmit={formik.handleSubmit}>
         <Stack
           direction="row"
           justifyContent="space-evenly"
-          alignItems="center"
+          alignItems="flex-start"
           spacing={3}
-          sx={{ width: 1, height: 660, flexGrow: 1, pt: 5 }}
+          sx={{ width: 1, pt: 5 }}
         >
           <Stack
             direction="column"
@@ -61,12 +63,39 @@ const AdminDashDeleteOne = () => {
             justifyContent="center"
             spacing={4}
           >
-            <Typography variant="h4">Delete one Product by UserId!</Typography>
+            <Typography
+              sx={{
+                fontSize: 30,
+                fontWeight: 'bold',
+              }}
+              align="center"
+              variant="h3"
+            >
+              Изтриване на Продукт
+            </Typography>
             <Box>
               <TextField
+                placeholder="Въведи ID на продукта"
+                InputLabelProps={{
+                  style: { color: Colors.black },
+                }}
+                sx={{
+                  color: Colors.black,
+
+                  '& .MuiInputLabel-root': { color: Colors.black },
+                  '& .MuiOutlinedInput-root': {
+                    '& > fieldset': { borderColor: Colors.black },
+                  },
+                  '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
+                    {
+                      borderColor: Colors.black,
+                    },
+                  '&.Mui-checked': {
+                    color: Colors.black,
+                  },
+                }}
                 id="userId"
                 name="userId"
-                label="userId"
                 value={formik.values.userId}
                 onChange={formik.handleChange}
                 error={formik.touched.userId && Boolean(formik.errors.userId)}
@@ -81,6 +110,12 @@ const AdminDashDeleteOne = () => {
                 fullWidth
                 type="submit"
                 size="large"
+                sx={{
+                  backgroundColor: Colors.orange,
+                  '&:hover': {
+                    backgroundColor: Colors.orangeForCartHover,
+                  },
+                }}
               >
                 DELETE
               </Button>

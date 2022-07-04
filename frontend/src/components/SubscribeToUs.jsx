@@ -80,6 +80,9 @@ const SubscribeToUs = () => {
             id="outlined-basic"
             label="Outlined"
             variant="outlined"
+            InputLabelProps={{
+              style: { color: Colors.black },
+            }}
             sx={{
               color: Colors.black,
               height: '100%',

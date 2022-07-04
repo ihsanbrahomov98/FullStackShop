@@ -62,7 +62,7 @@ const AdminNav = () => {
               '&:hover': { color: Colors.orange },
             }}
           >
-            Изтриване на Продукти
+            Изтриване на Продукт
           </Typography>
         </Link>
       </Box>
