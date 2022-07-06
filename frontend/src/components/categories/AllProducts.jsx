@@ -126,11 +126,7 @@ const AllProducts = () => {
   return (
     <>
       <Container sx={{ pb: 5, pt: 5 }} direction="row">
-        <Stack
-          direction="row"
-          justifyContent="flex-start"
-          alignItems="flex-start"
-        >
+        <Stack direction="row" justifyContent="center" alignItems="flex-start">
           <Stack direction="column" flex={6}>
             <Stack>
               <Typography sx={{ fontSize: 38 }}>НАЙ-НОВИ</Typography>
@@ -156,7 +152,11 @@ const AllProducts = () => {
                   direction="row"
                 >
                   {/* First sort */}
-                  <Typography>Сортирай по цена :</Typography>
+                  <Typography
+                    sx={{ display: { xs: 'none', thousand: 'flex' } }}
+                  >
+                    Сортирай по цена :
+                  </Typography>
                   <CartButtonBlack
                     id="priceForItem"
                     aria-controls={
@@ -213,7 +213,11 @@ const AllProducts = () => {
                     </MenuItem>
                     {/* Second Sort */}
                   </Menu>
-                  <Typography>Покажи по:</Typography>
+                  <Typography
+                    sx={{ display: { xs: 'none', thousand: 'flex' } }}
+                  >
+                    Покажи по:
+                  </Typography>
                   <CartButtonBlack
                     id="pageButton"
                     aria-controls={open ? 'demo-customized-menu' : undefined}
@@ -301,8 +305,13 @@ const AllProducts = () => {
                     </MenuItem>
                   </Menu>
                   {/* Third Sort */}
-                  <Typography>Сортирай по име:</Typography>
+                  <Typography
+                    sx={{ display: { xs: 'none', thousand: 'flex' } }}
+                  >
+                    Сортирай по име:
+                  </Typography>
                   <CartButtonBlack
+                    sx={{ display: { xs: 'none', thousand: 'flex' } }}
                     id="sizeFilter"
                     aria-controls={
                       openSize ? 'demo-customized-menu' : undefined
@@ -392,7 +401,7 @@ const AllProducts = () => {
                 columnSpacing={{ xs: 1, sm: 2, md: 3 }}
               >
                 {pagginationData?.map((product) => (
-                  <Grid item xs={3}>
+                  <Grid item={{ xs: 12, md950: 4, lg: 3 }}>
                     <Card
                       sx={{
                         border: 2,
