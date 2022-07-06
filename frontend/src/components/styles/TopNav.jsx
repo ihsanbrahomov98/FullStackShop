@@ -4,12 +4,13 @@ import { Box } from '@mui/system';
 import '@fontsource/montez';
 import { Colors } from './theme';
 import { Button, Container } from '@mui/material';
-export const AppbarContainer = styled(Box)(() => ({
+export const AppbarContainer = styled(Box)((theme) => ({
   display: 'flex',
   marginTop: 4,
   justifyContent: 'center',
   alignItems: 'center',
   padding: '2px 8px',
+  [theme.breakpoints.down('sm')]: { padding: '0px', fontSize: '5' },
 }));
 export const AppbarHeader = styled(Typography)(() => ({
   flexGrow: 1,
@@ -17,12 +18,15 @@ export const AppbarHeader = styled(Typography)(() => ({
   fontFamily: '"Montez", "cursive"',
   color: Colors.secondary,
 }));
-export const AppbarHeaderSansSerif = styled(Typography)(() => ({
+export const AppbarHeaderSansSerif = styled(Typography)(({ theme }) => ({
   padding: '4px',
   flexGrow: 1,
   fontSize: '1.2em',
   fontFamily: '"sans-serif", "cursive"',
   color: Colors.dove_gray,
+  [theme.breakpoints.down('sm')]: {
+    padding: '0px',
+  },
 }));
 export const AppbarHeaderSansSerifSmaller = styled(Typography)(() => ({
   padding: '4px',
@@ -98,5 +102,5 @@ export const ShopAddButton = styled(Button, {
 
   fontWeight: 'bold',
   fontSize: '16px',
-  [theme.breakpoints.down('sm')]: { padding: '10px 0px', fontSize: '14px' },
+  [theme.breakpoints.down('sm')]: { padding: '0px', fontSize: '5' },
 }));

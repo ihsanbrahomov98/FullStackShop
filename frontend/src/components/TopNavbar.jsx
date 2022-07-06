@@ -19,6 +19,7 @@ const TopNavbar = () => {
         justifyContent="space-around"
         alignItems="center"
         spacing={2}
+        sx={{ display: { xs: 'none', thousand: 'flex' } }}
       >
         <Stack
           direction="row"

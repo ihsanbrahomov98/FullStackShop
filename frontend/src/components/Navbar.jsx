@@ -21,6 +21,7 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import SearchIcon from '@mui/icons-material/Search';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { Colors } from './styles/theme';
+import HamburgerMenu from './HamburgerMenu';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -39,7 +40,7 @@ const Navbar = () => {
         <Stack
           position={'relaitve'}
           direction="row"
-          justifyContent="space-between"
+          justifyContent={{ xs: 'center', thousand: 'space-between' }}
           alignItems="center"
           spacing={2}
           back
@@ -50,6 +51,7 @@ const Navbar = () => {
             justifyContent="center"
             alignItems="flex-start"
             spacing={2}
+            sx={{ display: { xs: 'none', thousand: 'flex' } }}
           >
             <Link to="/products/man" style={{ textDecoration: 'none' }}>
               <AppbarHeaderSansSerif30>МЪЖЕ </AppbarHeaderSansSerif30>
@@ -69,13 +71,13 @@ const Navbar = () => {
           </Stack>
           <Stack
             direction="row"
-            justifyContent="flex-start"
+            justifyContent="space-between"
             alignItems="flex-start"
             spacing={2}
           >
             <Stack
               direction="row"
-              justifyContent="flex-start"
+              justifyContent="space-between"
               alignItems="flex-start"
             >
               <Link to="/" style={{ textDecoration: 'none' }}>
@@ -84,15 +86,21 @@ const Navbar = () => {
               </Link>
             </Stack>
           </Stack>
+
           <Stack
             direction="row"
             justifyContent="center"
             alignItems="center"
-            spacing={2}
+            spacing={{ xs: 0, thousand: 2 }}
           >
             <Box>
-              <AppbarHeaderSansSerif30></AppbarHeaderSansSerif30>
-              <IconButton aria-label="cart">
+              <AppbarHeaderSansSerif30
+                sx={{ display: { xs: 'none', thousand: 'flex' } }}
+              ></AppbarHeaderSansSerif30>
+              <IconButton
+                sx={{ display: { xs: 'none', thousand: 'flex' } }}
+                aria-label="cart"
+              >
                 <StyledBadge badgeContent={cartTotal} color="secondary">
                   <Link to="/adminboard">
                     <SearchIcon color="secondary" />
@@ -101,8 +109,13 @@ const Navbar = () => {
               </IconButton>
             </Box>
             <Box>
-              <AppbarHeaderSansSerif30></AppbarHeaderSansSerif30>
-              <IconButton aria-label="cart">
+              <AppbarHeaderSansSerif30
+                sx={{ display: { xs: 'none', thousand: 'flex' } }}
+              ></AppbarHeaderSansSerif30>
+              <IconButton
+                sx={{ display: { xs: 'none', thousand: 'flex' } }}
+                aria-label="cart"
+              >
                 <StyledBadge badgeContent={cartTotal} color="secondary">
                   <Link to="/cartpage">
                     <CallIcon color="secondary" />
@@ -111,8 +124,13 @@ const Navbar = () => {
               </IconButton>
             </Box>
             <Box>
-              <AppbarHeaderSansSerif30></AppbarHeaderSansSerif30>
-              <IconButton aria-label="cart">
+              <AppbarHeaderSansSerif30
+                sx={{ display: { xs: 'none', thousand: 'flex' } }}
+              ></AppbarHeaderSansSerif30>
+              <IconButton
+                sx={{ display: { xs: 'none', thousand: 'flex' } }}
+                aria-label="cart"
+              >
                 <Link to="/cartpage">
                   <AccountBoxRoundedIcon
                     badgeContent={cartTotal}
@@ -122,8 +140,13 @@ const Navbar = () => {
               </IconButton>
             </Box>
             <Box>
-              <AppbarHeaderSansSerif30></AppbarHeaderSansSerif30>
-              <IconButton aria-label="cart">
+              <AppbarHeaderSansSerif30
+                sx={{ display: { xs: 'none', thousand: 'flex' } }}
+              ></AppbarHeaderSansSerif30>
+              <IconButton
+                sx={{ display: { xs: 'none', thousand: 'flex' } }}
+                aria-label="cart"
+              >
                 <StyledBadge badgeContent={cartTotal} color="secondary">
                   <Link to="/cartpage">
                     <StarBorderIcon color="secondary"></StarBorderIcon>
@@ -133,8 +156,13 @@ const Navbar = () => {
             </Box>
 
             <Box>
-              <AppbarHeaderSansSerif30></AppbarHeaderSansSerif30>
-              <IconButton aria-label="cart">
+              <AppbarHeaderSansSerif30
+                sx={{ display: { xs: 'none', thousand: 'flex' } }}
+              ></AppbarHeaderSansSerif30>
+              <IconButton
+                sx={{ display: { xs: 'none', thousand: 'flex' } }}
+                aria-label="cart"
+              >
                 <StyledBadge badgeContent={cartTotal} color="secondary">
                   <Link to="/cartpage">
                     <InfoOutlinedIcon color="secondary" />
@@ -143,7 +171,9 @@ const Navbar = () => {
               </IconButton>
             </Box>
             <Box>
-              <AppbarHeaderSansSerif30></AppbarHeaderSansSerif30>
+              <AppbarHeaderSansSerif30
+                sx={{ display: { xs: 'none', thousand: 'flex' } }}
+              ></AppbarHeaderSansSerif30>
               <IconButton aria-label="cart">
                 <StyledBadge badgeContent={cartTotal} color="secondary">
                   <Link to="/cartpage">
@@ -160,7 +190,11 @@ const Navbar = () => {
         justifyContent="space-around"
         alignItems="center"
         spacing={2}
-        sx={{ height: 53, bgcolor: Colors.black }}
+        sx={{
+          height: 53,
+          bgcolor: Colors.black,
+          display: { xs: 'none', thousand: 'flex' },
+        }}
       >
         <Box>
           <Link
@@ -252,6 +286,14 @@ const Navbar = () => {
             </BottomNavListItems>
           </Link>
         </Box>
+      </Stack>
+      <Stack
+        direction="row"
+        sx={{
+          display: { xs: 'flex', thousand: 'none' },
+        }}
+      >
+        <HamburgerMenu />
       </Stack>
     </>
   );
