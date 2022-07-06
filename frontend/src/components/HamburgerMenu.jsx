@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
+import TextField from '@mui/material/TextField';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
@@ -20,11 +21,16 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import Button from '@mui/material/Button';
 import { Colors } from './styles/theme';
+import ViewAllProducts from './forms/ViewAllProducts';
+import Autocomplete from '@mui/material/Autocomplete';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 const StyledSearch = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: Colors.black,
+  backgroundColor: Colors.white,
 
   marginRight: theme.spacing(2),
   marginLeft: 0,
@@ -59,22 +65,17 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-//search as JSX
-const search = (
-  <StyledSearch>
-    <SearchIconWrapper>
-      <SearchIcon />
-    </SearchIconWrapper>
-    <StyledInputBase
-      placeholder="Suchen…"
-      inputProps={{ 'aria-label': 'search' }}
-    />
-  </StyledSearch>
-);
-
 export default function HamburgerMenu() {
-  //react useState hook to save the current open/close state of the drawer, normally variables dissapear afte the function was executed
+  const [allProducts, setAllProducts] = useState(false);
+  //react useState hook to save the current open/close state of the drawer, norspaclly variables dissapear afte the function was executed
   const [open, setState] = useState(false);
+  useEffect(() => {
+    const fetchproducts = async () => {
+      const { data } = await axios.get('/back/mock/api/findall');
+      setAllProducts(data);
+    };
+    fetchproducts();
+  }, []);
 
   //function that is being called every time the drawer should open or close, the keys tab and shift are excluded so the user can focus between the elements with the keys
   const toggleDrawer = (open) => (event) => {
@@ -104,18 +105,6 @@ export default function HamburgerMenu() {
           >
             КОНТЕ
           </Typography>
-
-          <Box
-            component="div"
-            sx={{
-              display: {
-                xs: 'none',
-                sm: 'block',
-              },
-            }}
-          >
-            {search}
-          </Box>
 
           <IconButton
             edge="start"
@@ -148,11 +137,12 @@ export default function HamburgerMenu() {
             onOpen={toggleDrawer(true)}
           >
             {/* The inside of the drawer */}
+
             <Box
               sx={{
                 p: 2,
-                height: 1,
-                backgroundColor: '#dbc8ff',
+                height: 111111111111111111111111111,
+                backgroundColor: Colors.white,
               }}
             >
               {/* when clicking the icon it calls the function toggleDrawer and closes the drawer by setting the variable open to false */}
@@ -160,32 +150,20 @@ export default function HamburgerMenu() {
                 <CloseIcon onClick={toggleDrawer(false)} />
               </IconButton>
 
+              <Box
+                component="div"
+                sx={{
+                  display: {
+                    xs: 'block',
+                    thousand: 'none',
+                  },
+                }}
+              ></Box>
               <Divider sx={{ mb: 2 }} />
 
               <Box sx={{ mb: 2 }}>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <ImageIcon sx={{ color: 'primary.main' }} />
-                  </ListItemIcon>
-                  <ListItemText primary="Pictures" />
-                </ListItemButton>
-
-                <ListItemButton>
-                  <ListItemIcon>
-                    <DescriptionIcon sx={{ color: 'primary.main' }} />
-                  </ListItemIcon>
-                  <ListItemText primary="Documents" />
-                </ListItemButton>
-
-                <ListItemButton>
-                  <ListItemIcon>
-                    <FolderIcon sx={{ color: 'primary.main' }} />
-                  </ListItemIcon>
-                  <ListItemText primary="Other" />
-                </ListItemButton>
+                <ViewAllProducts />
               </Box>
-
-              {search}
 
               <Box
                 sx={{

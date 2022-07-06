@@ -30,6 +30,7 @@ const theme = createTheme({
       xs: 0,
       sm: 600,
       md: 900,
+      md950: 950,
       thousand: 1000,
       lg: 1200,
       xl: 1536,

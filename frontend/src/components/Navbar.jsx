@@ -48,7 +48,7 @@ const Navbar = () => {
         >
           <Stack
             direction="row"
-            justifyContent="center"
+            justifyContent="space-between"
             alignItems="flex-start"
             spacing={2}
             sx={{ display: { xs: 'none', thousand: 'flex' } }}
@@ -69,15 +69,16 @@ const Navbar = () => {
               <AppbarHeaderSansSerif30>СПОРТ </AppbarHeaderSansSerif30>
             </Link>
           </Stack>
+
           <Stack
             direction="row"
-            justifyContent="space-between"
+            justifyContent="center"
             alignItems="flex-start"
             spacing={2}
           >
             <Stack
               direction="row"
-              justifyContent="space-between"
+              justifyContent="center"
               alignItems="flex-start"
             >
               <Link to="/" style={{ textDecoration: 'none' }}>

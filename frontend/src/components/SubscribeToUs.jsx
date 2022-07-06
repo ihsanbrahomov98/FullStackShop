@@ -51,7 +51,7 @@ const SubscribeToUs = () => {
             и получавайте като първи информация за промоции и нови продукти
           </SubscribeToUsTypographyLigherBlack>
         </Stack>
-        <Stack direction="row" justifyContent="center" alignItems="center">
+        <Stack direction="row" alignItems="center">
           {' '}
           <AppbarHeaderSansSerif30> ДАМСКА КОЛЕКЦИЯ</AppbarHeaderSansSerif30>
           <Checkbox
@@ -86,7 +86,7 @@ const SubscribeToUs = () => {
             sx={{
               color: Colors.black,
               height: '100%',
-              width: 500,
+              width: { xs: 200, thousand: 500 },
               '& .MuiInputLabel-root': { color: Colors.black },
               '& .MuiOutlinedInput-root': {
                 '& > fieldset': { borderColor: Colors.black },

@@ -100,7 +100,11 @@ const LineUnderTheSliderAndCards = () => {
           </Stack>
         </Stack>
 
-        <Stack direction="row" spacing={3}>
+        <Stack
+          direction="row"
+          sx={{ display: { xs: 'none', thousand: 'flex' } }}
+          spacing={3}
+        >
           <Stack alignItems="center" justifyContent="center">
             <Stack>
               <Link to="/products/man" style={{ textDecoration: 'none' }}>
@@ -109,7 +113,10 @@ const LineUnderTheSliderAndCards = () => {
             </Stack>
           </Stack>
 
-          <Stack direction="column">
+          <Stack
+            direction="column"
+            sx={{ display: { xs: 'none', thousand: 'flex' } }}
+          >
             <Link to="/products/man" style={{ textDecoration: 'none' }}>
               <Box>
                 <Typography variant="body2" color={Colors.dark}>
@@ -124,8 +131,16 @@ const LineUnderTheSliderAndCards = () => {
             </Link>
           </Stack>
         </Stack>
-        <Stack direction="row" spacing={3}>
-          <Stack alignItems="center" justifyContent="center">
+        <Stack
+          direction="row"
+          spacing={3}
+          sx={{ display: { xs: 'none', thousand: 'flex' } }}
+        >
+          <Stack
+            sx={{ display: { xs: 'none', thousand: 'flex' } }}
+            alignItems="center"
+            justifyContent="center"
+          >
             <Stack>
               <Link to="/products/man" style={{ textDecoration: 'none' }}>
                 <HighQualityOutlinedIcon color="secondary" />
@@ -133,7 +148,10 @@ const LineUnderTheSliderAndCards = () => {
             </Stack>
           </Stack>
 
-          <Stack direction="column">
+          <Stack
+            direction="column"
+            sx={{ display: { xs: 'none', thousand: 'flex' } }}
+          >
             <Link to="/products/man" style={{ textDecoration: 'none' }}>
               <Box>
                 <Typography variant="body2" color={Colors.dark}>

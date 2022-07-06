@@ -30,7 +30,7 @@ const CopywritingLine = () => {
       >
         <Stack direction="row">
           <Typography
-            sx={{ fontSize: 14 }}
+            sx={{ fontSize: { xs: 9, thousand: 14 } }}
             align="center"
             variant="body2"
             color="text.secondary"
@@ -38,19 +38,27 @@ const CopywritingLine = () => {
             АВТОРСКО 2022 ПРАВО
           </Typography>
           <span> &nbsp; </span>
-          <Typography variant="body2" color={Colors.black}>
+          <Typography
+            sx={{ fontSize: { xs: 9, thousand: 14 } }}
+            variant="body2"
+            color={Colors.black}
+          >
             IHSAN.BG |
           </Typography>
           <span> &nbsp; </span>
 
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            sx={{ fontSize: { xs: 9, thousand: 14 } }}
+            variant="body2"
+            color="text.secondary"
+          >
             ВСИЧКИ ПРАВА ЗАПАЗЕНИ | COOKIES
           </Typography>
         </Stack>
 
         <Stack onClick={scrollToTOP} direction="row">
           <Typography
-            sx={{ fontSize: 14 }}
+            sx={{ fontSize: { xs: 10, thousand: 14 } }}
             align="center"
             variant="body2"
             color={Colors.black}

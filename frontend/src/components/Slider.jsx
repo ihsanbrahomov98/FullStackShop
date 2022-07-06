@@ -12,17 +12,18 @@ function Slider() {
     <Container>
       {' '}
       <Stack
-        direction="row"
-        justifyContent="space-between"
+        direction={{ xs: 'column', thousand: 'row' }}
+        justifyContent={{ xs: 'center', thousand: 'space-between' }}
         alignItems="center"
-        sx={{ height: 500 }}
+        sx={{ height: { xs: 700, thousand: 500 }, pt: { xs: 5, thousand: 0 } }}
+        spacing={{ xs: 5, thousand: 0 }}
       >
         <Stack
           direction="column"
           justifyContent="space-between"
           alignItems="center"
-          spacing={3}
-          flex={2}
+          spacing={{ xs: 5, thousad: 3 }}
+          flex={{ xs: 1, thousand: 2 }}
         >
           <Stack>
             <Card>
@@ -55,8 +56,12 @@ function Slider() {
             </Card>
           </Stack>
         </Stack>
-
-        <Stack justifyContent="center" alignItems="center" flex={2}>
+        <Stack
+          sx={{ display: { xs: 'none', thousand: 'flex' } }}
+          justifyContent="center"
+          alignItems="center"
+          flex={2}
+        >
           <Stack>
             <Card>
               <CardMedia
@@ -73,7 +78,6 @@ function Slider() {
             </Card>
           </Stack>
         </Stack>
-
         <Stack
           direction="column"
           justifyContent="space-between"
@@ -96,7 +100,7 @@ function Slider() {
               />
             </Card>
           </Stack>
-          <Stack>
+          <Stack sx={{ display: { xs: 'none', thousand: 'flex' } }}>
             <Card>
               <CardMedia
                 component="img"

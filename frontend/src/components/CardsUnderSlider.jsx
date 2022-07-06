@@ -16,13 +16,13 @@ const CardsUnderSlider = () => {
       <Stack sx={{ height: 25 }}></Stack>
       <Grid
         container
-        direction="row"
+        direction={{ xs: 'row', md950: 'row' }}
         rowSpacing={1}
         justifyContent="center"
         alignItems="center"
         columnSpacing={{ xs: 1, sm: 2, md: 3 }}
       >
-        <Grid item xs={2}>
+        <Grid item={{ xs: 6, md950: 2 }}>
           <Link to="/products/man" style={{ textDecoration: 'none' }}>
             <Card sx={{ maxWidth: 300 }}>
               <CardActionArea>
@@ -52,7 +52,7 @@ const CardsUnderSlider = () => {
             </Typography>
           </Link>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item={{ xs: 6, md950: 2 }}>
           <Link to="/products/man" style={{ textDecoration: 'none' }}>
             <Card sx={{ maxWidth: 300 }}>
               <CardActionArea>
@@ -82,7 +82,7 @@ const CardsUnderSlider = () => {
             </Typography>
           </Link>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item={{ xs: 6, md950: 2 }}>
           <Link to="/products/man" style={{ textDecoration: 'none' }}>
             <Card sx={{ maxWidth: 300 }}>
               <CardActionArea>
@@ -112,7 +112,7 @@ const CardsUnderSlider = () => {
             </Typography>
           </Link>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item={{ xs: 6, md950: 2 }}>
           <Link to="/products/man" style={{ textDecoration: 'none' }}>
             <Card sx={{ maxWidth: 300 }}>
               <CardActionArea>
@@ -142,7 +142,7 @@ const CardsUnderSlider = () => {
             </Typography>
           </Link>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item={{ xs: 6, md950: 2 }}>
           <Link to="/products/man" style={{ textDecoration: 'none' }}>
             <Card sx={{ maxWidth: 300 }}>
               <CardActionArea>

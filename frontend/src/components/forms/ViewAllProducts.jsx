@@ -186,11 +186,11 @@ const ViewAllProducts = () => {
           <TabPanel value={value} index={0} dir={theme.direction}>
             <Grid
               container
-              rowSpacing={1}
-              columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+              rowSpacing={{ xs: 4, sm: 2, md: 1 }}
+              columnSpacing={{ xs: 4, sm: 2, md: 3 }}
             >
               {manProducts?.map((product) => (
-                <Grid item xs={4}>
+                <Grid item xs={6}>
                   <Card
                     sx={{
                       border: 2,
@@ -211,7 +211,7 @@ const ViewAllProducts = () => {
                     >
                       <CardMedia
                         component="img"
-                        height="100"
+                        height={{ thousand: '100', xs: '250' }}
                         image={
                           'https://gomez.bg/assets/photo/detect/align-bc/margin-25/upload/product/445/25-05-5-trim-398-600.jpg'
                         }
@@ -374,11 +374,11 @@ const ViewAllProducts = () => {
           <TabPanel value={value} index={1} dir={theme.direction}>
             <Grid
               container
-              rowSpacing={1}
-              columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+              rowSpacing={{ xs: 4, sm: 2, md: 1 }}
+              columnSpacing={{ xs: 4, sm: 2, md: 3 }}
             >
               {womanProducts?.map((product) => (
-                <Grid item xs={4}>
+                <Grid item xs={6}>
                   <Card
                     sx={{
                       border: 2,
@@ -399,7 +399,7 @@ const ViewAllProducts = () => {
                     >
                       <CardMedia
                         component="img"
-                        height="100"
+                        height={{ thousand: '100', xs: '250' }}
                         image={
                           'https://gomez.bg/assets/photo/detect/align-bc/margin-25/upload/product/445/25-05-5-trim-398-600.jpg'
                         }
@@ -562,11 +562,11 @@ const ViewAllProducts = () => {
           <TabPanel value={value} index={2} dir={theme.direction}>
             <Grid
               container
-              rowSpacing={1}
-              columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+              rowSpacing={{ xs: 4, sm: 2, md: 1 }}
+              columnSpacing={{ xs: 4, sm: 2, md: 3 }}
             >
               {childProducts?.map((product) => (
-                <Grid item xs={4}>
+                <Grid item xs={6}>
                   <Card
                     sx={{
                       border: 2,
@@ -587,7 +587,7 @@ const ViewAllProducts = () => {
                     >
                       <CardMedia
                         component="img"
-                        height="100"
+                        height={{ thousand: '100', xs: '250' }}
                         image={
                           'https://gomez.bg/assets/photo/detect/align-bc/margin-25/upload/product/445/25-05-5-trim-398-600.jpg'
                         }
@@ -750,11 +750,11 @@ const ViewAllProducts = () => {
           <TabPanel value={value} index={3} dir={theme.direction}>
             <Grid
               container
-              rowSpacing={1}
-              columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+              rowSpacing={{ xs: 4, sm: 2, md: 1 }}
+              columnSpacing={{ xs: 4, sm: 2, md: 3 }}
             >
               {sportProducts?.map((product) => (
-                <Grid item xs={4}>
+                <Grid item xs={6}>
                   <Card
                     sx={{
                       border: 2,
@@ -775,7 +775,7 @@ const ViewAllProducts = () => {
                     >
                       <CardMedia
                         component="img"
-                        height="100"
+                        height={{ thousand: '100', xs: '250' }}
                         image={
                           'https://gomez.bg/assets/photo/detect/align-bc/margin-25/upload/product/445/25-05-5-trim-398-600.jpg'
                         }
@@ -938,11 +938,11 @@ const ViewAllProducts = () => {
           <TabPanel value={value} index={4} dir={theme.direction}>
             <Grid
               container
-              rowSpacing={1}
-              columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+              rowSpacing={{ xs: 4, sm: 2, md: 1 }}
+              columnSpacing={{ xs: 4, sm: 2, md: 3 }}
             >
               {accessoriesProducts?.map((product) => (
-                <Grid item xs={4}>
+                <Grid item xs={6}>
                   <Card
                     sx={{
                       border: 2,
@@ -963,7 +963,7 @@ const ViewAllProducts = () => {
                     >
                       <CardMedia
                         component="img"
-                        height="100"
+                        height={{ thousand: '100', xs: '250' }}
                         image={
                           'https://gomez.bg/assets/photo/detect/align-bc/margin-25/upload/product/445/25-05-5-trim-398-600.jpg'
                         }
