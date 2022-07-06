@@ -11,7 +11,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import { useSelector, useDispatch } from 'react-redux';
 import BoxForColor from './categories/BoxForColor';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useReducer } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
@@ -29,6 +29,8 @@ import { styled } from '@mui/material/styles';
 
 import '@fontsource/montez';
 import { borderColor } from 'polished';
+
+export const CountContext = React.createContext();
 
 const ColorBoxes = styled(Box)((props) => ({
   display: 'flex',
@@ -68,7 +70,7 @@ const SingleProductMain = ({}) => {
   const [stripeToken, SetStripeToken] = useState(null);
   const navigate = useNavigate();
   const itemQuantity = useSelector((state) => state.cart.quantity);
-  const dispatch = useDispatch();
+  const dispatchHook = useDispatch();
   const onToken = (token) => {
     SetStripeToken(token);
   };
@@ -98,7 +100,7 @@ const SingleProductMain = ({}) => {
     }
   };
   const handleClick = () => {
-    dispatch(addProduct({ ...products, quantity, color }));
+    dispatchHook(addProduct({ ...products, quantity, color }));
   };
   // size and color
   const [alignment, setAlignment] = React.useState('left');
@@ -107,212 +109,229 @@ const SingleProductMain = ({}) => {
     setAlignment(newAlignment);
   };
 
+  // UseReducer + Context
+  const initialState = 0;
+  const reducer = (state, action) => {
+    switch (action) {
+      case 'increment':
+        return state + 1;
+      case 'decrement':
+        return state - 1;
+      default:
+        return state;
+    }
+  };
+  const [count, dispatch] = useReducer(reducer, initialState);
   return (
     <>
-      <Container sx={{ pt: 6, pb: 20 }}>
-        {loading ? (
-          showLoading
-        ) : (
-          <Stack
-            direction="row"
-            justifyContent="center"
-            alignItems="flex-start"
-            spacing={6}
-            sx={{ height: 450 }}
-            posotion="relative"
-          >
+      <CountContext.Provider
+        value={{ countState: count, countDispatch: dispatch }}
+      >
+        <Container sx={{ pt: 6, pb: 35 }}>
+          {loading ? (
+            showLoading
+          ) : (
             <Stack
-              posotion="relative"
-              direction="column"
+              direction="row"
               justifyContent="center"
-              alignItems="space-between"
-              sx={{ flex: 3, height: 700 }}
+              alignItems="flex-start"
+              spacing={6}
+              sx={{ height: 450 }}
+              posotion="relative"
             >
-              <SingleProductSlider />
-            </Stack>
-
-            <Stack direction="column" sx={{ flex: 1.2 }}>
-              {/* First Stack Begin */}
               <Stack
-                justifyContent="space-between"
-                direction="row"
-                sx={{ pb: 3 }}
-              >
-                <Box direction="column">
-                  <Box>
-                    <Typography sx={{ fontSize: 10, fontWeight: 'thin' }}>
-                      {' '}
-                      X-Ray Speed Lite Jr
-                    </Typography>
-                  </Box>
-                  <Box>
-                    {' '}
-                    <Typography sx={{ fontSize: 14, fontWeight: 'bold' }}>
-                      {' '}
-                      Обувка{' '}
-                    </Typography>
-                  </Box>
-                </Box>
-                <Box>
-                  <Typography sx={{ fontWeight: 'bold' }}> PUMA</Typography>
-                </Box>
-              </Stack>
-              {/* First Stack End */}
-
-              {/* Second Stack Begin */}
-              <Stack justifyContent="space-between" direction="row">
-                <Box direction="column">
-                  <Box justifyContent="flex-start">
-                    <SmallButton sx={{ width: 5, height: 25 }}>
-                      {' '}
-                      new{' '}
-                    </SmallButton>
-                  </Box>
-                  <Box>
-                    {' '}
-                    <Typography sx={{ fontWeight: 'bold' }}>
-                      {' '}
-                      {products.price}.00 ЛВ{' '}
-                    </Typography>
-                  </Box>
-                </Box>
-                <Stack>
-                  <Stack direction="row">
-                    <Typography sx={{ fontSize: 10, fontWeight: 'thin' }}>
-                      Информация за остъпки
-                    </Typography>
-                    <span> &nbsp; </span>
-                    <Typography sx={{ fontSize: 10, fontWeight: 'bold' }}>
-                      Ihsan.bg
-                    </Typography>
-                  </Stack>
-                </Stack>
-              </Stack>
-
-              {/* Second Stack End */}
-              {/* Third Stack Begins */}
-              <Stack
-                spacing={2}
-                justifyContent="space-between"
-                direction="column"
-                alignItems="flex-start"
-              >
-                <Divider flexItem />
-                <Typography align="left" variant="h4" sx={{ fontSize: 14 }}>
-                  Налични размери/изберете размер
-                </Typography>
-                <ToggleButtonGroup
-                  color={Colors.black}
-                  value={alignment}
-                  exclusive
-                  onChange={handleAlignment}
-                  aria-label="text alignment"
-                >
-                  {products.size.map((item) => (
-                    <ToggleButton
-                      color="secondary"
-                      value={item}
-                      aria-label={item}
-                    >
-                      {item}
-                    </ToggleButton>
-                  ))}
-                </ToggleButtonGroup>
-              </Stack>
-              {/* Third Stack ENds */}
-
-              <Stack
+                posotion="relative"
                 direction="column"
                 justifyContent="center"
-                alignItems="flex-start"
-                spacing={2}
+                alignItems="space-between"
+                sx={{ flex: 3, height: 700 }}
               >
-                <Divider flexItem />
-                <Typography align="left" variant="h4" sx={{ fontSize: 14 }}>
-                  Налични цветове/изберете цвят
-                </Typography>
-                <Stack
-                  direction="row"
-                  justifyContent="space-between"
-                  spacing={2}
-                  sx={{ width: '100%' }}
-                >
-                  <Stack direction="row" spacing={1}>
-                    {products.color.map((sizeItem) => (
-                      <ColorBoxes
-                        style={{ textDecoration: 'none' }}
-                        sx={{ borderColor: Colors.black, border: 0.5 }}
-                        onClick={() => {
-                          setColor(sizeItem);
-                        }}
-                        sizeItem={sizeItem}
-                      ></ColorBoxes>
-                    ))}
-                  </Stack>
-                </Stack>
-                <Stack
-                  direction="row"
-                  justifyContent="flex-start"
-                  alignItems="center"
-                >
-                  {' '}
-                  <Typography sx={{ fontSize: 13.7 }}>Избран:</Typography>
-                  <span> &nbsp; </span>
-                  <span> &nbsp; </span>
-                  <span> &nbsp; </span>
-                  <span> &nbsp; </span>
-                  <span> &nbsp; </span>
-                  <span> &nbsp; </span>
-                  <span> &nbsp; </span>
-                  <ColorBoxes
-                    style={{ textDecoration: 'none' }}
-                    sx={{ borderColor: Colors.black, border: 0.5 }}
-                    sizeItem={color}
-                  ></ColorBoxes>
-                </Stack>
-                <Divider flexItem />
+                <SingleProductSlider />
               </Stack>
 
-              {/* SIZE STACK */}
-
-              {/* SIZE STACK END */}
-              {/* Fourth Stack Begins */}
-              <Stack
-                justifyContent="space-between"
-                direction="row"
-                sx={{ pb: 3, pt: 2 }}
-              >
-                <Box direction="column">
+              <Stack direction="column" sx={{ flex: 1.2 }}>
+                {/* First Stack Begin */}
+                <Stack
+                  justifyContent="space-between"
+                  direction="row"
+                  sx={{ pb: 3 }}
+                >
+                  <Box direction="column">
+                    <Box>
+                      <Typography sx={{ fontSize: 10, fontWeight: 'thin' }}>
+                        {' '}
+                        X-Ray Speed Lite Jr
+                      </Typography>
+                    </Box>
+                    <Box>
+                      {' '}
+                      <Typography sx={{ fontSize: 14, fontWeight: 'bold' }}>
+                        {' '}
+                        Обувка{' '}
+                      </Typography>
+                    </Box>
+                  </Box>
                   <Box>
-                    <ShopAddButton onClick={() => handleQuantity('inc')}>
+                    <Typography sx={{ fontWeight: 'bold' }}> PUMA</Typography>
+                  </Box>
+                </Stack>
+                {/* First Stack End */}
+
+                {/* Second Stack Begin */}
+                <Stack justifyContent="space-between" direction="row">
+                  <Box direction="column">
+                    <Box justifyContent="flex-start">
+                      <SmallButton sx={{ width: 5, height: 25 }}>
+                        {' '}
+                        new{' '}
+                      </SmallButton>
+                    </Box>
+                    <Box>
+                      {' '}
+                      <Typography sx={{ fontWeight: 'bold' }}>
+                        {' '}
+                        {products.price}.00 ЛВ{' '}
+                      </Typography>
+                    </Box>
+                  </Box>
+                  <Stack>
+                    <Stack direction="row">
+                      <Typography sx={{ fontSize: 10, fontWeight: 'thin' }}>
+                        Информация за остъпки
+                      </Typography>
+                      <span> &nbsp; </span>
+                      <Typography sx={{ fontSize: 10, fontWeight: 'bold' }}>
+                        Ihsan.bg
+                      </Typography>
+                    </Stack>
+                  </Stack>
+                </Stack>
+
+                {/* Second Stack End */}
+                {/* Third Stack Begins */}
+                <Stack
+                  spacing={2}
+                  justifyContent="space-between"
+                  direction="column"
+                  alignItems="flex-start"
+                >
+                  <Divider flexItem />
+                  <Typography align="left" variant="h4" sx={{ fontSize: 14 }}>
+                    Налични размери/изберете размер
+                  </Typography>
+                  <ToggleButtonGroup
+                    color={Colors.black}
+                    value={alignment}
+                    exclusive
+                    onChange={handleAlignment}
+                    aria-label="text alignment"
+                  >
+                    {products.size.map((item) => (
+                      <ToggleButton
+                        color="secondary"
+                        value={item}
+                        aria-label={item}
+                      >
+                        {item}
+                      </ToggleButton>
+                    ))}
+                  </ToggleButtonGroup>
+                </Stack>
+                {/* Third Stack ENds */}
+
+                <Stack
+                  direction="column"
+                  justifyContent="center"
+                  alignItems="flex-start"
+                  spacing={2}
+                >
+                  <Divider flexItem />
+                  <Typography align="left" variant="h4" sx={{ fontSize: 14 }}>
+                    Налични цветове/изберете цвят
+                  </Typography>
+                  <Stack
+                    direction="row"
+                    justifyContent="space-between"
+                    spacing={2}
+                    sx={{ width: '100%' }}
+                  >
+                    <Stack direction="row" spacing={1}>
+                      {products.color.map((sizeItem) => (
+                        <ColorBoxes
+                          style={{ textDecoration: 'none' }}
+                          sx={{ borderColor: Colors.black, border: 0.5 }}
+                          onClick={() => {
+                            setColor(sizeItem);
+                          }}
+                          sizeItem={sizeItem}
+                        ></ColorBoxes>
+                      ))}
+                    </Stack>
+                  </Stack>
+                  <Stack
+                    direction="row"
+                    justifyContent="flex-start"
+                    alignItems="center"
+                  >
+                    {' '}
+                    <Typography sx={{ fontSize: 13.7 }}>Избран:</Typography>
+                    <span> &nbsp; </span>
+                    <span> &nbsp; </span>
+                    <span> &nbsp; </span>
+                    <span> &nbsp; </span>
+                    <span> &nbsp; </span>
+                    <span> &nbsp; </span>
+                    <span> &nbsp; </span>
+                    <ColorBoxes
+                      style={{ textDecoration: 'none' }}
+                      sx={{ borderColor: Colors.black, border: 0.5 }}
+                      sizeItem={color}
+                    ></ColorBoxes>
+                  </Stack>
+                  <Divider flexItem />
+                </Stack>
+
+                {/* SIZE STACK */}
+
+                {/* SIZE STACK END */}
+                {/* Fourth Stack Begins */}
+                <Stack
+                  justifyContent="space-between"
+                  direction="row"
+                  sx={{ pb: 3, pt: 2 }}
+                >
+                  <Box direction="column">
+                    <Box>
+                      <ShopAddButton onClick={() => handleQuantity('inc')}>
+                        <Typography variant="h4" sx={{ fontSize: 10 }}>
+                          Добави в кошмицата
+                        </Typography>
+                      </ShopAddButton>
+                    </Box>
+                  </Box>
+                  <Box>
+                    <ShopAddButton onClick={() => handleQuantity('dec')}>
                       <Typography variant="h4" sx={{ fontSize: 10 }}>
-                        Добави в кошмицата
+                        Премахни продукт
                       </Typography>
                     </ShopAddButton>
                   </Box>
-                </Box>
-                <Box>
-                  <ShopAddButton onClick={() => handleQuantity('dec')}>
-                    <Typography variant="h4" sx={{ fontSize: 10 }}>
-                      Премахни продукт
-                    </Typography>
-                  </ShopAddButton>
-                </Box>
-              </Stack>
-              {/* Fourth Stack END */}
-              {/* Fifth Stack Begin */}
-              <Stack>
-                <DropDownMenu />
-              </Stack>
-              <Divider flexItem />
-              <Stack>
-                <DropDownMenuFreeShipping />
+                </Stack>
+                {/* Fourth Stack END */}
+                {/* Fifth Stack Begin */}
+                <Stack>
+                  <DropDownMenu />
+                </Stack>
+                <Divider flexItem />
+                <Stack>
+                  <DropDownMenuFreeShipping />
+                </Stack>
               </Stack>
             </Stack>
-          </Stack>
-        )}
-        ;
-      </Container>
+          )}
+          ;
+        </Container>
+      </CountContext.Provider>
     </>
   );
 };

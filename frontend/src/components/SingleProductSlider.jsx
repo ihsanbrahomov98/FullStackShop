@@ -115,9 +115,19 @@ function SingleProductSlider() {
               </Card>
             </Grid>
           ))}
+          <Stack sx={{ height: 20 }}></Stack>
           <Button
-            sx={{ color: Colors.black, width: 150, pt: 3, fontSize: 21 }}
+            sx={{
+              color: Colors.black,
+              width: 150,
+
+              fontSize: 21,
+              '&:hover': {
+                backgroundColor: 'white',
+              },
+            }}
             variant="text"
+            disableRipple
             endIcon={<ShareIcon />}
           >
             Сподели{' '}

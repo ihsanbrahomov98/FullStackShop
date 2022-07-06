@@ -10,11 +10,7 @@ const AdminDashBoard = () => {
   return (
     <>
       <Stack>
-        <AdminNav />
         <AdminCreateProduct />
-        <AdminDashDelete />
-        <AdminDashUpdate />
-        <AdminDashDeleteOne />
       </Stack>
     </>
   );
