@@ -1,6 +1,6 @@
-import { IconButton, List, Typography } from '@mui/material';
+import { IconButton, List, Typography, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { Box } from '@mui/system';
+
 import '@fontsource/montez';
 import { Colors } from '../styles/theme';
 import { Button, Container } from '@mui/material';

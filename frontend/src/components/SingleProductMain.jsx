@@ -10,7 +10,7 @@ import Divider from '@mui/material/Divider';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import { useSelector, useDispatch } from 'react-redux';
-
+import BoxForColor from './categories/BoxForColor';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -25,6 +25,23 @@ import { Colors } from './styles/theme';
 import DropDownMenuFreeShipping from './DropDownMenuFreeShipping';
 import SingleProductSlider from './SingleProductSlider';
 import { SmallButton } from './styles/SingleProductStyles';
+import { styled } from '@mui/material/styles';
+
+import '@fontsource/montez';
+import { borderColor } from 'polished';
+
+const ColorBoxes = styled(Box)((props) => ({
+  display: 'flex',
+
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: 30,
+  textDecoration: 'none',
+  fontWeight: 'bold',
+  height: 30,
+  color: 'black',
+  backgroundColor: props.sizeItem,
+}));
 
 const STRIPE_KEY =
   'pk_test_51L5XfCGhswhFxp1SnSWMxrXia8K8TDik4CV8zMmQT1Es3VdYofPdgdYEFzkgqOnPVpYSQf0sEOejlIvKOb9BwSxK00jTVKbULQ';
@@ -35,11 +52,13 @@ const SingleProductMain = ({}) => {
   const [loading, Setloading] = useState(true);
   const [quantity, SetQuantity] = useState(1);
   const [items, SetItems] = useState([]);
+  const [color, setColor] = useState('white');
 
   useEffect(() => {
     const fetchproducts = async () => {
       const { data } = await axios.get(`/back/mock/api/findone/${params.id}`);
       setProducts(data);
+      setColor(data.color[0]);
       Setloading(false);
     };
     fetchproducts();
@@ -67,7 +86,7 @@ const SingleProductMain = ({}) => {
       }
     };
     stripeToken && request();
-  }, [stripeToken, navigate]);
+  }, [stripeToken, navigate, color]);
   const showLoading = <Typography>Loading....</Typography>;
 
   const handleQuantity = (type) => {
@@ -79,7 +98,7 @@ const SingleProductMain = ({}) => {
     }
   };
   const handleClick = () => {
-    dispatch(addProduct({ ...products, quantity }));
+    dispatch(addProduct({ ...products, quantity, color }));
   };
   // size and color
   const [alignment, setAlignment] = React.useState('left');
@@ -199,9 +218,61 @@ const SingleProductMain = ({}) => {
                     </ToggleButton>
                   ))}
                 </ToggleButtonGroup>
-                <Divider flexItem />
               </Stack>
               {/* Third Stack ENds */}
+
+              <Stack
+                direction="column"
+                justifyContent="center"
+                alignItems="flex-start"
+                spacing={2}
+              >
+                <Divider flexItem />
+                <Typography align="left" variant="h4" sx={{ fontSize: 14 }}>
+                  Налични цветове/изберете цвят
+                </Typography>
+                <Stack
+                  direction="row"
+                  justifyContent="space-between"
+                  spacing={2}
+                  sx={{ width: '100%' }}
+                >
+                  <Stack direction="row" spacing={1}>
+                    {products.color.map((sizeItem) => (
+                      <ColorBoxes
+                        style={{ textDecoration: 'none' }}
+                        sx={{ borderColor: Colors.black, border: 0.5 }}
+                        onClick={() => {
+                          setColor(sizeItem);
+                        }}
+                        sizeItem={sizeItem}
+                      ></ColorBoxes>
+                    ))}
+                  </Stack>
+                </Stack>
+                <Stack
+                  direction="row"
+                  justifyContent="flex-start"
+                  alignItems="center"
+                >
+                  {' '}
+                  <Typography sx={{ fontSize: 13.7 }}>Избран:</Typography>
+                  <span> &nbsp; </span>
+                  <span> &nbsp; </span>
+                  <span> &nbsp; </span>
+                  <span> &nbsp; </span>
+                  <span> &nbsp; </span>
+                  <span> &nbsp; </span>
+                  <span> &nbsp; </span>
+                  <ColorBoxes
+                    style={{ textDecoration: 'none' }}
+                    sx={{ borderColor: Colors.black, border: 0.5 }}
+                    sizeItem={color}
+                  ></ColorBoxes>
+                </Stack>
+                <Divider flexItem />
+              </Stack>
+
               {/* SIZE STACK */}
 
               {/* SIZE STACK END */}
