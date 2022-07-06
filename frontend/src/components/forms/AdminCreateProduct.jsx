@@ -116,7 +116,7 @@ const AdminCreateProduct = () => {
         </Stack>{' '}
         <Container>
           <Stack
-            direction="row"
+            direction={{ xs: 'column', thousand: 'row' }}
             justifyContent="center"
             alignItems="flex-start"
           >
@@ -135,14 +135,12 @@ const AdminCreateProduct = () => {
                   width="150%"
                   sx={{}}
                 >
-                  <Grid item xs={12}>
+                  <Grid item={{ xs: 12, md950: 12 }}>
                     <Typography
                       sx={{
                         fontSize: 30,
                         fontWeight: 'bold',
                         pt: 4,
-                        pr: 7.5,
-                        pb: 3,
                       }}
                       align="center"
                       variant="h3"
@@ -151,7 +149,7 @@ const AdminCreateProduct = () => {
                     </Typography>
                   </Grid>
 
-                  <Grid item xs={6}>
+                  <Grid item={{ xs: 12, md950: 6 }}>
                     <TextField
                       InputLabelProps={{
                         style: { color: Colors.black },
@@ -182,7 +180,7 @@ const AdminCreateProduct = () => {
                       helperText={formik.touched.userId && formik.errors.userId}
                     />
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item={{ xs: 12, md950: 6 }}>
                     <TextField
                       InputLabelProps={{
                         style: { color: Colors.black },
@@ -217,7 +215,7 @@ const AdminCreateProduct = () => {
                     />
                   </Grid>
 
-                  <Grid item xs={6}>
+                  <Grid item={{ xs: 12, md950: 6 }}>
                     {' '}
                     <TextField
                       InputLabelProps={{
@@ -247,7 +245,7 @@ const AdminCreateProduct = () => {
                       helperText={formik.touched.name && formik.errors.name}
                     />
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item={{ xs: 12, md950: 6 }}>
                     <TextField
                       InputLabelProps={{
                         style: { color: Colors.black },
@@ -276,7 +274,7 @@ const AdminCreateProduct = () => {
                       helperText={formik.touched.img && formik.errors.img}
                     />
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item={{ xs: 12, md950: 6 }}>
                     <TextField
                       InputLabelProps={{
                         style: { color: Colors.black },
@@ -310,7 +308,7 @@ const AdminCreateProduct = () => {
                       }
                     />
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item={{ xs: 12, md950: 6 }}>
                     <TextField
                       InputLabelProps={{
                         style: { color: Colors.black },
@@ -342,7 +340,7 @@ const AdminCreateProduct = () => {
                     />
                   </Grid>
 
-                  <Grid item xs={6}>
+                  <Grid item={{ xs: 12, md950: 6 }}>
                     <TextField
                       InputLabelProps={{
                         style: { color: Colors.black },
@@ -377,7 +375,7 @@ const AdminCreateProduct = () => {
                       }
                     />
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item={{ xs: 12, md950: 6 }}>
                     <TextField
                       InputLabelProps={{
                         style: { color: Colors.black },
@@ -408,7 +406,7 @@ const AdminCreateProduct = () => {
                       helperText={formik.touched.price && formik.errors.price}
                     />
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item={{ xs: 12, md950: 6 }}>
                     <Stack
                       direction="row"
                       justifyContent="flex-start"
@@ -504,7 +502,7 @@ const AdminCreateProduct = () => {
                       />
                     </Stack>
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item={{ xs: 12, md950: 6 }}>
                     <Stack
                       direction="row"
                       justifyContent="flex-start"
@@ -578,28 +576,24 @@ const AdminCreateProduct = () => {
                       />
                     </Stack>
                   </Grid>
-                  <Grid item></Grid>
-                  <Grid item xs={6}>
-                    <Button
-                      color="primary"
-                      size="large"
-                      variant="contained"
-                      type="submit"
-                      fullWidth
-                      sx={{
-                        backgroundColor: Colors.orange,
-                        '&:hover': {
-                          backgroundColor: Colors.orangeForCartHover,
-                        },
-                      }}
-                    >
-                      Създаване
-                    </Button>
-                  </Grid>
-                  <Grid item></Grid>
-                  <Grid item></Grid>
                 </Grid>
               </Stack>
+              <Grid item={{ xs: 12, thousand: 12 }}>
+                <Button
+                  color="primary"
+                  size="large"
+                  variant="contained"
+                  type="submit"
+                  sx={{
+                    backgroundColor: Colors.orange,
+                    '&:hover': {
+                      backgroundColor: Colors.orangeForCartHover,
+                    },
+                  }}
+                >
+                  Създаване
+                </Button>
+              </Grid>
             </form>
             <Stack sx={{ p: 5 }}>
               <ViewAllProducts />
