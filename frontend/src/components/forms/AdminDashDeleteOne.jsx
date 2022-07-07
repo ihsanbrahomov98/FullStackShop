@@ -51,16 +51,16 @@ const AdminDashDeleteOne = () => {
       <FixedCricles />
       <form onSubmit={formik.handleSubmit}>
         <Stack
-          direction="row"
-          justifyContent="space-evenly"
-          alignItems="flex-start"
+          direction={{ xs: 'column', thousand: 'row' }}
+          justifyContent="center"
+          alignItems={{ xs: 'center', thousand: 'flex-start' }}
           spacing={3}
           sx={{ width: 1, pt: 5 }}
         >
           <Stack
             direction="column"
             alignItems="center"
-            justifyContent="center"
+            justifyContent="flex-start"
             spacing={4}
           >
             <Typography

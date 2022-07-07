@@ -27,10 +27,11 @@ const Messanger = () => {
         alignItems="center"
         spacing={2}
         sx={{
-          height: 60,
+          height: { xs: 30, sm: 45, thousand: 60 },
           bgcolor: Colors.orange,
           bottom: 65,
-          right: 13,
+          right: { xs: 5, thousand: 13 },
+
           borderRadius: '50%',
         }}
       >

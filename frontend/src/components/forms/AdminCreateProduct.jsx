@@ -118,7 +118,7 @@ const AdminCreateProduct = () => {
           <Stack
             direction={{ xs: 'column', thousand: 'row' }}
             justifyContent="center"
-            alignItems="flex-start"
+            alignItems={{ xs: 'center', thousand: 'flex-start' }}
           >
             <form onSubmit={formik.handleSubmit}>
               <Stack
@@ -579,23 +579,26 @@ const AdminCreateProduct = () => {
                 </Grid>
               </Stack>
               <Grid item={{ xs: 12, thousand: 12 }}>
-                <Button
-                  color="primary"
-                  size="large"
-                  variant="contained"
-                  type="submit"
-                  sx={{
-                    backgroundColor: Colors.orange,
-                    '&:hover': {
-                      backgroundColor: Colors.orangeForCartHover,
-                    },
-                  }}
-                >
-                  Създаване
-                </Button>
+                <Stack direction="row" justifyContent="center" sx={{ pt: 2 }}>
+                  <Button
+                    color="primary"
+                    size="large"
+                    variant="contained"
+                    type="submit"
+                    sx={{
+                      width: '50%',
+                      backgroundColor: Colors.orange,
+                      '&:hover': {
+                        backgroundColor: Colors.orangeForCartHover,
+                      },
+                    }}
+                  >
+                    Създаване
+                  </Button>
+                </Stack>
               </Grid>
             </form>
-            <Stack sx={{ p: 5 }}>
+            <Stack>
               <ViewAllProducts />
             </Stack>
           </Stack>

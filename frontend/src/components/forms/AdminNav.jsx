@@ -48,6 +48,7 @@ const AdminNav = () => {
             sx={{
               color: Colors.white,
               '&:hover': { color: Colors.orange },
+              fontSize: { xs: 10, thousand: 16 },
             }}
           >
             Създавана на Продукт
@@ -60,6 +61,7 @@ const AdminNav = () => {
             sx={{
               color: Colors.white,
               '&:hover': { color: Colors.orange },
+              fontSize: { xs: 10, thousand: 16 },
             }}
           >
             Изтриване на Продукт
@@ -72,6 +74,7 @@ const AdminNav = () => {
             sx={{
               color: Colors.white,
               '&:hover': { color: Colors.orange },
+              fontSize: { xs: 10, thousand: 16 },
             }}
           >
             Изтриване на Всички Продукти
@@ -84,6 +87,7 @@ const AdminNav = () => {
             sx={{
               color: Colors.white,
               '&:hover': { color: Colors.orange },
+              fontSize: { xs: 10, thousand: 16 },
             }}
           >
             Редактиране на Продукти
@@ -97,6 +101,7 @@ const AdminNav = () => {
             sx={{
               color: Colors.white,
               '&:hover': { color: Colors.orange },
+              fontSize: { xs: 10, thousand: 16 },
             }}
           >
             Всички продукти

@@ -29,10 +29,11 @@ const FixedCricles = () => {
           alignItems="center"
           spacing={2}
           sx={{
-            height: 60,
+            height: { xs: 30, sm: 45, thousand: 60 },
             bgcolor: Colors.orange,
             bottom: 65,
-            left: 13,
+
+            left: { xs: 5, thousand: 13 },
             borderRadius: '50%',
           }}
         >

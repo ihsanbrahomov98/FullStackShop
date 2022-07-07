@@ -132,7 +132,13 @@ const ViewAllProducts = () => {
 
   return (
     <>
-      <Box sx={{ bgcolor: 'background.paper', width: 500 }}>
+      <Box
+        sx={{
+          bgcolor: 'background.paper',
+          width: { xs: 450, thousand: 500 },
+          pt: 3,
+        }}
+      >
         {/* TAB
          */}
         <AppBar position="static" sx={{ backgroundColor: Colors.black }}>
@@ -152,7 +158,10 @@ const ViewAllProducts = () => {
             />
             <Tab
               disableRipple
-              sx={{ color: Colors.white, '&:hover': { color: Colors.orange } }}
+              sx={{
+                color: Colors.white,
+                '&:hover': { color: Colors.orange },
+              }}
               label="Woman"
               {...a11yProps(1)}
             />
@@ -212,6 +221,7 @@ const ViewAllProducts = () => {
                       <CardMedia
                         component="img"
                         height={{ thousand: '100', xs: '250' }}
+                        width={{ thousand: '100', xs: '100' }}
                         image={
                           'https://gomez.bg/assets/photo/detect/align-bc/margin-25/upload/product/445/25-05-5-trim-398-600.jpg'
                         }
