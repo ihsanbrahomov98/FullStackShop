@@ -88,7 +88,18 @@ function SingleProductSlider() {
       alignItems="space-between"
     >
       <Stack
-        sx={{ flex: 1.5, left: 200 }}
+        sx={{
+          flex: 1.5,
+          left: 200,
+          display: {
+            lg: 'flex',
+            thousand: 'flex',
+            md950: 'flex',
+            md: 'flex',
+            sm750: 'none',
+            xs: 'none',
+          },
+        }}
         direction="column"
         justifyContent="flex-start"
         alignItems="flex-start"
@@ -134,8 +145,17 @@ function SingleProductSlider() {
           </Button>
         </Grid>
       </Stack>
-      <Stack sx={{ flex: 3 }} direction="column">
-        <Box sx={{ width: 450, height: 650, flexGrow: 1 }}>
+      <Stack
+        sx={{ flex: 3, width: { lg: 450, thousand: 450, md: 350 } }}
+        direction="column"
+      >
+        <Box
+          sx={{
+            width: { lg: 450, thousand: 450, md: 350 },
+            height: 650,
+            flexGrow: 1,
+          }}
+        >
           <SwipeableViews
             className="slider"
             axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
@@ -178,7 +198,11 @@ function SingleProductSlider() {
                 disableFocusRipple
                 disableRipple
                 position="absolute"
-                sx={{ color: Colors.black, left: 45, bottom: 250 }}
+                sx={{
+                  color: Colors.black,
+                  left: { thousand: 0, md: 50, sm: 40 },
+                  bottom: 250,
+                }}
                 size="small"
                 onClick={handleNext}
               >
@@ -193,7 +217,11 @@ function SingleProductSlider() {
               <Button
                 disableFocusRipple
                 disableRipple
-                sx={{ color: Colors.black, right: 95, bottom: 250 }}
+                sx={{
+                  color: Colors.black,
+                  right: { thousand: 0, md: 50, sm: 40, xs: 30 },
+                  bottom: 250,
+                }}
                 size="small"
                 onClick={handleBack}
               >

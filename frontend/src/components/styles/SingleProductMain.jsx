@@ -11,7 +11,8 @@ export const ShopAddButton = styled(Button, {
     props.color === 'secondary' && styles.secondary,
   ],
 })(({ theme }) => ({
-  width: '9.3rem',
+  width: { lg: '9.3rem', thousand: '9rem', sm750: '4rem' },
+  minWidth: { lg: '9.3rem', thousand: '9rem', sm750: '4rem' },
   height: '3rem',
   color: Colors.white,
   borderColor: Colors.dark,
