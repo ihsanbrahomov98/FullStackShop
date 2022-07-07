@@ -29,6 +29,7 @@ const theme = createTheme({
     values: {
       xs: 0,
       sm: 600,
+      sm700: 700,
       md: 900,
       md950: 950,
       thousand: 1000,

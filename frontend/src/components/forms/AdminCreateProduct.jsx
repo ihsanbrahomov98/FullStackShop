@@ -116,9 +116,9 @@ const AdminCreateProduct = () => {
         </Stack>{' '}
         <Container>
           <Stack
-            direction={{ xs: 'column', thousand: 'row' }}
+            direction={{ xs: 'column', sm700: 'row' }}
             justifyContent="center"
-            alignItems={{ xs: 'center', thousand: 'flex-start' }}
+            alignItems={{ xs: 'center', sm700: 'flex-start' }}
           >
             <form onSubmit={formik.handleSubmit}>
               <Stack
@@ -132,10 +132,10 @@ const AdminCreateProduct = () => {
                   justifyContent="space-evenly"
                   alignItems="center"
                   spacing={3}
-                  width="150%"
+                  width="100%"
                   sx={{}}
                 >
-                  <Grid item={{ xs: 12, md950: 12 }}>
+                  <Grid item={{ xs: 12, md950: 12, lg: 12 }}>
                     <Typography
                       sx={{
                         fontSize: 30,
@@ -149,7 +149,7 @@ const AdminCreateProduct = () => {
                     </Typography>
                   </Grid>
 
-                  <Grid item={{ xs: 12, md950: 6 }}>
+                  <Grid item={{ xs: 12, md950: 6, lg: 6 }}>
                     <TextField
                       InputLabelProps={{
                         style: { color: Colors.black },
@@ -180,7 +180,7 @@ const AdminCreateProduct = () => {
                       helperText={formik.touched.userId && formik.errors.userId}
                     />
                   </Grid>
-                  <Grid item={{ xs: 12, md950: 6 }}>
+                  <Grid item={{ xs: 12, md950: 6, lg: 6 }}>
                     <TextField
                       InputLabelProps={{
                         style: { color: Colors.black },
@@ -215,7 +215,7 @@ const AdminCreateProduct = () => {
                     />
                   </Grid>
 
-                  <Grid item={{ xs: 12, md950: 6 }}>
+                  <Grid item={{ xs: 12, md950: 6, lg: 6 }}>
                     {' '}
                     <TextField
                       InputLabelProps={{
@@ -578,7 +578,7 @@ const AdminCreateProduct = () => {
                   </Grid>
                 </Grid>
               </Stack>
-              <Grid item={{ xs: 12, thousand: 12 }}>
+              <Grid item={{ xs: 12, md950: 12 }}>
                 <Stack direction="row" justifyContent="center" sx={{ pt: 2 }}>
                   <Button
                     color="primary"
