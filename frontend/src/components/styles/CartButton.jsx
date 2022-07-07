@@ -26,18 +26,11 @@ export const CartButtonOrange = styled(Button, {
   fontWeight: 'bold',
   fontSize: '16px',
   '&:hover': { backgroundColor: Colors.orangeForCartHover },
-  [theme.breakpoints.down('sm')]: { padding: '10px 0px', fontSize: '14px' },
 }));
-export const CartButtonBlack = styled(Button, {
-  shouldForwardProp: (prop) => prop !== 'color',
-  name: 'MyShopButton',
-  slot: 'Root',
-  overridesResolver: (props, styles) => [
-    styles.root,
-    props.color === 'primary' && styles.primary,
-    props.color === 'secondary' && styles.secondary,
-  ],
-})(({ theme }) => ({
+export const CartButtonBlack = styled(
+  Button,
+  {}
+)(({ theme }) => ({
   color: Colors.white,
   borderColor: Colors.dark,
   border: '1px solid',
@@ -47,7 +40,11 @@ export const CartButtonBlack = styled(Button, {
   fontWeight: 'bold',
   fontSize: '10px',
   '&:hover': { backgroundColor: Colors.grayForCart, color: Colors.dark },
-  [theme.breakpoints.down('sm')]: { fontSize: '10px' },
+  [theme.breakpoints.down('thousand')]: {
+    fontSize: '5px',
+    maxWidth: 15,
+    height: '50%',
+  },
 }));
 export const CartButtonDelete = styled(Button, {
   shouldForwardProp: (prop) => prop !== 'color',

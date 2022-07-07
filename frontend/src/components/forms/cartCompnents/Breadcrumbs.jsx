@@ -22,23 +22,23 @@ export default function IconBreadcrumbs() {
           href="/"
         >
           <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-          MUI
+          НАЧАЛО
         </Link>
         <Link
           underline="hover"
           sx={{ display: 'flex', alignItems: 'center' }}
           color="inherit"
-          href="/material-ui/getting-started/installation/"
+          href="/products/all"
         >
           <WhatshotIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-          Core
+          Всички продукти
         </Link>
         <Typography
           sx={{ display: 'flex', alignItems: 'center' }}
           color="text.primary"
         >
           <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-          Breadcrumb
+          Количка
         </Typography>
       </Breadcrumbs>
     </div>

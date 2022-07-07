@@ -106,7 +106,11 @@ const AdminDashUpdate = () => {
       </Stack>{' '}
       <FixedCricles />
       <Container>
-        <Stack direction="row" justifyContent="center" alignItems="flex-start">
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          justifyContent="center"
+          alignItems={{ xs: 'center', sm: 'flex-start' }}
+        >
           <form onSubmit={formik.handleSubmit}>
             <Stack
               direction="row"
@@ -119,16 +123,15 @@ const AdminDashUpdate = () => {
                 justifyContent="space-evenly"
                 alignItems="center"
                 spacing={3}
-                width="150%"
-                sx={{ pt: 5 }}
+                width="100%"
               >
-                <Grid item xs={10}>
+                <Grid item={{ xs: 12, md950: 12, lg: 12 }}>
                   <Typography
                     sx={{
                       fontSize: 30,
                       fontWeight: 'bold',
 
-                      pr: 7.5,
+                      pt: 4,
                     }}
                     align="center"
                     variant="h3"
@@ -137,7 +140,7 @@ const AdminDashUpdate = () => {
                   </Typography>
                 </Grid>
 
-                <Grid item xs={6}>
+                <Grid item={{ xs: 12, md950: 6, lg: 6 }}>
                   <TextField
                     placeholder="ID на продукт"
                     InputLabelProps={{
@@ -169,7 +172,7 @@ const AdminDashUpdate = () => {
                     helperText={formik.touched.userId && formik.errors.userId}
                   />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item={{ xs: 12, md950: 6, lg: 6 }}>
                   <TextField
                     placeholder="Категория"
                     InputLabelProps={{
@@ -204,7 +207,7 @@ const AdminDashUpdate = () => {
                   />
                 </Grid>
 
-                <Grid item xs={6}>
+                <Grid item={{ xs: 12, md950: 6, lg: 6 }}>
                   {' '}
                   <TextField
                     placeholder="Име"
@@ -235,7 +238,7 @@ const AdminDashUpdate = () => {
                     helperText={formik.touched.name && formik.errors.name}
                   />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item={{ xs: 12, md950: 6, lg: 6 }}>
                   <TextField
                     placeholder="Снимка"
                     InputLabelProps={{
@@ -265,7 +268,7 @@ const AdminDashUpdate = () => {
                     helperText={formik.touched.img && formik.errors.img}
                   />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item={{ xs: 12, md950: 6, lg: 6 }}>
                   <TextField
                     placeholder="Описание"
                     InputLabelProps={{
@@ -300,7 +303,7 @@ const AdminDashUpdate = () => {
                     }
                   />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item={{ xs: 12, md950: 6, lg: 6 }}>
                   <TextField
                     placeholder="Марка"
                     InputLabelProps={{
@@ -331,7 +334,7 @@ const AdminDashUpdate = () => {
                   />
                 </Grid>
 
-                <Grid item xs={6}>
+                <Grid item={{ xs: 12, md950: 6, lg: 6 }}>
                   <TextField
                     placeholder="Оставащо количество"
                     InputLabelProps={{
@@ -366,7 +369,7 @@ const AdminDashUpdate = () => {
                     }
                   />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item={{ xs: 12, md950: 6, lg: 6 }}>
                   <TextField
                     placeholder="Цена"
                     InputLabelProps={{
@@ -396,7 +399,7 @@ const AdminDashUpdate = () => {
                     helperText={formik.touched.price && formik.errors.price}
                   />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item={{ xs: 12, md950: 6, lg: 6 }}>
                   <Stack
                     direction="row"
                     justifyContent="flex-start"
@@ -484,7 +487,7 @@ const AdminDashUpdate = () => {
                     />
                   </Stack>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item={{ xs: 12, md950: 6, lg: 6 }}>
                   <Stack
                     direction="row"
                     justifyContent="flex-start"
@@ -552,26 +555,25 @@ const AdminDashUpdate = () => {
                     />
                   </Stack>
                 </Grid>
-                <Grid item></Grid>
-                <Grid item xs={6}>
-                  <Button
-                    color="primary"
-                    size="large"
-                    variant="contained"
-                    type="submit"
-                    fullWidth
-                    sx={{
-                      backgroundColor: Colors.orange,
-                      '&:hover': {
-                        backgroundColor: Colors.orangeForCartHover,
-                      },
-                    }}
-                  >
-                    Промяна на Продукт
-                  </Button>
+                <Grid item={{ xs: 12, md950: 12, lg: 12 }}>
+                  <Stack direction="row" justifyContent="center" sx={{ pt: 2 }}>
+                    <Button
+                      color="primary"
+                      size="large"
+                      variant="contained"
+                      type="submit"
+                      fullWidth
+                      sx={{
+                        backgroundColor: Colors.orange,
+                        '&:hover': {
+                          backgroundColor: Colors.orangeForCartHover,
+                        },
+                      }}
+                    >
+                      Промяна на Продукт
+                    </Button>
+                  </Stack>
                 </Grid>
-                <Grid item></Grid>
-                <Grid item></Grid>
               </Grid>
             </Stack>
           </form>

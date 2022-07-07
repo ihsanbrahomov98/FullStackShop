@@ -88,10 +88,11 @@ const CartBody = () => {
         </Stack>
         <Stack height={20}></Stack>
         <Stack
-          direction="row"
+          direction={{ xs: 'column', thousand: 'row' }}
           justifyContent="center"
-          alignItems="flex-start"
+          alignItems={{ xs: 'center', thousand: 'flex-start' }}
           spacing={2}
+          width={{ thousand: 950, md: 800, md950: 900 }}
         >
           <Stack
             direction="column"
@@ -104,7 +105,12 @@ const CartBody = () => {
               justifyContent="center"
               alignItems="center"
               direction="row"
-              sx={{ backgroundColor: Colors.grayForCart, height: 15, p: 2 }}
+              sx={{
+                backgroundColor: Colors.grayForCart,
+                height: 15,
+                p: 2,
+                display: { lg: 'flex', thousand: 'flex', xs: 'none' },
+              }}
             >
               <Stack sx={{ flex: 2 }}>
                 <Typography sx={{ fontWeight: 'bold' }}>Продукт</Typography>
@@ -151,7 +157,7 @@ const CartBody = () => {
                     justifyContent="space-between"
                     alignItems="flex-start"
                     direction="row"
-                    sx={{ flex: 8 }}
+                    sx={{ flex: 6 }}
                   >
                     <Stack direction="column">
                       <Stack justifyContent="center" alignItems="center">
@@ -163,7 +169,7 @@ const CartBody = () => {
                       <Stack
                         direction="row"
                         justifyContent="space-between"
-                        sx={{ flex: 4, width: 150 }}
+                        sx={{ flex: 4, width: 120 }}
                       >
                         <Typography sx={{ fontSize: 12 }}>Марка:</Typography>
                         <Typography sx={{ fontSize: 12 }}>
@@ -174,7 +180,7 @@ const CartBody = () => {
                         direction="row"
                         justifyContent="space-between"
                         alignItems="space-between"
-                        sx={{ flex: 4, width: 150 }}
+                        sx={{ flex: 4, width: 120 }}
                       >
                         <Typography sx={{ fontSize: 12 }}>
                           Доствка до:
@@ -220,7 +226,16 @@ const CartBody = () => {
                   sx={{ flex: 2 }}
                   spacing={0.3}
                 >
-                  <CartButtonBlack styled={{ padding: 0 }}>+</CartButtonBlack>
+                  <CartButtonBlack
+                    style={{
+                      maxWidth: '30px',
+                      maxHeight: '30px',
+                      minWidth: '30px',
+                      minHeight: '30px',
+                    }}
+                  >
+                    +
+                  </CartButtonBlack>
                   <Typography
                     sx={{
                       color: Colors.orange,
@@ -231,7 +246,14 @@ const CartBody = () => {
                     {' '}
                     {cartProduct.quantity}
                   </Typography>
-                  <CartButtonBlack styled={{ padding: 0, width: 10 }}>
+                  <CartButtonBlack
+                    style={{
+                      maxWidth: '30px',
+                      maxHeight: '30px',
+                      minWidth: '30px',
+                      minHeight: '30px',
+                    }}
+                  >
                     -
                   </CartButtonBlack>
                 </Stack>
@@ -269,7 +291,17 @@ const CartBody = () => {
                   sx={{ flex: 2 }}
                 >
                   <Stack>
-                    <CartButtonDelete> X</CartButtonDelete>
+                    <CartButtonDelete
+                      style={{
+                        maxWidth: '30px',
+                        maxHeight: '30px',
+                        minWidth: '30px',
+                        minHeight: '30px',
+                      }}
+                    >
+                      {' '}
+                      X
+                    </CartButtonDelete>
                   </Stack>
                 </Stack>
               </Stack>
@@ -277,7 +309,11 @@ const CartBody = () => {
             <Stack sx={{ height: 5 }}></Stack>
             <Divider />
             <Stack sx={{ height: 12 }}></Stack>
-            <Stack justifyContent="flex-start" alignItems="flex-start">
+            <Stack
+              sx={{ display: { lg: 'flex', thousand: 'flex', xs: 'none' } }}
+              justifyContent="flex-start"
+              alignItems="flex-start"
+            >
               <CartButtonContinueShooping onClick={() => navigate(-1)}>
                 <KeyboardArrowLeftIcon sx={{ fontWeight: 'bold' }} />
                 <Typography sx={{ fontWeight: 'bold' }}>
@@ -352,8 +388,18 @@ const CartBody = () => {
                 <Typography sx={{ fontWeight: 'bold' }}>240,96 лв.</Typography>
               </Stack>
             </Stack>
-            <CartButtonOrange sx={{ width: '110%', height: '100%' }}>
-              <Typography sx={{ fontSize: 22, color: Colors.white }}>
+            <CartButtonOrange
+              sx={{
+                width: { thousand: '100%', md: '75%' },
+                height: { thousand: '100%', md: '75%' },
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: { thousand1100: 22, md950: 16, md: 14, xs: 10 },
+                  color: Colors.white,
+                }}
+              >
                 {' '}
                 КЪМ ЗАВЪРШВАНЕ
               </Typography>
