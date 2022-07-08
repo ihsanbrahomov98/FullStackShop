@@ -15,7 +15,11 @@ import { useEffect, useState, useReducer } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import { addProduct, addTooCart } from '../app/features/cartSlice';
+import {
+  addProduct,
+  addTooCart,
+  removeProduct,
+} from '../app/features/cartSlice';
 import { ShopAddButton } from './styles/SingleProductMain';
 import * as React from 'react';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -94,6 +98,7 @@ const SingleProductMain = ({}) => {
   const handleQuantity = (type) => {
     if (type === 'dec') {
       quantity > 1 && SetQuantity(quantity - 1);
+      handleRemove();
     } else {
       SetQuantity(quantity + 1);
       handleClick();
@@ -101,6 +106,9 @@ const SingleProductMain = ({}) => {
   };
   const handleClick = () => {
     dispatchHook(addProduct({ ...products, quantity, color }));
+  };
+  const handleRemove = () => {
+    dispatchHook(removeProduct({ ...products, quantity, color }));
   };
   // size and color
   const [alignment, setAlignment] = React.useState('left');

@@ -271,7 +271,7 @@ const CartBody = () => {
                       alignItems="center"
                     >
                       <Typography sx={{ fontWeight: 'bold' }}>
-                        {cartProduct.price * cartProduct.quantity}
+                        {cartProduct.price}
                       </Typography>
                     </Stack>
                     <Stack direction="column">
