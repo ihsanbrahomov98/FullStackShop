@@ -30,7 +30,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 const Navbar = () => {
-  const cartTotal = useSelector((state) => state.cart.quantity);
+  const cartTotal = useSelector((state) => state.cart.cartItems.length);
   console.log(cartTotal);
 
   const dispatch = useDispatch();

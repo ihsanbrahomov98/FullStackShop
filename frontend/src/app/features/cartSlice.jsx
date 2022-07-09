@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  products: [],
+  cartItems: [],
   quantity: 0,
   total: 0,
 };
@@ -10,29 +10,63 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addProduct: (state, action) => {
-      state.quantity += 1;
-      state.products.push(action.payload);
-      state.total += action.payload.price * action.payload.quantity;
-    },
-    removeProduct: (state, action) => {
-      state.quantity -= 1;
-      state.products.pop(action.payload);
-      state.total += action.payload.price * action.payload.quantity;
-    },
     addTooCart: (state) => {
       state.quantity += 1;
     },
-    increment: (state, action) => {
-      state.products.payload.quantity += 1;
+    removeProduct: (state, action) => {
+      state.cartItems = state.cartItems.filter(
+        (item) => item._id !== action.payload._id
+      );
+
+      state.total -= action.payload.price * action.payload.quantity;
     },
-    decrement: (state, action) => {
-      state.payload.quantity -= 1;
+    removeProductFromCart: (state, action) => {
+      state.cartItems = state.cartItems.filter(
+        (item) => item._id !== action.payload.id
+      );
+
+      state.total -= action.payload.price * action.payload.quantity;
+    },
+    addProduct: (state, action) => {
+      state.cartItems.push(action.payload);
+
+      state.total += action.payload.price * action.payload.quantity;
+    },
+    removeItem: (state, action) => {
+      const itemId = action.payload;
+      state.cartItems = state.cartItems.filter((item) => item._id !== itemId);
+    },
+    increase: (state, { payload }) => {
+      console.log('payload');
+      console.log(payload);
+      console.log('payload ID');
+      console.log(payload.id);
+      const cartItem = state.cartItems.find((item) => item._id === payload.id);
+      console.log('cartItem ');
+      console.log(cartItem);
+      cartItem.amount = cartItem.amount + 1;
+      console.log('amount:');
+      console.log(cartItem.amount);
+    },
+    decrease: (state, { payload }) => {
+      const cartItem = state.cartItems.find((item) => item._id === payload.id);
+      cartItem.amount = cartItem.amount - 1;
     },
   },
 });
 
-export const { addProduct, addTooCart, decrement, increment, removeProduct } =
-  cartSlice.actions;
+export const {
+  increase,
+  decrease,
+  clearCart,
+  calculateTotals,
+  removeItem,
+  addTooCart,
+  addProduct,
+  removeProduct,
+  increaseQuantity,
+  decreaseQuantity,
+  removeProductFromCart,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

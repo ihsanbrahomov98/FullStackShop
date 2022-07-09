@@ -30,7 +30,7 @@ const productSchema = new mongoose.Schema(
     price: {
       type: Number,
     },
-    quantityLeft: {
+    amount: {
       type: Number,
     },
     category: {

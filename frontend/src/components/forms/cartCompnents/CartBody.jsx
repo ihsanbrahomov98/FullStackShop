@@ -13,9 +13,12 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { Link, Routes, Route, useNavigate } from 'react-router-dom';
 import MessageIcon from '@mui/icons-material/Message';
 import {
-  addProduct,
-  decrement,
-  increment,
+  removeItem,
+  removeProductFromCart,
+  increase,
+  decreaseQuantity,
+  decrease,
+  removeProduct,
 } from '../../../app/features/cartSlice';
 import Container from '@mui/material/Container';
 import TopNavbar from '../../TopNavbar';
@@ -40,29 +43,31 @@ const CartBody = () => {
   const [quantity, SetQuantity] = useState(1);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
-  const cartProducts = useSelector((state) => state.cart.products);
+  const cartProducts = useSelector((state) => state.cart.cartItems);
   const cartQuantity = useSelector((state) => state.cart.quantity);
   const cartTotal = useSelector((state) => state.cart.total);
-  console.log(cartProducts);
-  const navigate = useNavigate();
-  const handleQuantity = (type) => {
-    if (type === 'dec') {
-      quantity > 1 && SetQuantity(quantity - 1);
-    } else {
-      SetQuantity(quantity + 1);
-    }
-  };
 
-  // for fixing
+  const navigate = useNavigate();
 
   useEffect(() => {
-    setProducts(cartProducts);
+    setProducts(Array.from(new Set(cartProducts)));
     setLoading(false);
   }, [products, setProducts, cartProducts]);
   const showLoading = <Typography>Loading....</Typography>;
 
   const scrollToTOP = () => {
     window.scrollTo(0, 0);
+  };
+  const increaseQuantityOfCartItem = (id) => {
+    console.log(id);
+    dispatch(increase({ id }));
+  };
+  const decreaseQuantityOfCartItem = (id) => {
+    console.log(id);
+    dispatch(decrease({ id }));
+  };
+  const removeProduct = (id) => {
+    dispatch(removeProductFromCart({ id }));
   };
   return (
     <>
@@ -227,6 +232,9 @@ const CartBody = () => {
                   spacing={0.3}
                 >
                   <CartButtonBlack
+                    onClick={() => {
+                      increaseQuantityOfCartItem(cartProduct._id);
+                    }}
                     style={{
                       maxWidth: '30px',
                       maxHeight: '30px',
@@ -244,9 +252,12 @@ const CartBody = () => {
                     }}
                   >
                     {' '}
-                    {cartProduct.quantity}
+                    {cartProduct.amount}
                   </Typography>
                   <CartButtonBlack
+                    onClick={() => {
+                      decreaseQuantityOfCartItem(cartProduct._id);
+                    }}
                     style={{
                       maxWidth: '30px',
                       maxHeight: '30px',
@@ -271,7 +282,7 @@ const CartBody = () => {
                       alignItems="center"
                     >
                       <Typography sx={{ fontWeight: 'bold' }}>
-                        {cartProduct.price}
+                        {cartProduct.price * cartProduct.amount}
                       </Typography>
                     </Stack>
                     <Stack direction="column">
@@ -292,6 +303,9 @@ const CartBody = () => {
                 >
                   <Stack>
                     <CartButtonDelete
+                      onClick={() => {
+                        removeProduct(cartProduct._id);
+                      }}
                       style={{
                         maxWidth: '30px',
                         maxHeight: '30px',

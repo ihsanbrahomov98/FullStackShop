@@ -32,7 +32,7 @@ const validationSchema = yup.object({
   price: yup
     .number('Enter your description')
     .required('description is required'),
-  quantityLeft: yup
+  amount: yup
     .number('Enter your description')
     .required('description is required'),
   category: yup
@@ -78,7 +78,7 @@ const AdminCreateProduct = () => {
       size: '',
       category: '',
       price: null,
-      quantityLeft: null,
+      amount: null,
       model: '',
     },
     validationSchema: validationSchema,
@@ -92,7 +92,7 @@ const AdminCreateProduct = () => {
         color: values.color,
         size: values.size,
         price: values.price,
-        quantityLeft: values.quantityLeft,
+        amount: values.amount,
         category: values.category,
         model: values.model,
       });
@@ -360,19 +360,15 @@ const AdminCreateProduct = () => {
                           color: Colors.black,
                         },
                       }}
-                      id="quantityLeft"
-                      name="quantityLeft"
-                      label="QuantityLeft"
-                      value={formik.values.quantityLeft}
+                      id="amount"
+                      name="amount"
+                      label="amount"
+                      value={formik.values.amount}
                       onChange={formik.handleChange}
                       error={
-                        formik.touched.quantityLeft &&
-                        Boolean(formik.errors.quantityLeft)
+                        formik.touched.amount && Boolean(formik.errors.amount)
                       }
-                      helperText={
-                        formik.touched.quantityLeft &&
-                        formik.errors.quantityLeft
-                      }
+                      helperText={formik.touched.amount && formik.errors.amount}
                     />
                   </Grid>
                   <Grid item={{ xs: 12, md950: 6 }}>
