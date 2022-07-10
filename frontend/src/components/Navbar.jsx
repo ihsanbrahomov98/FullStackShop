@@ -102,11 +102,9 @@ const Navbar = () => {
                 sx={{ display: { xs: 'none', thousand: 'flex' } }}
                 aria-label="cart"
               >
-                <StyledBadge badgeContent={cartTotal} color="secondary">
-                  <Link to="/adminboard">
-                    <SearchIcon color="secondary" />
-                  </Link>
-                </StyledBadge>
+                <Link to="/adminboard">
+                  <SearchIcon color="secondary" />
+                </Link>
               </IconButton>
             </Box>
             <Box>
@@ -117,11 +115,9 @@ const Navbar = () => {
                 sx={{ display: { xs: 'none', thousand: 'flex' } }}
                 aria-label="cart"
               >
-                <StyledBadge badgeContent={cartTotal} color="secondary">
-                  <Link to="/cartpage">
-                    <CallIcon color="secondary" />
-                  </Link>
-                </StyledBadge>
+                <Link to="/adminboard">
+                  <CallIcon color="secondary" />
+                </Link>
               </IconButton>
             </Box>
             <Box>
@@ -132,7 +128,7 @@ const Navbar = () => {
                 sx={{ display: { xs: 'none', thousand: 'flex' } }}
                 aria-label="cart"
               >
-                <Link to="/cartpage">
+                <Link to="/adminboard">
                   <AccountBoxRoundedIcon
                     badgeContent={cartTotal}
                     color="secondary"
@@ -148,11 +144,9 @@ const Navbar = () => {
                 sx={{ display: { xs: 'none', thousand: 'flex' } }}
                 aria-label="cart"
               >
-                <StyledBadge badgeContent={cartTotal} color="secondary">
-                  <Link to="/cartpage">
-                    <StarBorderIcon color="secondary"></StarBorderIcon>
-                  </Link>
-                </StyledBadge>
+                <Link to="/adminboard">
+                  <StarBorderIcon color="secondary"></StarBorderIcon>
+                </Link>
               </IconButton>
             </Box>
 
@@ -164,11 +158,9 @@ const Navbar = () => {
                 sx={{ display: { xs: 'none', thousand: 'flex' } }}
                 aria-label="cart"
               >
-                <StyledBadge badgeContent={cartTotal} color="secondary">
-                  <Link to="/cartpage">
-                    <InfoOutlinedIcon color="secondary" />
-                  </Link>
-                </StyledBadge>
+                <Link to="/adminboard">
+                  <InfoOutlinedIcon color="secondary" />
+                </Link>
               </IconButton>
             </Box>
             <Box>
