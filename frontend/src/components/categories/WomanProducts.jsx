@@ -412,26 +412,22 @@ const WomanProducts = () => {
                           borderColor: Colors.grayForMenu,
                           border: 2.5,
                           transform: 'scale3d(1.05, 1.05, 1)',
-                          image:
-                            'https://gomez.bg/assets/photo/detect/align-bc/margin-25/white/upload/product/292/25-05-edytuj-trim-398-600.jpg',
+                          image: product.img,
                         },
                       }}
                     >
                       <Link
                         style={{ textDecoration: 'none' }}
-                        to={`/products/sport/${product._id}`}
+                        to={`/products/woman/${product._id}`}
                       >
                         <CardMedia
                           component="img"
                           height="240"
-                          image={
-                            'https://gomez.bg/assets/photo/detect/align-bc/margin-25/upload/product/445/25-05-5-trim-398-600.jpg'
-                          }
+                          image={product.img}
                           alt={product.name}
                           style={{
                             '&:hover': {
-                              image:
-                                'https://gomez.bg/assets/photo/detect/align-bc/margin-25/white/upload/product/292/25-05-edytuj-trim-398-600.jpg',
+                              image: product.img,
                               transform: 'scale3d(1.05, 1.05, 1)',
                               height: '140',
                             },

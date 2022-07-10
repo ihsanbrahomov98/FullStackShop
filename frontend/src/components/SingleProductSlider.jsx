@@ -115,11 +115,9 @@ function SingleProductSlider() {
               >
                 <CardMedia
                   component="img"
-                  height="100"
+                  height="150"
                   width="20"
-                  image={
-                    'https://gomez.bg/assets/photo/detect/align-bc/margin-25/upload/product/445/25-05-5-trim-398-600.jpg'
-                  }
+                  image={step.img}
                   //  step.img
                   alt={step.name}
                 />
@@ -177,9 +175,7 @@ function SingleProductSlider() {
                         overflow: 'hidden',
                         width: '90%',
                       }}
-                      src={
-                        'https://gomez.bg/assets/photo/detect/align-bc/margin-25/upload/product/445/25-05-5-trim-398-600.jpg'
-                      }
+                      src={step.img}
                       // step.img
                       alt={step.label}
                     />

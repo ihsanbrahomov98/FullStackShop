@@ -28,7 +28,18 @@ export const cartSlice = createSlice({
       state.total -= action.payload.price * action.payload.quantity;
     },
     addProduct: (state, action) => {
-      state.cartItems.push(action.payload);
+      const isInArr = state.cartItems.find((product) => {
+        if (product._id !== action.payload._id) {
+          return false;
+        } else {
+          product.amount += 1;
+          return true;
+        }
+      });
+      if (isInArr) {
+      } else {
+        state.cartItems.push(action.payload);
+      }
 
       state.total += action.payload.price * action.payload.quantity;
     },

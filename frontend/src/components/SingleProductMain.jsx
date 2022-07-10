@@ -112,7 +112,6 @@ const SingleProductMain = ({}) => {
     }
   };
   const handleClick = () => {
-    products.quantityLeft += 1;
     dispatchHook(addProduct({ ...products, quantity, color }));
   };
   const handleRemove = () => {

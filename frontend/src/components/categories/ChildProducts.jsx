@@ -418,11 +418,11 @@ const ChildProducts = () => {
                     >
                       <Link
                         style={{ textDecoration: 'none' }}
-                        to={`/products/sport/${product._id}`}
+                        to={`/products/child/${product._id}`}
                       >
                         <CardMedia
                           component="img"
-                          height="240"
+                          height="300"
                           image={product.img}
                           alt={product.name}
                           style={{
