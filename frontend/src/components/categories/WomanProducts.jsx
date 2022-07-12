@@ -6,6 +6,7 @@ import { Colors } from '../styles/theme';
 import { Button, CardActionArea, CardActions, Typography } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import { Link } from 'react-router-dom';
+import FixedCricles from '../FixedCricles';
 import { useState, useEffect } from 'react';
 import Divider from '@mui/material/Divider';
 import axios from 'axios';
@@ -28,8 +29,8 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 const WomanProducts = () => {
   const location = useLocation();
   const cat = location.pathname.split('/')[2];
-  const [sort, setSort] = useState('cheap');
-  const [sortBySize, setSortBySize] = useState('small');
+  const [sort, setSort] = useState('евтино');
+  const [sortBySize, setSortBySize] = useState('A');
   const [products, setProducts] = useState([]);
   const [pageSize, setPageSize] = useState(10);
   const [value, setValue] = useState(4);
@@ -106,26 +107,27 @@ const WomanProducts = () => {
   }, [pageSize, setPageSize]);
 
   useEffect(() => {
-    if (sort === 'cheap') {
+    if (sort === 'евтино') {
       setProducts((prev) => [...prev].sort((a, b) => a.price - b.price));
-    } else if (sort === 'expensive') {
+    } else if (sort === 'скъпо') {
       setProducts((prev) => [...prev].sort((a, b) => b.price - a.price));
     } else {
       setProducts((prev) => [...prev].sort((a, b) => a.price - b.price));
     }
   }, [sort]);
   useEffect(() => {
-    if (sortBySize === 'small') {
-      setProducts((prev) => [...prev].sort((a, b) => a.name - b.name));
-    } else if (sortBySize === 'large') {
-      setProducts((prev) => [...prev].sort((a, b) => b.name - a.name));
+    if (sortBySize === 'A') {
+      setProducts((prev) => [...prev].sort());
+    } else if (sortBySize === 'Z') {
+      setProducts((prev) => [...prev].reverse());
     } else {
-      setProducts((prev) => [...prev].sort((a, b) => a.name - b.name));
+      setProducts((prev) => [...prev].sort());
     }
   }, [sortBySize]);
 
   return (
     <>
+      <FixedCricles />
       <Container sx={{ pb: 5, pt: 5 }} direction="row">
         <Stack direction="row" justifyContent="center" alignItems="flex-start">
           <Stack direction="column" flex={6}>
@@ -193,12 +195,12 @@ const WomanProducts = () => {
                         '&:hover': { backgroundColor: Colors.grayForMenu },
                       }}
                       onClick={() => {
-                        setSort('cheap');
+                        setSort('евтино');
                       }}
                       disableRipple
                       onChange={pageChange}
                     >
-                      cheap
+                      евтино
                     </MenuItem>
                     <MenuItem
                       sx={{
@@ -206,11 +208,11 @@ const WomanProducts = () => {
                         '&:hover': { backgroundColor: Colors.grayForMenu },
                       }}
                       onClick={() => {
-                        setSort('expensive');
+                        setSort('скъпо');
                       }}
                       disableRipple
                     >
-                      expensive
+                      скъпо
                     </MenuItem>
                     {/* Second Sort */}
                   </Menu>
@@ -347,12 +349,12 @@ const WomanProducts = () => {
                         '&:hover': { backgroundColor: Colors.grayForMenu },
                       }}
                       onClick={() => {
-                        setSortBySize('small');
+                        setSortBySize('A');
                       }}
                       disableRipple
                       onChange={pageChange}
                     >
-                      small
+                      A
                     </MenuItem>
                     <MenuItem
                       sx={{
@@ -360,11 +362,11 @@ const WomanProducts = () => {
                         '&:hover': { backgroundColor: Colors.grayForMenu },
                       }}
                       onClick={() => {
-                        setSortBySize('large');
+                        setSortBySize('Z');
                       }}
                       disableRipple
                     >
-                      large
+                      Z
                     </MenuItem>
                   </Menu>
                 </Stack>

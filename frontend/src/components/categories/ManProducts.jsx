@@ -14,6 +14,7 @@ import { useLocation } from 'react-router';
 import Grid from '@mui/material/Grid';
 import BoxForColor from './BoxForColor';
 import Pagination from '@mui/material/Pagination';
+import FixedCricles from '../FixedCricles';
 import {
   CartButtonBlack,
   TypographyStyled,
@@ -126,6 +127,7 @@ const ManProducts = () => {
 
   return (
     <>
+      <FixedCricles />
       <Container sx={{ pb: 5, pt: 5 }} direction="row">
         <Stack direction="row" justifyContent="center" alignItems="flex-start">
           <Stack direction="column" flex={6}>

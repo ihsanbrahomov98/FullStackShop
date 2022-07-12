@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Divider from '@mui/material/Divider';
 import axios from 'axios';
+import FixedCricles from '../FixedCricles';
 import Container from '@mui/material/Container';
 import { useLocation } from 'react-router';
 import Grid from '@mui/material/Grid';
@@ -125,6 +126,7 @@ const AllProducts = () => {
 
   return (
     <>
+      <FixedCricles />
       <Container sx={{ pb: 5, pt: 5 }} direction="row">
         <Stack direction="row" justifyContent="center" alignItems="flex-start">
           <Stack direction="column" flex={6}>

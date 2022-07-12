@@ -14,6 +14,7 @@ import BoxForColor from './categories/BoxForColor';
 import { useEffect, useState, useReducer } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+
 import { useParams } from 'react-router-dom';
 import {
   increase,
@@ -35,6 +36,7 @@ import { styled } from '@mui/material/styles';
 import { useLocation } from 'react-router';
 import '@fontsource/montez';
 import { borderColor } from 'polished';
+import FixedCricles from './FixedCricles';
 
 export const CountContext = React.createContext();
 
@@ -130,6 +132,7 @@ const SingleProductMain = ({}) => {
 
   return (
     <>
+      <FixedCricles />
       <Container sx={{ pt: 6, pb: 35 }}>
         {loading ? (
           showLoading
@@ -163,7 +166,7 @@ const SingleProductMain = ({}) => {
                   <Box>
                     <Typography sx={{ fontSize: 10, fontWeight: 'thin' }}>
                       {' '}
-                      X-Ray Speed Lite Jr
+                      {products.description}
                     </Typography>
                   </Box>
                   <Box>
@@ -175,7 +178,10 @@ const SingleProductMain = ({}) => {
                   </Box>
                 </Box>
                 <Box>
-                  <Typography sx={{ fontWeight: 'bold' }}> PUMA</Typography>
+                  <Typography sx={{ fontWeight: 'bold' }}>
+                    {' '}
+                    {products.userId}
+                  </Typography>
                 </Box>
               </Stack>
               {/* First Stack End */}
