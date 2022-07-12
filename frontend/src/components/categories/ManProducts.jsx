@@ -423,6 +423,7 @@ const ManProducts = () => {
                         <CardMedia
                           component="img"
                           height="240"
+                          width="150"
                           image={product.img}
                           alt={product.name}
                           style={{
