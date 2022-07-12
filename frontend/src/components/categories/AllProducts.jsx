@@ -532,7 +532,7 @@ const AllProducts = () => {
                                       color: Colors.black,
                                     }}
                                   >
-                                    .99{' '}
+                                    .00{' '}
                                   </Typography>
                                   <Typography
                                     style={{ textDecoration: 'none' }}

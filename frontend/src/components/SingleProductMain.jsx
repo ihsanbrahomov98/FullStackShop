@@ -61,6 +61,7 @@ const SingleProductMain = ({}) => {
   const [quantity, SetQuantity] = useState(1);
   const [items, SetItems] = useState([]);
   const [color, setColor] = useState('white');
+  const [sizeOfProduct, setSizeOfProduct] = useState('');
 
   useEffect(() => {
     const fetchproducts = async () => {
@@ -112,10 +113,12 @@ const SingleProductMain = ({}) => {
     }
   };
   const handleClick = () => {
-    dispatchHook(addProduct({ ...products, quantity, color }));
+    dispatchHook(addProduct({ ...products, quantity, color, sizeOfProduct }));
   };
   const handleRemove = () => {
-    dispatchHook(removeProduct({ ...products, quantity, color }));
+    dispatchHook(
+      removeProduct({ ...products, quantity, color, sizeOfProduct })
+    );
   };
 
   // size and color

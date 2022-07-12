@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { Link, Routes, Route, useNavigate } from 'react-router-dom';
 import MessageIcon from '@mui/icons-material/Message';
+import BoxForColor from '../../categories/BoxForColor';
 import {
   removeItem,
   removeProductFromCart,
@@ -46,6 +47,7 @@ const CartBody = () => {
   const cartProducts = useSelector((state) => state.cart.cartItems);
   const cartQuantity = useSelector((state) => state.cart.quantity);
   const cartTotal = useSelector((state) => state.cart.total);
+  const [sum, setSum] = useState(0);
 
   const navigate = useNavigate();
 
@@ -69,6 +71,7 @@ const CartBody = () => {
   const removeProduct = (id) => {
     dispatch(removeProductFromCart({ id }));
   };
+
   return (
     <>
       <TopNavbar />
@@ -151,7 +154,7 @@ const CartBody = () => {
                     <Card>
                       <CardMedia
                         component="img"
-                        height="80"
+                        height="120"
                         image={cartProduct.img}
                         alt={cartProduct.description}
                         sx={{ width: 100 }}
@@ -166,7 +169,9 @@ const CartBody = () => {
                   >
                     <Stack direction="column">
                       <Stack justifyContent="center" alignItems="center">
-                        <Typography sx={{ fontWeight: 'bold', pb: 1 }}>
+                        <Typography
+                          sx={{ fontWeight: 'bold', pb: 1, fontSize: 14 }}
+                        >
                           {cartProduct.name}
                         </Typography>
                       </Stack>
@@ -187,12 +192,8 @@ const CartBody = () => {
                         alignItems="space-between"
                         sx={{ flex: 4, width: 120 }}
                       >
-                        <Typography sx={{ fontSize: 12 }}>
-                          Доствка до:
-                        </Typography>
-                        <Typography sx={{ fontWeight: 'bold', fontSize: 12 }}>
-                          22.07.2022
-                        </Typography>
+                        <Typography sx={{ fontSize: 12 }}>Цвят:</Typography>
+                        <BoxForColor sizeItem={cartProduct.color} />
                       </Stack>
                     </Stack>
                   </Stack>
@@ -214,7 +215,7 @@ const CartBody = () => {
                     </Typography>
                   </Stack>
                   <Stack direction="column">
-                    <Typography sx={{ fontSize: 10 }}>.99 </Typography>
+                    <Typography sx={{ fontSize: 10 }}>.00 </Typography>
                     <Typography
                       sx={{ fontSize: 10, color: Colors.orange, ml: 0.2 }}
                     >
@@ -286,7 +287,7 @@ const CartBody = () => {
                       </Typography>
                     </Stack>
                     <Stack direction="column">
-                      <Typography sx={{ fontSize: 10 }}>.99 </Typography>
+                      <Typography sx={{ fontSize: 10 }}>.00 </Typography>
                       <Typography
                         sx={{ fontSize: 10, color: Colors.orange, ml: 0.2 }}
                       >
@@ -373,14 +374,32 @@ const CartBody = () => {
             >
               <Stack>
                 {' '}
-                <Typography sx={{ fontWeight: 'bold' }}>
-                  {' '}
-                  Междинна сума
-                </Typography>
+                <Typography sx={{ fontWeight: 'bold' }}>Без ДДС</Typography>
               </Stack>
               <Stack>
                 {' '}
-                <Typography sx={{ fontWeight: 'bold' }}> 240,96 лв.</Typography>
+                <Typography sx={{ fontWeight: 'bold' }}>
+                  {' '}
+                  {cartTotal * 0.8}.00 ЛВ
+                </Typography>
+              </Stack>
+            </Stack>
+            <Stack
+              direction="row"
+              justifyContent="space-between"
+              alignItems="center"
+              sx={{ width: '100%' }}
+            >
+              <Stack>
+                {' '}
+                <Typography sx={{ fontWeight: 'bold' }}>ДДС</Typography>
+              </Stack>
+              <Stack>
+                {' '}
+                <Typography sx={{ fontWeight: 'bold' }}>
+                  {' '}
+                  {cartTotal * 0.2}.00 ЛВ
+                </Typography>
               </Stack>
             </Stack>
             <Stack
@@ -399,7 +418,9 @@ const CartBody = () => {
               </Stack>
               <Stack>
                 {' '}
-                <Typography sx={{ fontWeight: 'bold' }}>240,96 лв.</Typography>
+                <Typography sx={{ fontWeight: 'bold' }}>
+                  {cartTotal}.00 ЛВ
+                </Typography>
               </Stack>
             </Stack>
             <CartButtonOrange

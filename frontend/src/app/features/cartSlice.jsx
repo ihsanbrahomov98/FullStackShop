@@ -40,7 +40,6 @@ export const cartSlice = createSlice({
       } else {
         state.cartItems.push(action.payload);
       }
-
       state.total += action.payload.price * action.payload.quantity;
     },
     removeItem: (state, action) => {
