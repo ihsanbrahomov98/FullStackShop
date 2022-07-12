@@ -51,7 +51,7 @@ app.use('/back/mock', mockDataRuoting);
 //     )
 // })
 
-app.listen(5550, () => {
+app.listen(process.env.PORT || 5550, () => {
   connect();
   console.log('back end working <3');
 });
