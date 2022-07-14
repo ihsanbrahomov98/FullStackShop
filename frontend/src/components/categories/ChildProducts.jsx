@@ -127,8 +127,8 @@ const ChildProducts = () => {
   }, [sortBySize]);
   return (
     <>
-      <FixedCricles />
-      <Container sx={{ pb: 5, pt: 5 }} direction="row">
+      <Container sx={{ pt: 5, pb: 5 }} direction="row">
+        <FixedCricles />
         <Stack direction="row" justifyContent="center" alignItems="flex-start">
           <Stack direction="column" flex={6}>
             <Stack>

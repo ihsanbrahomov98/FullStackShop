@@ -29,8 +29,8 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 const AllProducts = () => {
   const location = useLocation();
   const cat = location.pathname.split('/')[2];
-  const [sort, setSort] = useState('cheap');
-  const [sortBySize, setSortBySize] = useState('small');
+  const [sort, setSort] = useState('евтино');
+  const [sortBySize, setSortBySize] = useState('A');
   const [products, setProducts] = useState([]);
   const [pageSize, setPageSize] = useState(10);
   const [value, setValue] = useState(4);
@@ -106,18 +106,18 @@ const AllProducts = () => {
   }, [pageSize, setPageSize]);
 
   useEffect(() => {
-    if (sort === 'cheap') {
+    if (sort === 'евтино') {
       setProducts((prev) => [...prev].sort((a, b) => a.price - b.price));
-    } else if (sort === 'expensive') {
+    } else if (sort === 'скъпо') {
       setProducts((prev) => [...prev].sort((a, b) => b.price - a.price));
     } else {
       setProducts((prev) => [...prev].sort((a, b) => a.price - b.price));
     }
   }, [sort]);
   useEffect(() => {
-    if (sortBySize === 'small') {
+    if (sortBySize === 'A') {
       setProducts((prev) => [...prev].sort((a, b) => a.name - b.name));
-    } else if (sortBySize === 'large') {
+    } else if (sortBySize === 'Z') {
       setProducts((prev) => [...prev].sort((a, b) => b.name - a.name));
     } else {
       setProducts((prev) => [...prev].sort((a, b) => a.name - b.name));
@@ -194,12 +194,12 @@ const AllProducts = () => {
                         '&:hover': { backgroundColor: Colors.grayForMenu },
                       }}
                       onClick={() => {
-                        setSort('cheap');
+                        setSort('евтино');
                       }}
                       disableRipple
                       onChange={pageChange}
                     >
-                      cheap
+                      евтино
                     </MenuItem>
                     <MenuItem
                       sx={{
@@ -207,11 +207,11 @@ const AllProducts = () => {
                         '&:hover': { backgroundColor: Colors.grayForMenu },
                       }}
                       onClick={() => {
-                        setSort('expensive');
+                        setSort('скъпо');
                       }}
                       disableRipple
                     >
-                      expensive
+                      скъпо
                     </MenuItem>
                     {/* Second Sort */}
                   </Menu>
@@ -348,12 +348,12 @@ const AllProducts = () => {
                         '&:hover': { backgroundColor: Colors.grayForMenu },
                       }}
                       onClick={() => {
-                        setSortBySize('small');
+                        setSortBySize('A');
                       }}
                       disableRipple
                       onChange={pageChange}
                     >
-                      small
+                      A
                     </MenuItem>
                     <MenuItem
                       sx={{
@@ -361,11 +361,11 @@ const AllProducts = () => {
                         '&:hover': { backgroundColor: Colors.grayForMenu },
                       }}
                       onClick={() => {
-                        setSortBySize('large');
+                        setSortBySize('Z');
                       }}
                       disableRipple
                     >
-                      large
+                      Z
                     </MenuItem>
                   </Menu>
                 </Stack>
