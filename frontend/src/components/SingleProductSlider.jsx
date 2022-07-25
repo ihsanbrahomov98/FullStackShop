@@ -11,7 +11,7 @@ import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import axios, { Axios } from 'axios';
+import { axiosInstance } from '../config';
 import { useLocation, Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { Colors } from './styles/theme';
@@ -34,13 +34,13 @@ function SingleProductSlider() {
   useEffect(() => {
     const fetchAll = async () => {
       try {
-        const { data } = await axios.get(
+        const { data } = await axiosInstance.get(
           `/back/mock/api/findallcat/${locationParams}`
         );
         setProducts(data);
         console.log(data);
         if (!products) {
-          const { data } = await axios.get(
+          const { data } = await axiosInstance.get(
             `/back/mock/api/findallcat/${locationParams}`
           );
           setProducts(data);

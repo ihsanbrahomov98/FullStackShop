@@ -6,7 +6,7 @@ import { Button, CardActionArea, CardActions, Typography } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { axiosInstance } from '../../config';
 import Grid from '@mui/material/Grid';
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
@@ -68,7 +68,7 @@ const ViewAllProducts = () => {
   // MAN
   useEffect(() => {
     const fetchproducts = async () => {
-      const { data } = await axios.get('/back/mock/api/findall');
+      const { data } = await axiosInstance.get('/back/mock/api/findall');
       setAllProducts(data);
       const filteredItemsMan = data.filter((item) => item.category === 'man');
       setManproducts(filteredItemsMan);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Box } from '@mui/material';
-import axios from 'axios';
+import { axiosInstance } from '../../config';
 import Stack from '@mui/material/Stack';
 import AdminNav from './AdminNav';
 import Typography from '@mui/material/Typography';
@@ -10,7 +10,7 @@ import { Colors } from '../styles/theme';
 import FixedCricles from '../FixedCricles';
 const AdminDashDelete = () => {
   const deleteAll = () => {
-    axios.delete('/back/mock/api/delete');
+    axiosInstance.delete('/back/mock/api/delete');
   };
 
   return (

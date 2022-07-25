@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import { useSelector, useDispatch } from 'react-redux';
 import BoxForColor from './categories/BoxForColor';
 import { useEffect, useState, useReducer } from 'react';
-import axios from 'axios';
+import { axiosInstance } from '../config';
 import { useNavigate } from 'react-router-dom';
 
 import { useParams } from 'react-router-dom';
@@ -67,7 +67,9 @@ const SingleProductMain = ({}) => {
 
   useEffect(() => {
     const fetchproducts = async () => {
-      const { data } = await axios.get(`/back/mock/api/findone/${params.id}`);
+      const { data } = await axiosInstance.get(
+        `/back/mock/api/findone/${params.id}`
+      );
       setProducts(data);
       setColor(data.color[0]);
       Setloading(false);
@@ -90,10 +92,13 @@ const SingleProductMain = ({}) => {
   useEffect(() => {
     const request = async () => {
       try {
-        const res = await axios.post('localhost:5550/back/stripe/payment', {
-          tokenId: stripeToken.id,
-          amount: 25000,
-        });
+        const res = await axiosInstance.post(
+          'localhost:5550/back/stripe/payment',
+          {
+            tokenId: stripeToken.id,
+            amount: 25000,
+          }
+        );
         console.log(res.data);
         navigate('/', { replace: true });
       } catch (error) {

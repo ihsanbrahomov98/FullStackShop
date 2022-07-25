@@ -23,7 +23,7 @@ import Button from '@mui/material/Button';
 import { Colors } from './styles/theme';
 import ViewAllProducts from './forms/ViewAllProducts';
 import Autocomplete from '@mui/material/Autocomplete';
-import axios from 'axios';
+import { axiosInstance } from '../config';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
@@ -71,7 +71,7 @@ export default function HamburgerMenu() {
   const [open, setState] = useState(false);
   useEffect(() => {
     const fetchproducts = async () => {
-      const { data } = await axios.get('/back/mock/api/findall');
+      const { data } = await axiosInstance.get('/back/mock/api/findall');
       setAllProducts(data);
     };
     fetchproducts();

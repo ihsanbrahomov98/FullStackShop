@@ -22,7 +22,7 @@ const connect = async () => {
   }
 };
 mongoose.connection.on('disconnected', () => {
-  console.log('MONGOO not working :(');
+  console.log('MONGOO not working!  ');
 });
 mongoose.connection.on('connected', () => {
   console.log('MONGOO working <3');
@@ -37,19 +37,6 @@ app.use('/back/profile', profileRouting);
 app.use('/back/product', productRoute);
 app.use('/back/stripe', stripeRouting);
 app.use('/back/mock', mockDataRuoting);
-
-// app.use((err,req,res,next)=>{
-// const erroStatus = err.status || 500
-// const erorMessage = err.message || "mistake"
-//     return res.status(erroStatus).json({
-//         success: false,
-//         status: erroStatus,
-//         message: erorMessage,
-//         stack: err.stack,
-//     }
-
-//     )
-// })
 
 app.listen(process.env.PORT || 5550, () => {
   connect();

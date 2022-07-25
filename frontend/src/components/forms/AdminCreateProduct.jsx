@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
-import axios from 'axios';
+
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import AdminNav from './AdminNav';
@@ -17,6 +17,7 @@ import { grey, blue } from '@mui/material/colors';
 import { Colors } from '../styles/theme';
 import Container from '@mui/material/Container';
 import FixedCricles from '../FixedCricles';
+import { axiosInstance } from '../../config';
 
 const validationSchema = yup.object({
   userId: yup.string('Enter your userId').required('userId is required'),
@@ -84,7 +85,7 @@ const AdminCreateProduct = () => {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
-      axios.post('/back/mock/api/create', {
+      axiosInstance.post('/back/mock/api/create', {
         userId: values.userId,
         name: values.name,
         img: values.img,
@@ -174,9 +175,6 @@ const AdminCreateProduct = () => {
                       label="UserId"
                       value={formik.values.userId}
                       onChange={formik.handleChange}
-                      error={
-                        formik.touched.userId && Boolean(formik.errors.userId)
-                      }
                       helperText={formik.touched.userId && formik.errors.userId}
                     />
                   </Grid>
@@ -205,10 +203,6 @@ const AdminCreateProduct = () => {
                       label="Category"
                       value={formik.values.category}
                       onChange={formik.handleChange}
-                      error={
-                        formik.touched.category &&
-                        Boolean(formik.errors.category)
-                      }
                       helperText={
                         formik.touched.category && formik.errors.category
                       }
@@ -241,7 +235,6 @@ const AdminCreateProduct = () => {
                       label="Name"
                       value={formik.values.name}
                       onChange={formik.handleChange}
-                      error={formik.touched.name && Boolean(formik.errors.name)}
                       helperText={formik.touched.name && formik.errors.name}
                     />
                   </Grid>
@@ -270,7 +263,6 @@ const AdminCreateProduct = () => {
                       label="img"
                       value={formik.values.img}
                       onChange={formik.handleChange}
-                      error={formik.touched.img && Boolean(formik.errors.img)}
                       helperText={formik.touched.img && formik.errors.img}
                     />
                   </Grid>
@@ -299,10 +291,6 @@ const AdminCreateProduct = () => {
                       label="Description"
                       value={formik.values.description}
                       onChange={formik.handleChange}
-                      error={
-                        formik.touched.description &&
-                        Boolean(formik.errors.description)
-                      }
                       helperText={
                         formik.touched.description && formik.errors.description
                       }
@@ -333,9 +321,6 @@ const AdminCreateProduct = () => {
                       label="Model"
                       value={formik.values.model}
                       onChange={formik.handleChange}
-                      error={
-                        formik.touched.model && Boolean(formik.errors.model)
-                      }
                       helperText={formik.touched.model && formik.errors.model}
                     />
                   </Grid>
@@ -365,9 +350,6 @@ const AdminCreateProduct = () => {
                       label="amount"
                       value={formik.values.amount}
                       onChange={formik.handleChange}
-                      error={
-                        formik.touched.amount && Boolean(formik.errors.amount)
-                      }
                       helperText={formik.touched.amount && formik.errors.amount}
                     />
                   </Grid>
@@ -396,9 +378,6 @@ const AdminCreateProduct = () => {
                       label="Price"
                       value={formik.values.price}
                       onChange={formik.handleChange}
-                      error={
-                        formik.touched.price && Boolean(formik.errors.price)
-                      }
                       helperText={formik.touched.price && formik.errors.price}
                     />
                   </Grid>
@@ -421,9 +400,6 @@ const AdminCreateProduct = () => {
                         name="size"
                         value={'40'}
                         onChange={formik.handleChange}
-                        error={
-                          formik.touched.size && Boolean(formik.errors.size)
-                        }
                         helperText={formik.touched.size && formik.errors.size}
                         onClick={() => {
                           sizeOperation('40', checked40Bool);
@@ -443,9 +419,6 @@ const AdminCreateProduct = () => {
                         name="size"
                         value={'41'}
                         onChange={formik.handleChange}
-                        error={
-                          formik.touched.size && Boolean(formik.errors.size)
-                        }
                         helperText={formik.touched.size && formik.errors.size}
                         onClick={() => {
                           sizeOperation('41', checked41Bool);
@@ -465,9 +438,6 @@ const AdminCreateProduct = () => {
                         name="size"
                         value={'42'}
                         onChange={formik.handleChange}
-                        error={
-                          formik.touched.size && Boolean(formik.errors.size)
-                        }
                         helperText={formik.touched.size && formik.errors.size}
                         onClick={() => {
                           sizeOperation('42', checked42Bool);
@@ -487,9 +457,6 @@ const AdminCreateProduct = () => {
                         name="size"
                         value={'43'}
                         onChange={formik.handleChange}
-                        error={
-                          formik.touched.size && Boolean(formik.errors.size)
-                        }
                         helperText={formik.touched.size && formik.errors.size}
                         onClick={() => {
                           sizeOperation('43', checked43Bool);
@@ -511,9 +478,6 @@ const AdminCreateProduct = () => {
                         name="color"
                         value={'black'}
                         onChange={formik.handleChange}
-                        error={
-                          formik.touched.size && Boolean(formik.errors.size)
-                        }
                         helperText={formik.touched.size && formik.errors.size}
                         onClick={() => {
                           sizeOperation('black', checkedBlack);
@@ -533,9 +497,6 @@ const AdminCreateProduct = () => {
                         name="color"
                         value={'blue'}
                         onChange={formik.handleChange}
-                        error={
-                          formik.touched.size && Boolean(formik.errors.size)
-                        }
                         helperText={formik.touched.size && formik.errors.size}
                         onClick={() => {
                           sizeOperation('blue', checkedBlue);
@@ -555,9 +516,6 @@ const AdminCreateProduct = () => {
                         name="color"
                         value={'white'}
                         onChange={formik.handleChange}
-                        error={
-                          formik.touched.size && Boolean(formik.errors.size)
-                        }
                         helperText={formik.touched.size && formik.errors.size}
                         onClick={() => {
                           sizeOperation('white', checkedWhite);

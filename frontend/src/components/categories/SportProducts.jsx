@@ -10,7 +10,7 @@ import FixedCricles from '../FixedCricles';
 
 import { useState, useEffect } from 'react';
 import Divider from '@mui/material/Divider';
-import axios from 'axios';
+import { axiosInstance } from '../../config';
 import Container from '@mui/material/Container';
 import { useLocation } from 'react-router';
 import Grid from '@mui/material/Grid';
@@ -99,7 +99,7 @@ const SportProducts = () => {
 
   useEffect(() => {
     const fetchproducts = async () => {
-      const { data } = await axios.get('/back/mock/api/findall');
+      const { data } = await axiosInstance.get('/back/mock/api/findall');
 
       const filteredItemsWoman = data.filter((item) => item.category === cat);
       setProducts(filteredItemsWoman);

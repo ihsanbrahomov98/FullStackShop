@@ -8,7 +8,7 @@ import Stack from '@mui/material/Stack';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Divider from '@mui/material/Divider';
-import axios from 'axios';
+import { axiosInstance } from '../../config';
 import FixedCricles from '../FixedCricles';
 import Container from '@mui/material/Container';
 import { useLocation } from 'react-router';
@@ -98,7 +98,7 @@ const AllProducts = () => {
 
   useEffect(() => {
     const fetchproducts = async () => {
-      const { data } = await axios.get('/back/mock/api/findall');
+      const { data } = await axiosInstance.get('/back/mock/api/findall');
 
       setProducts(data);
     };
@@ -599,9 +599,3 @@ const AllProducts = () => {
 };
 
 export default AllProducts;
-
-//     const fetchproducts = async () => {
-//   const { data } = await axios.get('/back/mock/api/findall');
-
-//   setProducts(data);
-//  console.log(products)

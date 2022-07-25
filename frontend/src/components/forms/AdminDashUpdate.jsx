@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
-import axios from 'axios';
+import { axiosInstance } from '../../config';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import AdminNav from './AdminNav';
@@ -84,7 +84,7 @@ const AdminDashUpdate = () => {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
-      axios.put('/back/mock/api/update', {
+      axiosInstance.put('/back/mock/api/update', {
         userId: values.userId,
         name: values.name,
         img: values.img,
@@ -166,9 +166,6 @@ const AdminDashUpdate = () => {
                     label="ID на продукт"
                     value={formik.values.userId}
                     onChange={formik.handleChange}
-                    error={
-                      formik.touched.userId && Boolean(formik.errors.userId)
-                    }
                     helperText={formik.touched.userId && formik.errors.userId}
                   />
                 </Grid>
@@ -198,9 +195,6 @@ const AdminDashUpdate = () => {
                     label="Категория"
                     value={formik.values.category}
                     onChange={formik.handleChange}
-                    error={
-                      formik.touched.category && Boolean(formik.errors.category)
-                    }
                     helperText={
                       formik.touched.category && formik.errors.category
                     }
@@ -234,7 +228,6 @@ const AdminDashUpdate = () => {
                     label="Име"
                     value={formik.values.name}
                     onChange={formik.handleChange}
-                    error={formik.touched.name && Boolean(formik.errors.name)}
                     helperText={formik.touched.name && formik.errors.name}
                   />
                 </Grid>
@@ -264,7 +257,6 @@ const AdminDashUpdate = () => {
                     label="Снимка"
                     value={formik.values.img}
                     onChange={formik.handleChange}
-                    error={formik.touched.img && Boolean(formik.errors.img)}
                     helperText={formik.touched.img && formik.errors.img}
                   />
                 </Grid>
@@ -294,10 +286,6 @@ const AdminDashUpdate = () => {
                     label="Описание"
                     value={formik.values.description}
                     onChange={formik.handleChange}
-                    error={
-                      formik.touched.description &&
-                      Boolean(formik.errors.description)
-                    }
                     helperText={
                       formik.touched.description && formik.errors.description
                     }
@@ -329,7 +317,6 @@ const AdminDashUpdate = () => {
                     label="Марка"
                     value={formik.values.model}
                     onChange={formik.handleChange}
-                    error={formik.touched.model && Boolean(formik.errors.model)}
                     helperText={formik.touched.model && formik.errors.model}
                   />
                 </Grid>
@@ -360,10 +347,6 @@ const AdminDashUpdate = () => {
                     label="Оставащо количество"
                     value={formik.values.quantityLeft}
                     onChange={formik.handleChange}
-                    error={
-                      formik.touched.quantityLeft &&
-                      Boolean(formik.errors.quantityLeft)
-                    }
                     helperText={
                       formik.touched.quantityLeft && formik.errors.quantityLeft
                     }
@@ -395,7 +378,6 @@ const AdminDashUpdate = () => {
                     label="Цена"
                     value={formik.values.price}
                     onChange={formik.handleChange}
-                    error={formik.touched.price && Boolean(formik.errors.price)}
                     helperText={formik.touched.price && formik.errors.price}
                   />
                 </Grid>
@@ -418,7 +400,6 @@ const AdminDashUpdate = () => {
                       name="size"
                       value={'40'}
                       onChange={formik.handleChange}
-                      error={formik.touched.size && Boolean(formik.errors.size)}
                       helperText={formik.touched.size && formik.errors.size}
                       onClick={() => {
                         sizeOperation('40', checked40Bool);
@@ -438,7 +419,6 @@ const AdminDashUpdate = () => {
                       name="size"
                       value={'41'}
                       onChange={formik.handleChange}
-                      error={formik.touched.size && Boolean(formik.errors.size)}
                       helperText={formik.touched.size && formik.errors.size}
                       onClick={() => {
                         sizeOperation('41', checked41Bool);
@@ -458,7 +438,6 @@ const AdminDashUpdate = () => {
                       name="size"
                       value={'42'}
                       onChange={formik.handleChange}
-                      error={formik.touched.size && Boolean(formik.errors.size)}
                       helperText={formik.touched.size && formik.errors.size}
                       onClick={() => {
                         sizeOperation('42', checked42Bool);
@@ -478,7 +457,6 @@ const AdminDashUpdate = () => {
                       name="size"
                       value={'43'}
                       onChange={formik.handleChange}
-                      error={formik.touched.size && Boolean(formik.errors.size)}
                       helperText={formik.touched.size && formik.errors.size}
                       onClick={() => {
                         sizeOperation('43', checked43Bool);
@@ -500,7 +478,6 @@ const AdminDashUpdate = () => {
                       name="color"
                       value={'black'}
                       onChange={formik.handleChange}
-                      error={formik.touched.size && Boolean(formik.errors.size)}
                       helperText={formik.touched.size && formik.errors.size}
                       onClick={() => {
                         sizeOperation('black', checkedBlack);
@@ -520,7 +497,6 @@ const AdminDashUpdate = () => {
                       name="color"
                       value={'blue'}
                       onChange={formik.handleChange}
-                      error={formik.touched.size && Boolean(formik.errors.size)}
                       helperText={formik.touched.size && formik.errors.size}
                       onClick={() => {
                         sizeOperation('blue', checkedBlue);
@@ -540,7 +516,6 @@ const AdminDashUpdate = () => {
                       name="color"
                       value={'white'}
                       onChange={formik.handleChange}
-                      error={formik.touched.size && Boolean(formik.errors.size)}
                       helperText={formik.touched.size && formik.errors.size}
                       onClick={() => {
                         sizeOperation('white', checkedWhite);

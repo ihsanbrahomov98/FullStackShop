@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
-import axios from 'axios';
+import { axiosInstance } from '../../config';
 import Typography from '@mui/material/Typography';
 import AdminNav from './AdminNav';
 import AdminDashDelete from './AdminDashDelete';
@@ -27,7 +27,7 @@ const AdminDashDeleteOne = () => {
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
 
-      axios.delete(
+      axiosInstance.delete(
         '/back/mock/api/deleteone/',
         {
           data: {
@@ -98,7 +98,6 @@ const AdminDashDeleteOne = () => {
                 name="userId"
                 value={formik.values.userId}
                 onChange={formik.handleChange}
-                error={formik.touched.userId && Boolean(formik.errors.userId)}
                 helperText={formik.touched.userId && formik.errors.userId}
               />
             </Box>

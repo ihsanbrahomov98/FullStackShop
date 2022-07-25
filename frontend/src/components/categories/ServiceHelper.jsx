@@ -6,7 +6,7 @@ import { Button, CardActionArea, CardActions, Typography } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { axiosInstance } from '../../config';
 import Container from '@mui/material/Container';
 import { Colors } from '../styles/theme';
 import Grid from '@mui/material/Grid';
@@ -26,7 +26,7 @@ const ServiceHelper = () => {
 
   useEffect(() => {
     const fetchproducts = async () => {
-      const { data } = await axios.get('/back/mock/api/findall');
+      const { data } = await axiosInstance.get('/back/mock/api/findall');
 
       const filteredItemsWoman = data.filter(
         (item) => item.category === 'sport'

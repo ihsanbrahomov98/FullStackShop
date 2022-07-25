@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
-import axios from 'axios';
+import { axiosInstance } from '../config';
 import Typography from '@mui/material/Typography';
 
 const validationSchema = yup.object({
@@ -27,7 +27,7 @@ const AdminCreateProduct = () => {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
-      axios.post('/back/authroute/register', {
+      axiosInstance.post('/back/authroute/register', {
         username: values.username,
         email: values.email,
         password: values.password,

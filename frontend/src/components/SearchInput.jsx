@@ -4,7 +4,7 @@ import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { axiosInstance } from '../config';
 import { useNavigate } from 'react-router-dom';
 
 export default function SearchInput() {
@@ -15,7 +15,7 @@ export default function SearchInput() {
 
   useEffect(() => {
     const fetchproducts = async () => {
-      const { data } = await axios.get('/back/mock/api/findall');
+      const { data } = await axiosInstance.get('/back/mock/api/findall');
 
       setProducts(data);
     };
